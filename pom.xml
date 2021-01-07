@@ -7,6 +7,7 @@
     <modules>
         <module>fakturogen-invoice-generator</module>
         <module>fakturogen-users</module>
+        <module>fakturogen-API</module>
     </modules>
 
     <parent>
