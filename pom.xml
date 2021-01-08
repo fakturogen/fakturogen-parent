@@ -9,6 +9,7 @@
         <module>fakturogen-invoices</module>
         <module>fakturogen-comarch-connector</module>
         <module>fakturogen-users</module>
+        <module>fakturogen-core</module>
     </modules>
 
     <parent>
