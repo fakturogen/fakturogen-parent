@@ -33,6 +33,7 @@ public class Product {
     @Column(name = "sale_gross_price", nullable = false)
     private double saleGrossPrice;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "rate", nullable = false)
     private Rate rate;
 
