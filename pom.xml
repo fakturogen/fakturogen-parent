@@ -10,7 +10,7 @@
         <module>fakturogen-invoices</module>
         <module>fakturogen-comarch-connector</module>
         <module>fakturogen-users</module>
-        <module>fakturogen-API</module>
+        <module>fakturogen-api</module>
         <module>fakturogen-core</module>
     </modules>
 
