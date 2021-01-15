@@ -14,7 +14,8 @@
 
 
 	<properties>
-		<java.version>11</java.version>
+		<maven.source.compiler>11</maven.source.compiler>
+		<maven.target.compiler>11</maven.target.compiler>
 	</properties>
 
 	<dependencies>
@@ -28,5 +29,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.16</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 </project>
