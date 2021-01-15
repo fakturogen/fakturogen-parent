@@ -1,13 +1,13 @@
-package pl.fakturogen.api;
+package pl.fakturogen.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FakturogenApiApplication {
+public class FakturogenWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FakturogenApiApplication.class, args);
+		SpringApplication.run(FakturogenWebApplication.class, args);
 	}
 
 }
