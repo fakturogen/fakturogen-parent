@@ -35,6 +35,17 @@ public class Product {
     @Column(name = "rate", nullable = false)
     private Rate rate;
 
+    @Column(name = "id_external_api", nullable = false)
+    private long idExternalApi;
+
+    public long getIdExternalApi() {
+        return idExternalApi;
+    }
+
+    public void setIdExternalApi(long idExternalApi) {
+        this.idExternalApi = idExternalApi;
+    }
+
     public static String getTableName() {
         return TABLE_NAME;
     }
@@ -109,12 +120,12 @@ public class Product {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return id == product.id &&
-                Objects.equals(name, product.name);
+                idExternalApi == product.idExternalApi;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, idExternalApi);
     }
 
     @Override
@@ -128,6 +139,7 @@ public class Product {
                 ", saleNetPrice=" + saleNetPrice +
                 ", saleGrossPrice=" + saleGrossPrice +
                 ", rate=" + rate +
+                ", idExternalApi=" + idExternalApi +
                 '}';
     }
 }
