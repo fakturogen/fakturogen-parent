@@ -6,9 +6,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>fakturogen-invoice-generator</module>
+        <module>fakturogen-web</module>
         <module>fakturogen-invoices</module>
         <module>fakturogen-comarch-connector</module>
         <module>fakturogen-users</module>
+        <module>fakturogen-api</module>
         <module>fakturogen-core</module>
     </modules>
 
