@@ -15,10 +15,10 @@ public class Customer {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "customer_tax_number", nullable = false)
+    @Column(name = "customer_tax_number")
     private String customerTaxNumber;
 
-    @Column(name = "customer_code", nullable = false)
+    @Column(name = "customer_code")
     private String customerCode;
 
     @Column(name = "mail")
@@ -28,7 +28,7 @@ public class Customer {
     private String phoneNumber;
 
     @Enumerated
-    @Column(name = "customer_type", nullable = false)
+    @Column(name = "customer_type")
     private CustomerType customerType;
 
     @OneToOne
