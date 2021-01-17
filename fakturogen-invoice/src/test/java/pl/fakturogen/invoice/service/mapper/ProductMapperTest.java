@@ -7,12 +7,12 @@ import pl.fakturogen.invoice.dao.entity.Rate;
 import pl.fakturogen.invoice.web.dto.ProductDTO;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
 
 class ProductMapperTest {
 
     private Product product;
     private ProductDTO productDTO;
+    private ProductMapper productMapper;
 
     @BeforeEach
     void init() {
@@ -40,20 +40,18 @@ class ProductMapperTest {
 
     @Test
     void givenProductShouldReturnProductDTO() {
-        ProductMapper productMapper = new ProductMapper();
+        productMapper = new ProductMapper();
         ProductDTO productDTOresult = productMapper.from(product);
 
-        assertAll(
-                () -> assertThat(productDTOresult.getName()).isEqualTo(productDTO.getName()),
-                () -> assertThat(productDTOresult.getDescription()).isEqualTo(productDTO.getDescription()),
-                () -> assertThat(productDTOresult.getItemCode()).isEqualTo(productDTO.getItemCode()),
-                () -> assertThat(productDTOresult.getUnitOfMeasurement()).isEqualTo(productDTO.getUnitOfMeasurement()),
-                () -> assertThat(productDTOresult.getSaleNetPrice()).isEqualTo(productDTO.getSaleNetPrice()),
-                () -> assertThat(productDTOresult.getSaleGrossPrice()).isEqualTo(productDTO.getSaleGrossPrice()),
-                () -> assertThat(productDTOresult.getRate()).isEqualTo(productDTO.getRate()),
-                () -> assertThat(productDTOresult.getIdExternalApi()).isEqualTo(productDTO.getIdExternalApi())
-        );
+        assertEquals(productDTO, productDTOresult);
+    }
 
+    @Test
+    void givenProductDTOshouldReturnProduct() {
+        productMapper = new ProductMapper();
+        Product productResult = productMapper.from(productDTO);
+
+        assertEquals(product, productResult);
     }
 
 }
