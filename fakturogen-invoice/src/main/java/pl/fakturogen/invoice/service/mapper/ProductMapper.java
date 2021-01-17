@@ -2,6 +2,7 @@ package pl.fakturogen.invoice.service.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.invoice.dao.entity.Product;
 import pl.fakturogen.invoice.web.dto.ProductDTO;
@@ -14,6 +15,7 @@ public class ProductMapper {
 
     public ProductMapper() {
         modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     }
 
     public ProductDTO from(Product product) {
