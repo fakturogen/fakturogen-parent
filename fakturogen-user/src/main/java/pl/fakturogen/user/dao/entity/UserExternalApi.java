@@ -83,4 +83,15 @@ public class UserExternalApi {
     public int hashCode() {
         return Objects.hash(id, clientId);
     }
+
+    @Override
+    public String toString() {
+        return "UserExternalApi{" +
+                "id=" + id +
+                ", clientId='" + clientId + '\'' +
+                ", clientSecret='" + clientSecret + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                ", user=" + user +
+                '}';
+    }
 }
