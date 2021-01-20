@@ -1,6 +1,11 @@
 package pl.fakturogen.invoice.dao.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +16,9 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "id_external_api")
+    private long idExternalApi;
 
     @Column(name = "street")
     private String street;
@@ -75,23 +83,33 @@ public class Address {
         this.city = city;
     }
 
+    public long getIdExternalApi() {
+        return idExternalApi;
+    }
+
+    public void setIdExternalApi(long idExternalApi) {
+        this.idExternalApi = idExternalApi;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return id == address.id;
+        return id == address.id &&
+                idExternalApi == address.idExternalApi;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, idExternalApi);
     }
 
     @Override
     public String toString() {
         return "Address{" +
                 "id=" + id +
+                ", idExternalApi=" + idExternalApi +
                 ", street='" + street + '\'' +
                 ", buildingNumber='" + buildingNumber + '\'' +
                 ", flatNumber='" + flatNumber + '\'' +
