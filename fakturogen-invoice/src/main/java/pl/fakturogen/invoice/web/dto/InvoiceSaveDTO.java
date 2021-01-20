@@ -5,7 +5,6 @@ import lombok.Data;
 import pl.fakturogen.invoice.dao.entity.Product;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -28,6 +27,4 @@ public class InvoiceSaveDTO {
     private Integer invoiceType;
     private String additionalInformation;
     private Long originalId; // Document id from provider database
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
 }
