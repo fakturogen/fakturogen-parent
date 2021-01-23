@@ -15,10 +15,10 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "id_external_api")
-    private long idExternalApi;
+    private Long idExternalApi;
 
     private String street;
 

@@ -14,7 +14,9 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class CustomerDTO {
 
-    private long id;
+    private Long id;
+
+    private Long idExternalApi;
 
     @NotBlank
     private String name;

@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AddressDTO {
 
-    private long id;
+    private Long id;
+
+    private Long idExternalApi;
 
     private String street;
 
