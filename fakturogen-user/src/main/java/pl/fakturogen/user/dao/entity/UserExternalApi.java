@@ -12,7 +12,7 @@ import java.util.Objects;
 @Entity
 @Table(name = UserExternalApi.TABLE_NAME)
 public class UserExternalApi {
-    public static final String TABLE_NAME = "users external api";
+    public static final String TABLE_NAME = "users_external_api";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

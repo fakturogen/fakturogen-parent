@@ -20,7 +20,6 @@ public class Address {
     @Column(name = "id_external_api")
     private long idExternalApi;
 
-    @Column(name = "street")
     private String street;
 
     @Column(name = "building_number")
@@ -32,8 +31,11 @@ public class Address {
     @Column(name = "postal_code")
     private String postalCode;
 
-    @Column(name = "city")
+    private String postOffice;
+
     private String city;
+
+    private String country;
 
     public long getId() {
         return id;
@@ -91,6 +93,22 @@ public class Address {
         this.idExternalApi = idExternalApi;
     }
 
+    public String getPostOffice() {
+        return postOffice;
+    }
+
+    public void setPostOffice(String postOffice) {
+        this.postOffice = postOffice;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,7 +132,9 @@ public class Address {
                 ", buildingNumber='" + buildingNumber + '\'' +
                 ", flatNumber='" + flatNumber + '\'' +
                 ", postalCode='" + postalCode + '\'' +
+                ", postOffice='" + postOffice + '\'' +
                 ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
                 '}';
     }
 }

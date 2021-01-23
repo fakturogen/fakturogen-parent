@@ -1,18 +1,58 @@
 package pl.fakturogen.invoice.dao.entity;
 
-public enum CustomerType {
-    C0("osoba fizyczna"), C1("podmiot gospodarczy");
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Objects;
 
-    private CustomerType(String description) {
+@Entity
+@Table(name = CustomerType.TABLE_NAME)
+public class CustomerType {
+    public static final String TABLE_NAME = "customer_types";
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    private String description;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerType that = (CustomerType) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description);
+    }
 
     @Override
     public String toString() {
         return "CustomerType{" +
-                "description='" + description + '\'' +
+                "id=" + id +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
