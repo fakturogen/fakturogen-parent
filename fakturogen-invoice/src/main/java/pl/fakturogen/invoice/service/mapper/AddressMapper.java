@@ -13,19 +13,19 @@ public class AddressMapper {
 
     private ModelMapper modelMapper;
 
-    public AddressMapper(){
+    public AddressMapper() {
         modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     }
 
-    public AddressDTO from(Address address){
+    public AddressDTO from(Address address) {
         log.info("mapping from {}", address);
         AddressDTO addressDTO = modelMapper.map(address, AddressDTO.class);
         log.info("mapping from {} = {}", address, addressDTO);
         return addressDTO;
     }
 
-    public Address from(AddressDTO addressDTO){
+    public Address from(AddressDTO addressDTO) {
         log.info("mapping from {}", addressDTO);
         Address address = modelMapper.map(addressDTO, Address.class);
         log.info("mapping from {} = {}", addressDTO, address);
