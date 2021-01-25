@@ -30,7 +30,7 @@ public class Invoice {
     @Column (name = "due_date")
     private LocalDate dueDate;
     @Column (name = "payment_method")
-    private String paymentMethod;
+    private Integer paymentMethod;
     private double total;
     private double tax;
     private double net;
