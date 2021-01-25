@@ -26,7 +26,7 @@ public class InvoiceSaveDTO {
     private double net;
     private double discount;
     private Integer status;
-    private Customer customer;
+    private Customer customer; //TO DO should be change to CustomerDTO
     private List<Product> items;
     private Integer bankAccountId;
     private Integer invoiceType;

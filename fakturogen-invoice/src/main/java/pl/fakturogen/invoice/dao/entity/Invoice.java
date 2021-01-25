@@ -105,11 +105,11 @@ public class Invoice {
         this.dueDate = dueDate;
     }
 
-    public String getPaymentMethod() {
+    public Integer getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(Integer paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -222,8 +222,8 @@ public class Invoice {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Invoice invoice = (Invoice) o;
-        return Objects.equals(id, invoice.id) &&
-                Objects.equals(number, invoice.number);
+        return id.equals(invoice.id) &&
+                number.equals(invoice.number);
     }
 
     @Override
@@ -239,7 +239,7 @@ public class Invoice {
                 ", issueDate=" + issueDate +
                 ", saleDate=" + saleDate +
                 ", dueDate=" + dueDate +
-                ", paymentMethod='" + paymentMethod + '\'' +
+                ", paymentMethod=" + paymentMethod +
                 ", total=" + total +
                 ", tax=" + tax +
                 ", net=" + net +
