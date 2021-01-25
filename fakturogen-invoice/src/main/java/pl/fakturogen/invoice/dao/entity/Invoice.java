@@ -1,5 +1,7 @@
 package pl.fakturogen.invoice.dao.entity;
 
+import pl.fakturogen.invoice.web.dto.CustomerDTO;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "invoice")
+@Table(name = "invoices")
 public class Invoice {
 
     @Id
@@ -30,11 +32,11 @@ public class Invoice {
     @Column (name = "due_date")
     private LocalDate dueDate;
     @Column (name = "payment_method")
-    private String paymentMethod;
-    private double total;
-    private double tax;
-    private double net;
-    private double discount;
+    private Integer paymentMethod;
+    private Double total;
+    private Double tax;
+    private Double net;
+    private Double discount;
     private Integer status;
 
     @OneToOne
@@ -105,11 +107,11 @@ public class Invoice {
         this.dueDate = dueDate;
     }
 
-    public String getPaymentMethod() {
+    public Integer getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(Integer paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -153,12 +155,12 @@ public class Invoice {
         this.status = status;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public InvoiceSaveDTO getCustomer() {
+        return invoiceSaveDTO;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(InvoiceSaveDTO invoiceSaveDTO) {
+        this.invoiceSaveDTO = invoiceSaveDTO;
     }
 
     public List<Product> getItems() {
@@ -245,7 +247,7 @@ public class Invoice {
                 ", net=" + net +
                 ", discount=" + discount +
                 ", status=" + status +
-                ", customer=" + customer +
+                ", customer=" + invoiceSaveDTO +
                 ", items=" + items +
                 ", bankAccountId=" + bankAccountId +
                 ", invoiceType=" + invoiceType +

@@ -1,15 +1,112 @@
 package pl.fakturogen.invoice.service.mapper;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.fakturogen.invoice.dao.entity.InvoiceSaveDTO;
+import pl.fakturogen.invoice.dao.entity.Invoice;
+import pl.fakturogen.invoice.dao.entity.Product;
+import pl.fakturogen.invoice.dao.entity.Rate;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@DisplayName("Invoice ModelMapper ")
 class InvoiceMapperTest {
+    InvoiceMapper invoiceMapper;
+    List<Product> items;
 
-    @DisplayName("Invoice ModelMapper ")
-    @Test
-    public void test1(){
-        InvoiceMapper invoiceMapper;
+    @BeforeEach
+    void init() {
         invoiceMapper = new InvoiceMapper();
+        items = new ArrayList<>();
+    }
+
+    @DisplayName(" - should map InvoiceSaveDTO to entity")
+    @Test
+    public void test1() {
+        Product product1 = new Product();
+        product1.setId(1);
+        product1.setRate(Rate.R9);
+        product1.setSaleNetPrice(100.00);
+        product1.setName("Apartment no. 1");
+
+        Product product2 = new Product();
+        product2.setId(12);
+        product2.setRate(Rate.R9);
+        product2.setSaleNetPrice(100.00);
+        product2.setName("Apartment no. 2");
+
+        InvoiceSaveDTO invoiceSaveDTO = new InvoiceSaveDTO();
+        invoiceSaveDTO.setId(4);
+        invoiceSaveDTO.setName("Jan");
+
+        items.add(product1);
+        items.add(product2);
+
+        pl.fakturogen.invoice.web.dto.InvoiceSaveDTO receivedDTO = pl.fakturogen.invoice.web.dto.InvoiceSaveDTO.builder()
+                .number("1/1/2021")
+                .status(0)
+                .issueDate(LocalDate.of(2021, 1, 19))
+                .dueDate(LocalDate.of(2021, 1, 26))
+                .paymentMethod(1)
+                .total(246.00)
+                .tax(0.23)
+                .net(200.00)
+                .discount(00.0)
+                .status(1)
+                .invoiceSaveDTO(invoiceSaveDTO)
+                .items(items)
+                .bankAccountId(1234)
+                .invoiceType(0)
+                .additionalInformation("brak")
+                .originalId(23L)
+                .build();
+
+        Invoice mappedInvoice = new Invoice();
+        mappedInvoice.setNumber(receivedDTO.getNumber());
+        mappedInvoice.setStatus(receivedDTO.getStatus());
+        mappedInvoice.setIssueDate(receivedDTO.getIssueDate());
+        mappedInvoice.setDueDate(receivedDTO.getDueDate());
+        mappedInvoice.setPaymentMethod(receivedDTO.getPaymentMethod());
+        mappedInvoice.setTotal(receivedDTO.getTotal());
+        mappedInvoice.setTax(receivedDTO.getTax());
+        mappedInvoice.setNet(receivedDTO.getNet());
+        mappedInvoice.setDiscount(receivedDTO.getDiscount());
+        mappedInvoice.setStatus(receivedDTO.getStatus());
+        mappedInvoice.setCustomer(receivedDTO.getInvoiceSaveDTO());
+        mappedInvoice.setBankAccountId(receivedDTO.getBankAccountId());
+        mappedInvoice.setInvoiceType(receivedDTO.getInvoiceType());
+        mappedInvoice.setAdditionalInformation(receivedDTO.getAdditionalInformation());
+        mappedInvoice.setOriginalId(receivedDTO.getOriginalId());
+
+        Invoice result = invoiceMapper.from(receivedDTO);
+
+        // Assertions.assertEquals();
+        Assertions.assertAll(
+                () -> assertThat(result).isNotNull(),
+                () -> assertThat(result.getNumber()).isEqualTo(receivedDTO.getNumber()),
+                () -> assertThat(result.getStatus()).isEqualTo(receivedDTO.getStatus()),
+                () -> assertThat(result.getIssueDate()).isEqualTo(receivedDTO.getIssueDate()),
+                () -> assertThat(result.getDueDate()).isEqualTo(receivedDTO.getDueDate()),
+                () -> assertThat(result.getPaymentMethod()).isEqualTo(receivedDTO.getPaymentMethod()),
+                () -> assertThat(result.getTotal()).isEqualTo(receivedDTO.getTotal()),
+                () -> assertThat(result.getTax()).isEqualTo(receivedDTO.getTax()),
+                () -> assertThat(result.getNet()).isEqualTo(receivedDTO.getNet()),
+                () -> assertThat(result.getDiscount()).isEqualTo(receivedDTO.getDiscount()),
+                () -> assertThat(result.getStatus()).isEqualTo(receivedDTO.getStatus()),
+                () -> assertThat(result.getCustomer()).isNull(),
+                // () -> assertThat(result.getCustomer().getCustomerTaxNumber()).isEqualTo(receivedDTO.getInvoiceSaveDTO().getCustomerTaxNumber()),
+                () -> assertThat(result.getBankAccountId()).isEqualTo(receivedDTO.getBankAccountId()),
+                () -> assertThat(result.getInvoiceType()).isEqualTo(receivedDTO.getInvoiceType()),
+                () -> assertThat(result.getAdditionalInformation()).isEqualTo(receivedDTO.getAdditionalInformation()),
+                () -> assertThat(result.getOriginalId()).isEqualTo(receivedDTO.getOriginalId())
+        );
+
     }
 
 

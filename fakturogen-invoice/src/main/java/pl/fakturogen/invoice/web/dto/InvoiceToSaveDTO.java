@@ -10,8 +10,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class InvoiceSaveDTO {
-
+public class InvoiceToSaveDTO {
     private String number;
     @DateTimeFormat(pattern = "dd-MM-YYYY")
     private LocalDate issueDate;
@@ -23,7 +22,7 @@ public class InvoiceSaveDTO {
     private double net;
     private double discount;
     private Integer status;
-    private CustomerDTO customerDTO;
+    private Integer customerId;
     private List<Product> items;
     private Integer bankAccountId;
     private Integer invoiceType;
