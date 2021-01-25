@@ -66,6 +66,7 @@ public class AddressMapperTest {
     }
 
     @Nested
+    @DisplayName("Mapping from Adress to AdressDTO")
     class AddressToAddressDTO {
 
         @Test
@@ -83,7 +84,7 @@ public class AddressMapperTest {
 
         @Test
         @DisplayName("Should map provided empty address to empty addressDTO")
-        void test2(){
+        void test2() {
             AddressDTO mappedAddressDTO = addressMapper.from(emptyAddress);
             assertAll(
                     () -> assertEquals(emptyAddress.getId(), mappedAddressDTO.getId()),
@@ -94,5 +95,65 @@ public class AddressMapperTest {
                     () -> assertEquals(emptyAddress.getPostalCode(), mappedAddressDTO.getPostalCode()),
                     () -> assertEquals(emptyAddress.getCity(), mappedAddressDTO.getCity()));
         }
+
+        @Test
+        @DisplayName("Should map provided partially empty address to partially empty addressDTO")
+        void test3() {
+            AddressDTO mappedAddressDTO = addressMapper.from(partiallyEmptyAddress);
+            assertAll(
+                    () -> assertEquals(partiallyEmptyAddress.getId(), mappedAddressDTO.getId()),
+                    () -> assertEquals(partiallyEmptyAddress.getIdExternalApi(), mappedAddressDTO.getIdExternalApi()),
+                    () -> assertEquals(partiallyEmptyAddress.getStreet(), mappedAddressDTO.getStreet()),
+                    () -> assertEquals(partiallyEmptyAddress.getBuildingNumber(), mappedAddressDTO.getBuildingNumber()),
+                    () -> assertEquals(partiallyEmptyAddress.getFlatNumber(), mappedAddressDTO.getFlatNumber()),
+                    () -> assertEquals(partiallyEmptyAddress.getPostalCode(), mappedAddressDTO.getPostalCode()),
+                    () -> assertEquals(partiallyEmptyAddress.getCity(), mappedAddressDTO.getCity()));
+        }
+    }
+
+    @Nested
+    @DisplayName("Mapping from AdressDTO to Adress")
+    class AddressDTOToAddress {
+        @Test
+        @DisplayName("Should map provided addressDT0 to address")
+        void test1() {
+            Address mappedAddress = addressMapper.from(addressDTO);
+            assertAll(() -> assertEquals(addressDTO.getId(), mappedAddress.getId()),
+                    () -> assertEquals(addressDTO.getIdExternalApi(), mappedAddress.getIdExternalApi()),
+                    () -> assertEquals(addressDTO.getStreet(), mappedAddress.getStreet()),
+                    () -> assertEquals(addressDTO.getBuildingNumber(), mappedAddress.getBuildingNumber()),
+                    () -> assertEquals(addressDTO.getFlatNumber(), mappedAddress.getFlatNumber()),
+                    () -> assertEquals(addressDTO.getPostalCode(), mappedAddress.getPostalCode()),
+                    () -> assertEquals(addressDTO.getCity(), mappedAddress.getCity()));
+        }
+
+        @Test
+        @DisplayName("Should map provided empty addressDT0 to empty address")
+        void test2() {
+            Address mappedAddress = addressMapper.from(emptyAddressDTO);
+            assertAll(
+                    () -> assertEquals(emptyAddressDTO.getId(), mappedAddress.getId()),
+                    () -> assertEquals(emptyAddressDTO.getIdExternalApi(), mappedAddress.getIdExternalApi()),
+                    () -> assertEquals(emptyAddressDTO.getStreet(), mappedAddress.getStreet()),
+                    () -> assertEquals(emptyAddressDTO.getBuildingNumber(), mappedAddress.getBuildingNumber()),
+                    () -> assertEquals(emptyAddressDTO.getFlatNumber(), mappedAddress.getFlatNumber()),
+                    () -> assertEquals(emptyAddressDTO.getPostalCode(), mappedAddress.getPostalCode()),
+                    () -> assertEquals(emptyAddressDTO.getCity(), mappedAddress.getCity()));
+        }
+
+        @Test
+        @DisplayName("Should map provided partially empty addressDTO to partially empty address")
+        void test3() {
+            Address mappedAddress = addressMapper.from(partiallyEmptyAddressDTO);
+            assertAll(
+                    () -> assertEquals(partiallyEmptyAddressDTO.getId(), mappedAddress.getId()),
+                    () -> assertEquals(partiallyEmptyAddressDTO.getIdExternalApi(), mappedAddress.getIdExternalApi()),
+                    () -> assertEquals(partiallyEmptyAddressDTO.getStreet(), mappedAddress.getStreet()),
+                    () -> assertEquals(partiallyEmptyAddressDTO.getBuildingNumber(), mappedAddress.getBuildingNumber()),
+                    () -> assertEquals(partiallyEmptyAddressDTO.getFlatNumber(), mappedAddress.getFlatNumber()),
+                    () -> assertEquals(partiallyEmptyAddressDTO.getPostalCode(), mappedAddress.getPostalCode()),
+                    () -> assertEquals(partiallyEmptyAddressDTO.getCity(), mappedAddress.getCity()));
+        }
     }
 }
+
