@@ -2,19 +2,26 @@ package pl.fakturogen.invoice.service.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.invoice.dao.entity.Invoice;
-import pl.fakturogen.invoice.web.dto.InvoiceSaveDTO;
+import pl.fakturogen.invoice.web.dto.InvoiceDTO;
 
 @Component
 @Slf4j
 public class InvoiceMapper {
-    public Invoice from (InvoiceSaveDTO invoiceSaveDTO){
-        log.info("from {}", invoiceSaveDTO);
+
+    public InvoiceDTO from (Invoice invoice) {
+        log.info("from {}", invoice);
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        Invoice invoice = modelMapper.map(invoiceSaveDTO, Invoice.class);
+        InvoiceDTO invoiceDTO = modelMapper.map(invoice,InvoiceDTO.class);
+        log.info("to {}", invoiceDTO);
+        return  invoiceDTO;
+    }
+
+    public Invoice to (InvoiceDTO invoiceDTO){
+        log.info("from {}", invoiceDTO);
+        ModelMapper modelMapper = new ModelMapper();
+        Invoice invoice = modelMapper.map(invoiceDTO, Invoice.class);
         log.info("to {}", invoice);
         return invoice;
     }
