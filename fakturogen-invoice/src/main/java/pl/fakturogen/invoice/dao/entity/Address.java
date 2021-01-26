@@ -37,12 +37,20 @@ public class Address {
 
     private String country;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdExternalApi() {
+        return idExternalApi;
+    }
+
+    public void setIdExternalApi(Long idExternalApi) {
+        this.idExternalApi = idExternalApi;
     }
 
     public String getStreet() {
@@ -77,28 +85,20 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public long getIdExternalApi() {
-        return idExternalApi;
-    }
-
-    public void setIdExternalApi(long idExternalApi) {
-        this.idExternalApi = idExternalApi;
-    }
-
     public String getPostOffice() {
         return postOffice;
     }
 
     public void setPostOffice(String postOffice) {
         this.postOffice = postOffice;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getCountry() {
@@ -114,8 +114,8 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return id == address.id &&
-                idExternalApi == address.idExternalApi;
+        return Objects.equals(id, address.id) &&
+                Objects.equals(idExternalApi, address.idExternalApi);
     }
 
     @Override
