@@ -50,6 +50,22 @@ public class InvoiceTemplate {
         return Objects.hash(id, issueDate, priceTotal);
     }
 
+    @Override
+    public String toString() {
+        return "InvoiceTemplate{" +
+                "id=" + id +
+                ", issueDate=" + issueDate +
+                ", saleDate=" + saleDate +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", priceTotal=" + priceTotal +
+                ", priceTax=" + priceTax +
+                ", priceNet=" + priceNet +
+                ", discountAmount=" + discountAmount +
+                ", customer=" + customer +
+                ", products=" + products +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
