@@ -11,7 +11,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -36,13 +36,13 @@ public class Product {
     private Rate rate;
 
     @Column(name = "id_external_api", nullable = false)
-    private long idExternalApi;
+    private Long idExternalApi;
 
-    public long getIdExternalApi() {
+    public Long getIdExternalApi() {
         return idExternalApi;
     }
 
-    public void setIdExternalApi(long idExternalApi) {
+    public void setIdExternalApi(Long idExternalApi) {
         this.idExternalApi = idExternalApi;
     }
 
@@ -119,8 +119,8 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id &&
-                idExternalApi == product.idExternalApi;
+        return Objects.equals(id, product.id) &&
+                Objects.equals(idExternalApi, product.idExternalApi);
     }
 
     @Override

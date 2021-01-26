@@ -16,5 +16,6 @@ public class ProductDTO {
     private double saleNetPrice;
     private double saleGrossPrice;
     private Rate rate;
-    private long idExternalApi;
+    private Long idExternalApi;
+
 }

@@ -29,7 +29,7 @@ class ProductMapperTest {
         product.setSaleNetPrice(11.22);
         product.setSaleGrossPrice((11.22*1.04));
         product.setRate(Rate.R6);
-        product.setIdExternalApi(9999);
+        product.setIdExternalApi(9999L);
 
         emptyProduct = new Product();
 
@@ -46,7 +46,7 @@ class ProductMapperTest {
         productDTO.setSaleNetPrice(11.22);
         productDTO.setSaleGrossPrice(11.22*1.04);
         productDTO.setRate(Rate.R6);
-        productDTO.setIdExternalApi(9999);
+        productDTO.setIdExternalApi(9999L);
 
         emptyProductDTO = new ProductDTO();
 
