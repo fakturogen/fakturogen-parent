@@ -31,10 +31,10 @@ public class Invoice {
     private LocalDate dueDate;
     @Column (name = "payment_method")
     private Integer paymentMethod;
-    private double total;
-    private double tax;
-    private double net;
-    private double discount;
+    private Double total;
+    private Double tax;
+    private Double net;
+    private Double discount;
     private Integer status;
 
     @OneToOne
@@ -113,35 +113,35 @@ public class Invoice {
         this.paymentMethod = paymentMethod;
     }
 
-    public double getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
-    public double getTax() {
+    public Double getTax() {
         return tax;
     }
 
-    public void setTax(double tax) {
+    public void setTax(Double tax) {
         this.tax = tax;
     }
 
-    public double getNet() {
+    public Double getNet() {
         return net;
     }
 
-    public void setNet(double net) {
+    public void setNet(Double net) {
         this.net = net;
     }
 
-    public double getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
