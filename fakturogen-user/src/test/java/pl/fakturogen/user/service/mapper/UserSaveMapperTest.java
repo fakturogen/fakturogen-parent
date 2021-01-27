@@ -47,9 +47,9 @@ class UserSaveMapperTest {
     public void test2() {
         userSaveDTO = new UserSaveDTO();
         user = new User();
-        //when
+
         User result = userSaveMapper.from(userSaveDTO);
-        //then
+
         assertEquals(user, result);
     }
 
