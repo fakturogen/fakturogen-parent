@@ -1,4 +1,4 @@
-package pl.fakturogen.comarchconnector;
+package pl.fakturogen.comarch;
 
 public class InvoiceProviderComarch {
 }
