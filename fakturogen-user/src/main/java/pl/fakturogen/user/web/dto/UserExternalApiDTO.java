@@ -14,5 +14,6 @@ public class UserExternalApiDTO {
     private Long id;
     private String clientId;
     private String clientSecret;
+    private UserDTO user;
 
 }
