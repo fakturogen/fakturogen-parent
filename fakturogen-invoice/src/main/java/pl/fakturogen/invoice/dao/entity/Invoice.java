@@ -27,8 +27,6 @@ public class Invoice {
     private LocalDate issueDate;
     @Column (name = "sale_date")
     private LocalDate saleDate;
-    @Column (name = "due_date")
-    private LocalDate dueDate;
     @Column (name = "payment_method")
     private Integer paymentMethod;
     private Double total;
@@ -65,6 +63,7 @@ public class Invoice {
         this.updatedOn = LocalDateTime.now();
     }
 
+
     public Long getId() {
         return id;
     }
@@ -95,14 +94,6 @@ public class Invoice {
 
     public void setSaleDate(LocalDate saleDate) {
         this.saleDate = saleDate;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
     }
 
     public Integer getPaymentMethod() {
@@ -220,10 +211,10 @@ public class Invoice {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Invoice)) return false;
         Invoice invoice = (Invoice) o;
-        return id.equals(invoice.id) &&
-                number.equals(invoice.number);
+        return Objects.equals(id, invoice.id) &&
+                Objects.equals(number, invoice.number);
     }
 
     @Override
@@ -238,7 +229,6 @@ public class Invoice {
                 ", number='" + number + '\'' +
                 ", issueDate=" + issueDate +
                 ", saleDate=" + saleDate +
-                ", dueDate=" + dueDate +
                 ", paymentMethod=" + paymentMethod +
                 ", total=" + total +
                 ", tax=" + tax +
