@@ -19,7 +19,6 @@ public class InvoiceSaveDTO {
     private String number;
     private LocalDate issueDate;
     private LocalDate saleDate;
-    private LocalDate dueDate;
     private Integer paymentMethod;
     private Double total;
     private Double tax;

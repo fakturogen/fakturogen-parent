@@ -55,7 +55,6 @@ class InvoiceMapperTest {
                 .number("1/1/2021")
                 .status(0)
                 .issueDate(LocalDate.of(2021, 1, 19))
-                .dueDate(LocalDate.of(2021, 1, 26))
                 .paymentMethod(1)
                 .total(246.00)
                 .tax(0.23)
@@ -70,23 +69,6 @@ class InvoiceMapperTest {
                 .originalId(23L)
                 .build();
 
-        Invoice mappedInvoice = new Invoice();
-        mappedInvoice.setNumber(receivedDTO.getNumber());
-        mappedInvoice.setStatus(receivedDTO.getStatus());
-        mappedInvoice.setIssueDate(receivedDTO.getIssueDate());
-        mappedInvoice.setDueDate(receivedDTO.getDueDate());
-        mappedInvoice.setPaymentMethod(receivedDTO.getPaymentMethod());
-        mappedInvoice.setTotal(receivedDTO.getTotal());
-        mappedInvoice.setTax(receivedDTO.getTax());
-        mappedInvoice.setNet(receivedDTO.getNet());
-        mappedInvoice.setDiscount(receivedDTO.getDiscount());
-        mappedInvoice.setStatus(receivedDTO.getStatus());
-        mappedInvoice.setCustomer(receivedDTO.getCustomer());
-        mappedInvoice.setBankAccountId(receivedDTO.getBankAccountId());
-        mappedInvoice.setInvoiceType(receivedDTO.getInvoiceType());
-        mappedInvoice.setAdditionalInformation(receivedDTO.getAdditionalInformation());
-        mappedInvoice.setOriginalId(receivedDTO.getOriginalId());
-
         Invoice result = invoiceMapper.from(receivedDTO);
 
 
@@ -95,7 +77,6 @@ class InvoiceMapperTest {
                 () -> assertThat(result.getNumber()).isEqualTo(receivedDTO.getNumber()),
                 () -> assertThat(result.getStatus()).isEqualTo(receivedDTO.getStatus()),
                 () -> assertThat(result.getIssueDate()).isEqualTo(receivedDTO.getIssueDate()),
-                () -> assertThat(result.getDueDate()).isEqualTo(receivedDTO.getDueDate()),
                 () -> assertThat(result.getPaymentMethod()).isEqualTo(receivedDTO.getPaymentMethod()),
                 () -> assertThat(result.getTotal()).isEqualTo(receivedDTO.getTotal()),
                 () -> assertThat(result.getTax()).isEqualTo(receivedDTO.getTax()),
