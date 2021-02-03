@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "invoice")
+@Table(name = "invoices")
 public class Invoice {
 
     @Id
@@ -27,14 +27,12 @@ public class Invoice {
     private LocalDate issueDate;
     @Column (name = "sale_date")
     private LocalDate saleDate;
-    @Column (name = "due_date")
-    private LocalDate dueDate;
     @Column (name = "payment_method")
     private Integer paymentMethod;
-    private double total;
-    private double tax;
-    private double net;
-    private double discount;
+    private Double total;
+    private Double tax;
+    private Double net;
+    private Double discount;
     private Integer status;
 
     @OneToOne
@@ -64,6 +62,7 @@ public class Invoice {
     public void setUpdatedOn() {
         this.updatedOn = LocalDateTime.now();
     }
+
 
     public Long getId() {
         return id;
@@ -97,14 +96,6 @@ public class Invoice {
         this.saleDate = saleDate;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public Integer getPaymentMethod() {
         return paymentMethod;
     }
@@ -113,35 +104,35 @@ public class Invoice {
         this.paymentMethod = paymentMethod;
     }
 
-    public double getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
-    public double getTax() {
+    public Double getTax() {
         return tax;
     }
 
-    public void setTax(double tax) {
+    public void setTax(Double tax) {
         this.tax = tax;
     }
 
-    public double getNet() {
+    public Double getNet() {
         return net;
     }
 
-    public void setNet(double net) {
+    public void setNet(Double net) {
         this.net = net;
     }
 
-    public double getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
@@ -220,10 +211,10 @@ public class Invoice {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Invoice)) return false;
         Invoice invoice = (Invoice) o;
-        return id.equals(invoice.id) &&
-                number.equals(invoice.number);
+        return Objects.equals(id, invoice.id) &&
+                Objects.equals(number, invoice.number);
     }
 
     @Override
@@ -238,7 +229,6 @@ public class Invoice {
                 ", number='" + number + '\'' +
                 ", issueDate=" + issueDate +
                 ", saleDate=" + saleDate +
-                ", dueDate=" + dueDate +
                 ", paymentMethod=" + paymentMethod +
                 ", total=" + total +
                 ", tax=" + tax +

@@ -19,12 +19,11 @@ public class InvoiceSaveDTO {
     private String number;
     private LocalDate issueDate;
     private LocalDate saleDate;
-    private LocalDate dueDate;
     private Integer paymentMethod;
-    private double total;
-    private double tax;
-    private double net;
-    private double discount;
+    private Double total;
+    private Double tax;
+    private Double net;
+    private Double discount;
     private Integer status;
     private Customer customer; //TO DO should be change to CustomerDTO
     private List<Product> items;
