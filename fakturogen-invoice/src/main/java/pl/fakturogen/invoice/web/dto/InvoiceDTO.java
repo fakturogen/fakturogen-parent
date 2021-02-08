@@ -2,12 +2,14 @@ package pl.fakturogen.invoice.web.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.fakturogen.invoice.dao.entity.Product;
 
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
 public class InvoiceDTO {
 
     private Long id;
