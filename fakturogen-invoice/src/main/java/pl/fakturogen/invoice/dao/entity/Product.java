@@ -11,7 +11,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -34,6 +34,17 @@ public class Product {
     @Enumerated(EnumType.STRING)
     @Column(name = "rate", nullable = false)
     private Rate rate;
+
+    @Column(name = "id_external_api", nullable = false)
+    private Long idExternalApi;
+
+    public Long getIdExternalApi() {
+        return idExternalApi;
+    }
+
+    public void setIdExternalApi(Long idExternalApi) {
+        this.idExternalApi = idExternalApi;
+    }
 
     public static String getTableName() {
         return TABLE_NAME;
@@ -108,13 +119,13 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id &&
-                Objects.equals(name, product.name);
+        return Objects.equals(id, product.id) &&
+                Objects.equals(idExternalApi, product.idExternalApi);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, idExternalApi);
     }
 
     @Override
@@ -128,6 +139,7 @@ public class Product {
                 ", saleNetPrice=" + saleNetPrice +
                 ", saleGrossPrice=" + saleGrossPrice +
                 ", rate=" + rate +
+                ", idExternalApi=" + idExternalApi +
                 '}';
     }
 }

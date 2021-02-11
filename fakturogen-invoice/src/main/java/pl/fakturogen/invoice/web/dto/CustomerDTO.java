@@ -1,5 +1,6 @@
 package pl.fakturogen.invoice.web.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,4 +33,5 @@ public class CustomerDTO {
     private CustomerType customerType;
 
     private AddressDTO address;
+
 }

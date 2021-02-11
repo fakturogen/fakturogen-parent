@@ -9,9 +9,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class UserSaveDTO {
+
     private Long id;
     private String email;
+    private String password;
+    private String rePassword;
     private String firstname;
     private String lastname;
+
 }
