@@ -1,6 +1,11 @@
 package pl.fakturogen.invoice.dao.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -10,29 +15,42 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "street", nullable = false)
+    @Column(name = "id_external_api")
+    private Long idExternalApi;
+
     private String street;
 
-    @Column(name = "building_number", nullable = false)
+    @Column(name = "building_number")
     private String buildingNumber;
 
-    @Column(name = "flat_number", nullable = false)
+    @Column(name = "flat_number")
     private String flatNumber;
 
-    @Column(name = "postal_code", nullable = false)
+    @Column(name = "postal_code")
     private String postalCode;
 
-    @Column(name = "city", nullable = false)
+    private String postOffice;
+
     private String city;
 
-    public long getId() {
+    private String country;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdExternalApi() {
+        return idExternalApi;
+    }
+
+    public void setIdExternalApi(Long idExternalApi) {
+        this.idExternalApi = idExternalApi;
     }
 
     public String getStreet() {
@@ -67,6 +85,14 @@ public class Address {
         this.postalCode = postalCode;
     }
 
+    public String getPostOffice() {
+        return postOffice;
+    }
+
+    public void setPostOffice(String postOffice) {
+        this.postOffice = postOffice;
+    }
+
     public String getCity() {
         return city;
     }
@@ -75,28 +101,40 @@ public class Address {
         this.city = city;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return id == address.id;
+        return Objects.equals(id, address.id) &&
+                Objects.equals(idExternalApi, address.idExternalApi);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, idExternalApi);
     }
 
     @Override
     public String toString() {
         return "Address{" +
                 "id=" + id +
+                ", idExternalApi=" + idExternalApi +
                 ", street='" + street + '\'' +
                 ", buildingNumber='" + buildingNumber + '\'' +
                 ", flatNumber='" + flatNumber + '\'' +
                 ", postalCode='" + postalCode + '\'' +
+                ", postOffice='" + postOffice + '\'' +
                 ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
                 '}';
     }
 }

@@ -27,7 +27,7 @@ class ProductMapperTest {
         product.setItemCode("item code 111");
         product.setUnitOfMeasurement("szt");
         product.setSaleNetPrice(11.22);
-        product.setSaleGrossPrice((11.22*1.04));
+        product.setSaleGrossPrice((11.22 * 1.04));
         product.setRate(Rate.R6);
         product.setIdExternalApi(9999L);
 
@@ -44,7 +44,7 @@ class ProductMapperTest {
         productDTO.setItemCode("item code 111");
         productDTO.setUnitOfMeasurement("szt");
         productDTO.setSaleNetPrice(11.22);
-        productDTO.setSaleGrossPrice(11.22*1.04);
+        productDTO.setSaleGrossPrice(11.22 * 1.04);
         productDTO.setRate(Rate.R6);
         productDTO.setIdExternalApi(9999L);
 

@@ -1,4 +1,4 @@
-package pl.fakturogen.user.web.dto;
+package pl.fakturogen.invoice.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class CustomerTypeDTO {
+
     private Long id;
-    private String email;
-    private String firstname;
-    private String lastname;
+
+    private String description;
+
 }
