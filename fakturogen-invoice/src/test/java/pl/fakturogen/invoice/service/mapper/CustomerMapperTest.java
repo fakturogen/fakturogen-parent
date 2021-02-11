@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.dao.entity.CustomerType;
 import pl.fakturogen.invoice.web.dto.CustomerDTO;
+import pl.fakturogen.invoice.web.dto.CustomerTypeDTO;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("CustomerMapper specification")
 public class CustomerMapperTest {
@@ -20,6 +22,7 @@ public class CustomerMapperTest {
     private static final String MAIL = "testowy mail";
     private static final String PHONE_NUMBER = "123-456-789";
     private static final CustomerType CUSTOMER_TYPE = new CustomerType(1L, "podmiot gospodarczy");
+    private static final CustomerTypeDTO CUSTOMER_TYPE_DTO = new CustomerTypeDTO(1L, "podmiot gospodarczy");
 
 
     private CustomerMapper customerMapper;
@@ -52,7 +55,7 @@ public class CustomerMapperTest {
                 .customerCode(CUSTOMER_CODE)
                 .mail(MAIL)
                 .phoneNumber(PHONE_NUMBER)
-                .customerType(CUSTOMER_TYPE)
+                .customerType(CUSTOMER_TYPE_DTO)
                 .build();
 
         emptyCustomer = new Customer();
@@ -83,7 +86,8 @@ public class CustomerMapperTest {
                     () -> assertEquals(customer.getCustomerCode(), mappedCustomerDTO.getCustomerCode()),
                     () -> assertEquals(customer.getMail(), mappedCustomerDTO.getMail()),
                     () -> assertEquals(customer.getPhoneNumber(), mappedCustomerDTO.getPhoneNumber()),
-                    () -> assertEquals(customer.getCustomerType(), mappedCustomerDTO.getCustomerType()));
+                    () -> assertEquals(customer.getCustomerType().getId(), mappedCustomerDTO.getCustomerType().getId()),
+                    () -> assertEquals(customer.getCustomerType().getDescription(), mappedCustomerDTO.getCustomerType().getDescription()));
         }
 
         @Test
@@ -129,7 +133,8 @@ public class CustomerMapperTest {
                     () -> assertEquals(customerDTO.getCustomerCode(), mappedCustomer.getCustomerCode()),
                     () -> assertEquals(customerDTO.getMail(), mappedCustomer.getMail()),
                     () -> assertEquals(customerDTO.getPhoneNumber(), mappedCustomer.getPhoneNumber()),
-                    () -> assertEquals(customerDTO.getCustomerType(), mappedCustomer.getCustomerType()));
+                    () -> assertEquals(customerDTO.getCustomerType().getId(), mappedCustomer.getCustomerType().getId()),
+                    () -> assertEquals(customerDTO.getCustomerType().getDescription(), mappedCustomer.getCustomerType().getDescription()));
         }
 
         @Test

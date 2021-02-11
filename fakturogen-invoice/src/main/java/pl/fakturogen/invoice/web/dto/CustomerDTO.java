@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.fakturogen.invoice.dao.entity.CustomerType;
 
 import javax.validation.constraints.NotBlank;
 
@@ -30,7 +29,7 @@ public class CustomerDTO {
 
     private String phoneNumber;
 
-    private CustomerType customerType;
+    private CustomerTypeDTO customerType;
 
     private AddressDTO address;
 
