@@ -26,8 +26,6 @@ public class ComarchApiTokenConnector {
         headersMap.put("Content-Type", "application/x-www-form-urlencoded");
         Headers headers = Headers.of(headersMap);
 
-
-
         RequestBody requestBody = new FormBody.Builder()
                 .add("grant_type","client_credentials")
                 .build();
