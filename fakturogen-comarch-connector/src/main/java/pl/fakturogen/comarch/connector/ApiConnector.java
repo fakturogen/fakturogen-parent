@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.dao;
+package pl.fakturogen.comarch.connector;
 
 public class ApiConnector {
 
