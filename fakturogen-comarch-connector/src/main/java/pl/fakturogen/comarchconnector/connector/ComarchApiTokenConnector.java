@@ -4,7 +4,6 @@ import lombok.Setter;
 import okhttp3.*;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
