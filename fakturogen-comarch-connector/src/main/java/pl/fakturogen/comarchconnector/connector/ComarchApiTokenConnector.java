@@ -1,7 +1,13 @@
 package pl.fakturogen.comarchconnector.connector;
 
 import lombok.Setter;
-import okhttp3.*;
+import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -39,6 +45,11 @@ public class ComarchApiTokenConnector {
         Call call = okHttpClient.newCall(request);
         Response response = call.execute();
         //z response wyciagnac token
+
+        String json = response.body().string();
+
+       /* ObjectMapper mapper = new ObjectMapper();
+        ApiToken token = mapper.readValue(json, ApiToken.class);*/
         return response.body().string();
     }
 }
