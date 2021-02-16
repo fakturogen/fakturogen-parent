@@ -95,7 +95,7 @@ class InvoiceMapperTest {
 
     @DisplayName(" - should map empty object ")
     @Test
-    public void test2(){
+    public void test2() {
         InvoiceSaveDTO invoiceSaveDTO = new InvoiceSaveDTO();
 
         Invoice invoice = new Invoice();
@@ -104,7 +104,7 @@ class InvoiceMapperTest {
 
         Invoice result = invoiceMapper.from(invoiceSaveDTO);
 
-       assertThat(result).hasAllNullFieldsOrProperties();
+        assertThat(result).hasAllNullFieldsOrProperties();
 
     }
 

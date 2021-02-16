@@ -8,23 +8,15 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = CustomerType.TABLE_NAME)
-public class CustomerType {
-    public static final String TABLE_NAME = "customer_types";
+@Table(name = PaymentForm.TABLE_NAME)
+public class PaymentForm {
+    public static final String TABLE_NAME = "payment_fomrs";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String description;
-
-    public CustomerType() {
-    }
-
-    public CustomerType(Long id, String description){
-        this.id = id;
-        this.description = description;
-    }
 
     public Long getId() {
         return id;
@@ -46,7 +38,7 @@ public class CustomerType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CustomerType that = (CustomerType) o;
+        PaymentForm that = (PaymentForm) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(description, that.description);
     }
@@ -58,7 +50,7 @@ public class CustomerType {
 
     @Override
     public String toString() {
-        return "CustomerType{" +
+        return "PaymentForm{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 '}';

@@ -1,35 +1,36 @@
 package pl.fakturogen.invoice.web.dto;
 
-import java.util.Objects;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerDTO {
+
+    private Long id;
+
+    private Long idExternalApi;
+
+    @NotBlank
     private String name;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CustomerDTO that = (CustomerDTO) o;
-        return Objects.equals(name, that.name);
-    }
+    private String customerTaxNumber;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
+    private String customerCode;
 
-    @Override
-    public String toString() {
-        return "CustomerDTO{" +
-                "name='" + name + '\'' +
-                '}';
-    }
+    private String mail;
 
-    public String getName() {
-        return name;
-    }
+    private String phoneNumber;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    private CustomerTypeDTO customerType;
+
+    private AddressDTO address;
+
 }
