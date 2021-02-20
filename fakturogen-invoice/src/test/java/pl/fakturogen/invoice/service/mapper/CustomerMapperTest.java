@@ -17,7 +17,8 @@ public class CustomerMapperTest {
     private static final Long ID = 1L;
     private static final Long ID_EXTERNAL_API = 1L;
     private static final String NAME = "testowa nazwa";
-    private static final String CUSTOMER_TAX_NUMBER = "123";
+    private static final String NIP = "123";
+    private static final String PESEL = "123456";
     private static final String CUSTOMER_CODE = "0";
     private static final String MAIL = "testowy mail";
     private static final String PHONE_NUMBER = "123-456-789";
@@ -41,7 +42,7 @@ public class CustomerMapperTest {
         customer.setId(ID);
         customer.setIdExternalApi(ID_EXTERNAL_API);
         customer.setName(NAME);
-        customer.setCustomerTaxNumber(CUSTOMER_TAX_NUMBER);
+        customer.setNip(NIP);
         customer.setCustomerCode(CUSTOMER_CODE);
         customer.setMail(MAIL);
         customer.setPhoneNumber(PHONE_NUMBER);
@@ -51,7 +52,7 @@ public class CustomerMapperTest {
                 .id(ID)
                 .idExternalApi(ID_EXTERNAL_API)
                 .name(NAME)
-                .customerTaxNumber(CUSTOMER_TAX_NUMBER)
+                .nip(NIP)
                 .customerCode(CUSTOMER_CODE)
                 .mail(MAIL)
                 .phoneNumber(PHONE_NUMBER)
@@ -64,10 +65,12 @@ public class CustomerMapperTest {
         partiallyEmptyCustomer = new Customer();
         partiallyEmptyCustomer.setId(ID);
         partiallyEmptyCustomer.setMail(MAIL);
+        partiallyEmptyCustomer.setPesel(PESEL);
 
         partiallyEmptyCustomerDTO = CustomerDTO.builder()
                 .idExternalApi(ID)
                 .name(NAME)
+                .pesel(PESEL)
                 .build();
     }
 
@@ -82,7 +85,8 @@ public class CustomerMapperTest {
             assertAll(() -> assertEquals(customer.getId(), mappedCustomerDTO.getId()),
                     () -> assertEquals(customer.getIdExternalApi(), mappedCustomerDTO.getIdExternalApi()),
                     () -> assertEquals(customer.getName(), mappedCustomerDTO.getName()),
-                    () -> assertEquals(customer.getCustomerTaxNumber(), mappedCustomerDTO.getCustomerTaxNumber()),
+                    () -> assertEquals(customer.getNip(), mappedCustomerDTO.getNip()),
+                    () -> assertEquals(customer.getPesel(), mappedCustomerDTO.getPesel()),
                     () -> assertEquals(customer.getCustomerCode(), mappedCustomerDTO.getCustomerCode()),
                     () -> assertEquals(customer.getMail(), mappedCustomerDTO.getMail()),
                     () -> assertEquals(customer.getPhoneNumber(), mappedCustomerDTO.getPhoneNumber()),
@@ -97,7 +101,8 @@ public class CustomerMapperTest {
             assertAll(() -> assertEquals(emptyCustomer.getId(), mappedCustomerDTO.getId()),
                     () -> assertEquals(emptyCustomer.getIdExternalApi(), mappedCustomerDTO.getIdExternalApi()),
                     () -> assertEquals(emptyCustomer.getName(), mappedCustomerDTO.getName()),
-                    () -> assertEquals(emptyCustomer.getCustomerTaxNumber(), mappedCustomerDTO.getCustomerTaxNumber()),
+                    () -> assertEquals(emptyCustomer.getNip(), mappedCustomerDTO.getNip()),
+                    () -> assertEquals(emptyCustomer.getPesel(), mappedCustomerDTO.getPesel()),
                     () -> assertEquals(emptyCustomer.getCustomerCode(), mappedCustomerDTO.getCustomerCode()),
                     () -> assertEquals(emptyCustomer.getMail(), mappedCustomerDTO.getMail()),
                     () -> assertEquals(emptyCustomer.getPhoneNumber(), mappedCustomerDTO.getPhoneNumber()),
@@ -111,7 +116,8 @@ public class CustomerMapperTest {
             assertAll(() -> assertEquals(partiallyEmptyCustomer.getId(), mappedCustomerDTO.getId()),
                     () -> assertEquals(partiallyEmptyCustomer.getIdExternalApi(), mappedCustomerDTO.getIdExternalApi()),
                     () -> assertEquals(partiallyEmptyCustomer.getName(), mappedCustomerDTO.getName()),
-                    () -> assertEquals(partiallyEmptyCustomer.getCustomerTaxNumber(), mappedCustomerDTO.getCustomerTaxNumber()),
+                    () -> assertEquals(partiallyEmptyCustomer.getNip(), mappedCustomerDTO.getNip()),
+                    () -> assertEquals(partiallyEmptyCustomer.getPesel(), mappedCustomerDTO.getPesel()),
                     () -> assertEquals(partiallyEmptyCustomer.getCustomerCode(), mappedCustomerDTO.getCustomerCode()),
                     () -> assertEquals(partiallyEmptyCustomer.getMail(), mappedCustomerDTO.getMail()),
                     () -> assertEquals(partiallyEmptyCustomer.getPhoneNumber(), mappedCustomerDTO.getPhoneNumber()),
@@ -129,7 +135,8 @@ public class CustomerMapperTest {
             assertAll(() -> assertEquals(customerDTO.getId(), mappedCustomer.getId()),
                     () -> assertEquals(customerDTO.getIdExternalApi(), mappedCustomer.getIdExternalApi()),
                     () -> assertEquals(customerDTO.getName(), mappedCustomer.getName()),
-                    () -> assertEquals(customerDTO.getCustomerTaxNumber(), mappedCustomer.getCustomerTaxNumber()),
+                    () -> assertEquals(customerDTO.getNip(), mappedCustomer.getNip()),
+                    () -> assertEquals(customerDTO.getPesel(), mappedCustomer.getPesel()),
                     () -> assertEquals(customerDTO.getCustomerCode(), mappedCustomer.getCustomerCode()),
                     () -> assertEquals(customerDTO.getMail(), mappedCustomer.getMail()),
                     () -> assertEquals(customerDTO.getPhoneNumber(), mappedCustomer.getPhoneNumber()),
@@ -144,7 +151,8 @@ public class CustomerMapperTest {
             assertAll(() -> assertEquals(emptyCustomerDTO.getId(), mappedCustomer.getId()),
                     () -> assertEquals(emptyCustomerDTO.getIdExternalApi(), mappedCustomer.getIdExternalApi()),
                     () -> assertEquals(emptyCustomerDTO.getName(), mappedCustomer.getName()),
-                    () -> assertEquals(emptyCustomerDTO.getCustomerTaxNumber(), mappedCustomer.getCustomerTaxNumber()),
+                    () -> assertEquals(emptyCustomerDTO.getNip(), mappedCustomer.getNip()),
+                    () -> assertEquals(emptyCustomerDTO.getPesel(), mappedCustomer.getPesel()),
                     () -> assertEquals(emptyCustomerDTO.getCustomerCode(), mappedCustomer.getCustomerCode()),
                     () -> assertEquals(emptyCustomerDTO.getMail(), mappedCustomer.getMail()),
                     () -> assertEquals(emptyCustomerDTO.getPhoneNumber(), mappedCustomer.getPhoneNumber()),
@@ -158,7 +166,8 @@ public class CustomerMapperTest {
             assertAll(() -> assertEquals(partiallyEmptyCustomerDTO.getId(), mappedCustomer.getId()),
                     () -> assertEquals(partiallyEmptyCustomerDTO.getIdExternalApi(), mappedCustomer.getIdExternalApi()),
                     () -> assertEquals(partiallyEmptyCustomerDTO.getName(), mappedCustomer.getName()),
-                    () -> assertEquals(partiallyEmptyCustomerDTO.getCustomerTaxNumber(), mappedCustomer.getCustomerTaxNumber()),
+                    () -> assertEquals(partiallyEmptyCustomerDTO.getNip(), mappedCustomer.getNip()),
+                    () -> assertEquals(partiallyEmptyCustomerDTO.getPesel(), mappedCustomer.getPesel()),
                     () -> assertEquals(partiallyEmptyCustomerDTO.getCustomerCode(), mappedCustomer.getCustomerCode()),
                     () -> assertEquals(partiallyEmptyCustomerDTO.getMail(), mappedCustomer.getMail()),
                     () -> assertEquals(partiallyEmptyCustomerDTO.getPhoneNumber(), mappedCustomer.getPhoneNumber()),

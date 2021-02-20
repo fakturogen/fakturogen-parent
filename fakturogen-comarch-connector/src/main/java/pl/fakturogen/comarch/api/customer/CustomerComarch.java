@@ -1,3 +1,4 @@
+
 package pl.fakturogen.comarch.api.customer;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -12,19 +13,20 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "Id",
-        "Name",
-        "CustomerTaxNumber",
-        "CustomerCode",
-        "Mail",
-        "PhoneNumber",
-        "CustomerType",
-        "Address"
+    "$id",
+    "Name",
+    "CustomerTaxNumber",
+    "CustomerCode",
+    "Mail",
+    "PhoneNumber",
+    "CustomerType",
+    "Address",
+    "Id"
 })
-public class ComarchCustomer {
+public class CustomerComarch {
 
-    @JsonProperty("Id")
-    private String id;
+    @JsonProperty("$id")
+    private String $id;
     @JsonProperty("Name")
     private String name;
     @JsonProperty("CustomerTaxNumber")
@@ -39,17 +41,19 @@ public class ComarchCustomer {
     private Integer customerType;
     @JsonProperty("Address")
     private Address address;
+    @JsonProperty("Id")
+    private Integer id;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("Id")
-    public String getId() {
-        return id;
+    @JsonProperty("$id")
+    public String get$id() {
+        return $id;
     }
 
-    @JsonProperty("Id")
-    public void setId(String id) {
-        this.id = id;
+    @JsonProperty("$id")
+    public void set$id(String $id) {
+        this.$id = $id;
     }
 
     @JsonProperty("Name")
@@ -120,6 +124,16 @@ public class ComarchCustomer {
     @JsonProperty("Address")
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @JsonProperty("Id")
+    public Integer getId() {
+        return id;
+    }
+
+    @JsonProperty("Id")
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @JsonAnyGetter

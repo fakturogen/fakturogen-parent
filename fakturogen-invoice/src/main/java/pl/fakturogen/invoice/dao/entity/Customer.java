@@ -27,8 +27,7 @@ public class Customer {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "customer_tax_number")
-    private String customerTaxNumber;
+    private String nip;
 
     private String pesel;
 
@@ -54,7 +53,7 @@ public class Customer {
 
     private BigDecimal discount;
 
-    @Column(name = "payment_form")
+//    @Column(name = "payment_form")
     @ManyToOne
     private PaymentForm paymentForm;
 
@@ -88,12 +87,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getCustomerTaxNumber() {
-        return customerTaxNumber;
+    public String getNip() {
+        return nip;
     }
 
-    public void setCustomerTaxNumber(String customerTaxNumber) {
-        this.customerTaxNumber = customerTaxNumber;
+    public void setNip(String nip) {
+        this.nip = nip;
     }
 
     public String getPesel() {
@@ -228,7 +227,7 @@ public class Customer {
                 "id=" + id +
                 ", idExternalApi=" + idExternalApi +
                 ", name='" + name + '\'' +
-                ", customerTaxNumber='" + customerTaxNumber + '\'' +
+                ", nip='" + nip + '\'' +
                 ", pesel='" + pesel + '\'' +
                 ", representative='" + representative + '\'' +
                 ", phone='" + phone + '\'' +

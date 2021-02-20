@@ -21,7 +21,9 @@ public class CustomerDTO {
     @NotBlank
     private String name;
 
-    private String customerTaxNumber;
+    private String nip;
+
+    private String pesel;
 
     private String customerCode;
 

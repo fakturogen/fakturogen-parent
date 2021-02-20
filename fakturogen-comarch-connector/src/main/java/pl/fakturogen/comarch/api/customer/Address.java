@@ -1,3 +1,4 @@
+
 package pl.fakturogen.comarch.api.customer;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -12,17 +13,18 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "Id",
-        "Street",
-        "BuildingNumber",
-        "FlatNumber",
-        "PostalCode",
-        "City"
+    "$id",
+    "Street",
+    "BuildingNumber",
+    "FlatNumber",
+    "PostalCode",
+    "City",
+    "Id"
 })
 public class Address {
 
-    @JsonProperty("Id")
-    private String id;
+    @JsonProperty("$id")
+    private String $id;
     @JsonProperty("Street")
     private String street;
     @JsonProperty("BuildingNumber")
@@ -33,17 +35,19 @@ public class Address {
     private String postalCode;
     @JsonProperty("City")
     private String city;
+    @JsonProperty("Id")
+    private Integer id;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("Id")
-    public String getId() {
-        return id;
+    @JsonProperty("$id")
+    public String get$id() {
+        return $id;
     }
 
-    @JsonProperty("Id")
-    public void setId(String id) {
-        this.id = id;
+    @JsonProperty("$id")
+    public void set$id(String $id) {
+        this.$id = $id;
     }
 
     @JsonProperty("Street")
@@ -94,6 +98,16 @@ public class Address {
     @JsonProperty("City")
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @JsonProperty("Id")
+    public Integer getId() {
+        return id;
+    }
+
+    @JsonProperty("Id")
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @JsonAnyGetter
