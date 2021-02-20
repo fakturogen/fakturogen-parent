@@ -5,20 +5,23 @@ import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.api.customer.CustomerComarch;
 import pl.fakturogen.invoice.web.dto.AddressDTO;
 import pl.fakturogen.invoice.web.dto.CustomerDTO;
+import pl.fakturogen.invoice.web.dto.CustomerTypeDTO;
 
 @Component
 @Slf4j
 public class ComarchCustomerConverter {
     private final ComarchAddressConverter comarchAddressConverter;
+    private final ComarchCustomerTypeConventer comarchCustomerTypeConventer;
 
-    public ComarchCustomerConverter(ComarchAddressConverter comarchAddressConverter) {
+    public ComarchCustomerConverter(ComarchAddressConverter comarchAddressConverter, ComarchCustomerTypeConventer comarchCustomerTypeConventer) {
         this.comarchAddressConverter = comarchAddressConverter;
+        this.comarchCustomerTypeConventer = comarchCustomerTypeConventer;
     }
 
     public static final int CUSTOMER_TYPE_OSOBA_FIZYCZNA = 0;
     public static final int CUSTOMER_TYPE_PODMIOT_GOSPODARCZY = 1;
 
-    public CustomerDTO from(CustomerComarch customerComarch){
+    public CustomerDTO from(CustomerComarch customerComarch) {
         log.info("converting from {}", customerComarch);
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setIdExternalApi(customerComarch.getId().longValue());
@@ -33,10 +36,12 @@ public class ComarchCustomerConverter {
 
         Integer customerType = customerComarch.getCustomerType();
 
-        if(customerType != null){
+        if (customerType != null) {
+            CustomerTypeDTO customerTypeDTO = comarchCustomerTypeConventer.from(customerComarch);
+            customerDTO.setCustomerType(customerTypeDTO);
             if (customerType.equals(CUSTOMER_TYPE_OSOBA_FIZYCZNA)) {
                 customerDTO.setPesel(customerComarch.getCustomerTaxNumber());
-            } else if (customerType.equals(CUSTOMER_TYPE_PODMIOT_GOSPODARCZY)){
+            } else if (customerType.equals(CUSTOMER_TYPE_PODMIOT_GOSPODARCZY)) {
                 customerDTO.setNip(customerComarch.getCustomerTaxNumber());
             }
         }
