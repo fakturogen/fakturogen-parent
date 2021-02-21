@@ -1,8 +1,8 @@
-package pl.fakturogen.comarch.connector.services;
+package pl.fakturogen.comarch.connector.services.impl;
 
 import pl.fakturogen.comarch.connector.converters.InvoiceDTOConverter;
-import pl.fakturogen.comarch.connector.converters.dto.InvoiceComarchDTO;
-import pl.fakturogen.comarch.connector.dao.ApiConnector;
+import pl.fakturogen.comarch.connector.dto.InvoiceComarchDTO;
+import pl.fakturogen.comarch.connector.ApiConnector;
 
 public class InvoiceServiceDefault {
 
