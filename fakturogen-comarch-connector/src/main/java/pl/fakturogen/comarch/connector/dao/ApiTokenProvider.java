@@ -8,4 +8,9 @@ public class ApiTokenProvider {
     // token jest ważny 10 minut, musi być przechowywany i przekazany do klas Uploader i Downloader dla każdego żądania
     // tzn. klasy wysyłające zapytania do Comarchu muszą mieć token, aby Comarch przyjął request
     // trzeba wymyślić sposób, jak przechowywać token przez 10 min
+
+    public Token getToken(){
+        Token token = new Token();
+        return token;
+    }
 }
