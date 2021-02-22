@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,7 +16,6 @@ public class CustomerDTO {
 
     private Long idExternalApi;
 
-    @NotBlank
     private String name;
 
     private String customerTaxNumber;
