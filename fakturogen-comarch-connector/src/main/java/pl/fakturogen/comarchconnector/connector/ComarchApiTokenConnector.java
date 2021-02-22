@@ -19,7 +19,6 @@ public class ComarchApiTokenConnector {
     public ComarchApiTokenConnector() {
     }
 
-    @Autowired
     public ComarchApiTokenConnector(String clientId, String secret) {
         this.clientId = clientId;
         this.secret = secret;

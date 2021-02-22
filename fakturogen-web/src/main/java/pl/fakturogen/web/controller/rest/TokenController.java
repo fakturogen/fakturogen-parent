@@ -24,20 +24,4 @@ public class TokenController {
         comarchApiTokenConnector.setSecret(args[1]);
         return comarchApiTokenConnector.getToken();
     }
-
-    public ApplicationArguments getApplicationArguments() {
-        return applicationArguments;
-    }
-
-    public void setApplicationArguments(ApplicationArguments applicationArguments) {
-        this.applicationArguments = applicationArguments;
-    }
-
-    public ComarchApiTokenConnector getComarchApiTokenConnector() {
-        return comarchApiTokenConnector;
-    }
-
-    public void setComarchApiTokenConnector(ComarchApiTokenConnector comarchApiTokenConnector) {
-        this.comarchApiTokenConnector = comarchApiTokenConnector;
-    }
 }
