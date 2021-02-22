@@ -1,8 +1,6 @@
-package pl.fakturogen.comarchconnector.connector;
+package pl.fakturogen.comarch.connector;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ComarchApiTokenConnectorTest {
     // do zrobienia test
