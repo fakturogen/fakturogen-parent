@@ -1,7 +1,6 @@
 package pl.fakturogen.comarchconnector.connector;
 
 import okhttp3.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -56,6 +55,5 @@ public class ComarchApiTokenConnector {
         //z response wyciagnac token
         return response.body().string();
     }
-
 
 }

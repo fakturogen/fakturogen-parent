@@ -1,6 +1,14 @@
 package pl.fakturogen.invoice.dao.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -10,37 +18,66 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    //sequence
+    private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "id_external_api")
+    private Long idExternalApi;
+
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "customer_tax_number", nullable = false)
+    @Column(name = "customer_tax_number")
     private String customerTaxNumber;
 
-    @Column(name = "customer_code", nullable = false)
+    private String pesel;
+
+    private String representative;
+
+    private String phone;
+
+    private String mobile;
+
+    private String fax;
+
+    private String www;
+
+    @Column(name = "customer_code")
     private String customerCode;
 
-    @Column(name = "mail")
     private String mail;
 
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Enumerated
-    @Column(name = "customer_type", nullable = false)
+    private String status;
+
+    private BigDecimal discount;
+
+    @Column(name = "payment_form")
+    @ManyToOne
+    private PaymentForm paymentForm;
+
+   @ManyToOne
     private CustomerType customerType;
 
     @OneToOne
     private Address address;
 
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdExternalApi() {
+        return idExternalApi;
+    }
+
+    public void setIdExternalApi(Long idExternalApi) {
+        this.idExternalApi = idExternalApi;
     }
 
     public String getName() {
@@ -57,6 +94,54 @@ public class Customer {
 
     public void setCustomerTaxNumber(String customerTaxNumber) {
         this.customerTaxNumber = customerTaxNumber;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getRepresentative() {
+        return representative;
+    }
+
+    public void setRepresentative(String representative) {
+        this.representative = representative;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getWww() {
+        return www;
+    }
+
+    public void setWww(String www) {
+        this.www = www;
     }
 
     public String getCustomerCode() {
@@ -83,6 +168,30 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public PaymentForm getPaymentForm() {
+        return paymentForm;
+    }
+
+    public void setPaymentForm(PaymentForm paymentForm) {
+        this.paymentForm = paymentForm;
+    }
+
     public CustomerType getCustomerType() {
         return customerType;
     }
@@ -104,24 +213,34 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id == customer.id &&
-                Objects.equals(name, customer.name);
+        return Objects.equals(id, customer.id) &&
+                Objects.equals(idExternalApi, customer.idExternalApi);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, idExternalApi);
     }
 
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
+                ", idExternalApi=" + idExternalApi +
                 ", name='" + name + '\'' +
                 ", customerTaxNumber='" + customerTaxNumber + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", representative='" + representative + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", fax='" + fax + '\'' +
+                ", www='" + www + '\'' +
                 ", customerCode='" + customerCode + '\'' +
                 ", mail='" + mail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", status='" + status + '\'' +
+                ", discount=" + discount +
+                ", paymentForm=" + paymentForm +
                 ", customerType=" + customerType +
                 ", address=" + address +
                 '}';
