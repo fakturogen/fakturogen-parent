@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector;
+package pl.fakturogen.comarch.connector.connectors;
 
 import okhttp3.*;
 import org.springframework.stereotype.Component;
