@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Service
 //@Setter
-// @PropertySource("") inny plik application.
+// @PropertySource("classpath:credentials.properties")
 public class ComarchApiTokenConnector {
     @Value("${comarch.credentials.clientId}")
     private String clientId;

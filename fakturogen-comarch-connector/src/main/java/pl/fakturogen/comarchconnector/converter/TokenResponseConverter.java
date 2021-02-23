@@ -16,13 +16,7 @@ public class TokenResponseConverter {
 
         LOGGER.info("toObject () = " + json);
         ObjectMapper mapper = new ObjectMapper();
-
         ApiToken token = mapper.readValue(json, ApiToken.class);
-        /*JsonNode node = mapper.readTree(json);
-        ApiToken token = new ApiToken();
-        token.setAccessToken(node.get("access_token").asText());
-        token.setTokenType(node.get("token_type").asText());
-        token.setExpires(node.get("expires").asInt());*/
         LOGGER.info("toObject () = " + token);
         return token;
     }
