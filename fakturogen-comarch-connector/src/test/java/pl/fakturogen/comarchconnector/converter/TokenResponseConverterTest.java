@@ -1,22 +1,20 @@
 package pl.fakturogen.comarchconnector.converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.json.JSONException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pl.fakturogen.api.token.ApiToken;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Converter for token")
 class TokenResponseConverterTest {
 
-    ApiToken apiToken;
     TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
 
     @DisplayName(" - should return all fields")
     @Test
-    void test1() throws JSONException, JsonProcessingException {
+    void test1() throws JsonProcessingException {
 
         String json = "{\"access_token\":\"GXwAb03xC+V1xbUzoSJ5YQ00009b8f35\",\"token_type\":\"bearer\",\"expires\":600}";
 
