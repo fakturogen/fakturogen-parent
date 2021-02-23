@@ -65,6 +65,7 @@ public class ApiConnector {
         Request request = new Request.Builder()
                 .url(url)
                 .headers(headers)
+                .get()
                 .build();
         Call call = okHttpClient.newCall(request);
         Response response = call.execute();
