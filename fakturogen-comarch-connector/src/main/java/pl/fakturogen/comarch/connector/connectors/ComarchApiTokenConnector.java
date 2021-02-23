@@ -1,4 +1,4 @@
-package pl.fakturogen.comarchconnector.connector;
+package pl.fakturogen.comarch.connector.connectors;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
