@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.api.token.ApiToken;
 import pl.fakturogen.comarchconnector.connector.ComarchApiTokenConnector;
+import pl.fakturogen.comarch.connector.connectors.ComarchApiTokenConnector;
 
 import java.io.IOException;
 
 @RestController
-//@Getter
-//@Setter
-//@AllArgsConstructor
 public class TokenController {
     private ApplicationArguments applicationArguments;
     private ComarchApiTokenConnector comarchApiTokenConnector;
@@ -28,5 +26,4 @@ public class TokenController {
         comarchApiTokenConnector.setSecret(args[1]);
         return comarchApiTokenConnector.getToken();
     }
-
 }
