@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.fakturogen.api.token.ApiToken;
+import pl.fakturogen.comarch.connector.model.ApiToken;
 
 import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Converter for token")

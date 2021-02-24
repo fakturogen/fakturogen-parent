@@ -3,7 +3,7 @@ package pl.fakturogen.comarchconnector.converter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
-import pl.fakturogen.api.token.ApiToken;
+import pl.fakturogen.comarch.connector.model.ApiToken;
 
 import java.util.logging.Logger;
 

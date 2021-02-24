@@ -1,4 +1,4 @@
-package pl.fakturogen.api.token;
+package pl.fakturogen.comarch.connector.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
