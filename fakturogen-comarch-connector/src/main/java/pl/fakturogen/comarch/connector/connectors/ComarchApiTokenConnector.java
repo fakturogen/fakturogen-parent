@@ -8,7 +8,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.api.token.ApiToken;
 import pl.fakturogen.comarchconnector.converter.TokenResponseConverter;
@@ -19,12 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-//@Setter
-// @PropertySource("classpath:credentials.properties")
 public class ComarchApiTokenConnector {
-    @Value("${comarch.credentials.clientId}")
     private String clientId;
-    @Value("${comarch.credentials.secret}")
     private String secret;
     private String url = "https://app.erpxt.pl/api2/public/token";
 
@@ -64,13 +59,6 @@ public class ComarchApiTokenConnector {
 
        ApiToken apiTokenDetail = tokenResponseConverter.toObject(json);
 
-        /*ObjectMapper mapper = new ObjectMapper();
-
-        JsonNode node = mapper.readTree(json);
-        ApiToken token = new ApiToken();
-        token.setAccessToken(node.get("access_token").asText());
-        token.setTokenType(node.get("token_type").asText());
-        token.setExpires(node.get("expires").asInt());*/
         return apiTokenDetail;
     }
 
