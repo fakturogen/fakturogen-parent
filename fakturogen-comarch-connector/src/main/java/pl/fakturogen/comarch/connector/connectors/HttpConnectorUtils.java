@@ -8,11 +8,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class HttpConnectorUtils {
 
 
@@ -28,7 +30,7 @@ public class HttpConnectorUtils {
         OkHttpClient okHttpClient = new OkHttpClient();
         Map<String, String> headersMap = new HashMap<>();
 
-        String token = comarchApiTokenConnector.getToken();
+        String token = comarchApiTokenConnector.getToken().getAccessToken();
 
         headersMap.put("Authorization", "Bearer " + token);
         Headers headers = Headers.of(headersMap);
@@ -47,7 +49,7 @@ public class HttpConnectorUtils {
         OkHttpClient okHttpClient = new OkHttpClient();
         Map<String, String> headersMap = new HashMap<>();
 
-        String token = comarchApiTokenConnector.getToken();
+        String token = comarchApiTokenConnector.getToken().getAccessToken();
         String uri = url + "/"+id;
         headersMap.put("Authorization", "Bearer " + token);
         Headers headers = Headers.of(headersMap);
@@ -67,7 +69,7 @@ public class HttpConnectorUtils {
         OkHttpClient okHttpClient = new OkHttpClient();
         Map<String, String> headersMap = new HashMap<>();
 
-        String token = comarchApiTokenConnector.getToken();
+        String token = comarchApiTokenConnector.getToken().getAccessToken();
 
         headersMap.put("Authorization", "Bearer " + token);
         Headers headers = Headers.of(headersMap);

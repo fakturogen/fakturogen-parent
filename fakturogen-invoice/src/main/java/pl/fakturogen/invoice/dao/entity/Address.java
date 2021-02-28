@@ -1,6 +1,11 @@
 package pl.fakturogen.invoice.dao.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +16,9 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "id_external_api")
+    private Long idExternalApi;
 
     @Column(name = "street", nullable = false)
     private String street;
@@ -33,6 +41,14 @@ public class Address {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Long getIdExternalApi() {
+        return idExternalApi;
+    }
+
+    public void setIdExternalApi(Long idExternalApi) {
+        this.idExternalApi = idExternalApi;
     }
 
     public String getStreet() {
@@ -80,18 +96,20 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return id == address.id;
+        return id == address.id &&
+                Objects.equals(idExternalApi, address.idExternalApi);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, idExternalApi);
     }
 
     @Override
     public String toString() {
         return "Address{" +
                 "id=" + id +
+                ", idExternalApi=" + idExternalApi +
                 ", street='" + street + '\'' +
                 ", buildingNumber='" + buildingNumber + '\'' +
                 ", flatNumber='" + flatNumber + '\'' +
