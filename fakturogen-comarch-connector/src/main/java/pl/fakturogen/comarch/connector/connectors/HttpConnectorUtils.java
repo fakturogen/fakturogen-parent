@@ -1,5 +1,6 @@
-package pl.fakturogen.comarch.connector;
+package pl.fakturogen.comarch.connector.connectors;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Call;
 import okhttp3.Headers;
 import okhttp3.MediaType;
@@ -12,52 +13,22 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApiConnector {
+public class HttpConnectorUtils {
 
-/*    private String clientId;
-    private String secret;
-    private String url = "https://app.erpxt.pl/api2/public/token";
 
-    public String getToken() throws IOException {
-        String encoded  = Base64.getEncoder().withoutPadding().encodeToString((clientId + ":" + secret).getBytes());
+    private final ComarchApiTokenConnector comarchApiTokenConnector;
+    private final ObjectMapper mapper;
 
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Map<String, String> headersMap = new HashMap<>();
-
-        headersMap.put("Authorization", "Basic " + encoded);
-        headersMap.put("Content-Type", "application/x-www-form-urlencoded");
-        Headers headers = Headers.of(headersMap);
-
-        RequestBody requestBody = new FormBody.Builder()
-                .add("grant_type","client_credentials")
-                .build();
-
-        Request request = new Request.Builder()
-//                .addHeader("Authorization", "Basic " + encoded)
-//                .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                .url(url)
-                .headers(headers)
-                .post(requestBody)
-                .build();
-        Call call = okHttpClient.newCall(request);
-        Response response = call.execute();
-        //z response wyciagnac token
-        return response.body().string();
-    }*/
-    private final ApiTokenProvider apiTokenProvider;
-/*    private String clientId;
-    private String secret;*/
-
-    public ApiConnector(ApiTokenProvider apiTokenProvider) {
-        this.apiTokenProvider = apiTokenProvider;
+    public HttpConnectorUtils(ComarchApiTokenConnector comarchApiTokenConnector, ObjectMapper mapper) {
+        this.comarchApiTokenConnector = comarchApiTokenConnector;
+        this.mapper = mapper;
     }
 
-
-    public Response httpGet(String url) throws IOException {
+    public Response httpGetAll(String url) throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient();
         Map<String, String> headersMap = new HashMap<>();
 
-        Token token = apiTokenProvider.getToken();
+        String token = comarchApiTokenConnector.getToken();
 
         headersMap.put("Authorization", "Bearer " + token);
         Headers headers = Headers.of(headersMap);
@@ -72,16 +43,39 @@ public class ApiConnector {
         return response;
     }
 
-    public void httpPost(String url, Object object){
+    public Response httpGetById(String url, Long id) throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient();
         Map<String, String> headersMap = new HashMap<>();
 
-        Token token = apiTokenProvider.getToken();
+        String token = comarchApiTokenConnector.getToken();
+        String uri = url + "/"+id;
+        headersMap.put("Authorization", "Bearer " + token);
+        Headers headers = Headers.of(headersMap);
+
+        Request request = new Request.Builder()
+                .url(uri)
+                .headers(headers)
+                .get()
+                .build();
+        Call call = okHttpClient.newCall(request);
+        Response response = call.execute();
+        return response;
+    }
+
+
+    public void httpPost(String url, Object object) throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Map<String, String> headersMap = new HashMap<>();
+
+        String token = comarchApiTokenConnector.getToken();
 
         headersMap.put("Authorization", "Bearer " + token);
         Headers headers = Headers.of(headersMap);
 
-        RequestBody body = RequestBody.create(MediaType.parse("application/json"), (byte[]) object);
+
+        String json = mapper.writeValueAsString(object);
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
 
         Request request = new Request.Builder()
                 .url(url)
