@@ -1,37 +1,35 @@
 package pl.fakturogen.comarch.connector.connectors;
 
-import okhttp3.*;
-import org.springframework.stereotype.Component;
+import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import org.springframework.stereotype.Service;
+import pl.fakturogen.comarch.connector.model.ApiToken;
+import pl.fakturogen.comarchconnector.converter.TokenResponseConverter;
 
 import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
+@Service
 public class ComarchApiTokenConnector {
-
     private String clientId;
     private String secret;
     private String url = "https://app.erpxt.pl/api2/public/token";
 
-    public ComarchApiTokenConnector() {
+    private TokenResponseConverter tokenResponseConverter;
+
+    public ComarchApiTokenConnector(TokenResponseConverter tokenResponseConverter) {
+        this.tokenResponseConverter = tokenResponseConverter;
     }
 
-    public ComarchApiTokenConnector(String clientId, String secret) {
-        this.clientId = clientId;
-        this.secret = secret;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public String getToken() throws IOException {
+    public ApiToken getToken() throws IOException {
         String encoded  = Base64.getEncoder().withoutPadding().encodeToString((clientId + ":" + secret).getBytes());
 
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -46,6 +44,8 @@ public class ComarchApiTokenConnector {
                 .build();
 
         Request request = new Request.Builder()
+//                .addHeader("Authorization", "Basic " + encoded)
+//                .addHeader("Content-Type", "application/x-www-form-urlencoded")
                 .url(url)
                 .headers(headers)
                 .post(requestBody)
@@ -53,7 +53,21 @@ public class ComarchApiTokenConnector {
         Call call = okHttpClient.newCall(request);
         Response response = call.execute();
         //z response wyciagnac token
-        return response.body().string();
+        ResponseBody responseBody = response.body();
+
+        String json = response.body().string();
+
+       ApiToken apiTokenDetail = tokenResponseConverter.toObject(json);
+
+        return apiTokenDetail;
     }
 
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
 }
