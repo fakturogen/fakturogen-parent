@@ -53,7 +53,7 @@ public class Customer {
 
     private BigDecimal discount;
 
-    //    @Column(name = "payment_form")
+//    @Column(name = "payment_form")
     @ManyToOne
     private PaymentForm paymentForm;
 
