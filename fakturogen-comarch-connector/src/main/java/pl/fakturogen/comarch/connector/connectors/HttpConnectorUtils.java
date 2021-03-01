@@ -50,7 +50,7 @@ public class HttpConnectorUtils {
         Map<String, String> headersMap = new HashMap<>();
 
         String token = comarchApiTokenConnector.getToken().getAccessToken();
-        String uri = url + "/"+id;
+        String uri = url + "/" + id;
         headersMap.put("Authorization", "Bearer " + token);
         Headers headers = Headers.of(headersMap);
 
@@ -65,9 +65,10 @@ public class HttpConnectorUtils {
     }
 
 
-    public void httpPost(String url, Object object) throws IOException {
+    public Response httpPost(String url, Object object) throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient();
         Map<String, String> headersMap = new HashMap<>();
+        MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
         String token = comarchApiTokenConnector.getToken().getAccessToken();
 
@@ -77,14 +78,18 @@ public class HttpConnectorUtils {
 
         String json = mapper.writeValueAsString(object);
 
-        RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
-
+//        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
+//        RequestBody body = RequestBody.create(json, JSON);
+        RequestBody body = RequestBody.create(JSON, json);
+        System.out.println(json);
         Request request = new Request.Builder()
                 .url(url)
                 .headers(headers)
                 .post(body)
                 .build();
         Call call = okHttpClient.newCall(request);
+        Response response = call.execute();
+        return response;
 
     }
     // ta klasa zawiera listę adresów, pod które są wysyłane zapytania do Comarchu
