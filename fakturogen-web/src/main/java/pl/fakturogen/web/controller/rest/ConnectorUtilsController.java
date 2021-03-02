@@ -6,19 +6,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.fakturogen.comarch.api.customer.CustomerComarch;
 import pl.fakturogen.comarch.connector.connectors.HttpConnectorUtils;
-import pl.fakturogen.invoice.dao.entity.Customer;
+import pl.fakturogen.comarch.connector.dto.CustomerComarchDTO;
+import pl.fakturogen.comarch.converter.ComarchCustomerConverter;
 
 import java.io.IOException;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/get/customer")
 public class ConnectorUtilsController {
     public final static String BASE_URL = "https://app.erpxt.pl/api2/public/customers";
     private final HttpConnectorUtils httpConnectorUtils;
+    private final ComarchCustomerConverter comarchCustomerConverter;
 
-    public ConnectorUtilsController(HttpConnectorUtils httpConnectorUtils) {
+    public ConnectorUtilsController(HttpConnectorUtils httpConnectorUtils, ComarchCustomerConverter comarchCustomerConverter) {
         this.httpConnectorUtils = httpConnectorUtils;
+        this.comarchCustomerConverter = comarchCustomerConverter;
     }
 
     @GetMapping
@@ -35,16 +40,17 @@ public class ConnectorUtilsController {
 
     @PostMapping
     public String create() throws IOException {
-        Customer customer = new Customer();
-        customer.setName("NAME");
-        customer.setNip("NIP");
-        customer.setCustomerCode("CUSTOMER_CODE");
-        customer.setMail("MAIL");
-        customer.setPhoneNumber("PHONE_NUMBER");
+        CustomerComarchDTO customerComarchDTO = new CustomerComarchDTO();
+        customerComarchDTO.setName("NAME");
+        customerComarchDTO.setNip("NIP");
+        Random random = new Random();
+        customerComarchDTO.setCustomerCode(String.valueOf(random.nextInt(100)));
+        customerComarchDTO.setMail("MAIL");
+        customerComarchDTO.setPhoneNumber("PHONE_NUMBER");
 
+        CustomerComarch customerComarch = comarchCustomerConverter.from(customerComarchDTO);
 
-
-        Response response = httpConnectorUtils.httpPost(BASE_URL, customer);
+        Response response = httpConnectorUtils.httpPost(BASE_URL, customerComarch);
         return response.body().string();
     }
 

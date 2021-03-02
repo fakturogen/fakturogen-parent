@@ -3,22 +3,22 @@ package pl.fakturogen.comarch.converter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.api.customer.Address;
-import pl.fakturogen.invoice.web.dto.AddressDTO;
+import pl.fakturogen.comarch.connector.dto.AddressComarchDTO;
 
 @Component
 @Slf4j
 public class ComarchAddressConverter {
 
-    public AddressDTO from(Address addressComarch) {
-        AddressDTO addressDTO = new AddressDTO();
+    public AddressComarchDTO from(Address addressComarch) {
+        AddressComarchDTO addressComarchDTO = new AddressComarchDTO();
         log.info("mapping from {}", addressComarch);
-        addressDTO.setIdExternalApi(addressComarch.getId().longValue());
-        addressDTO.setStreet(addressComarch.getStreet());
-        addressDTO.setBuildingNumber(addressComarch.getBuildingNumber());
-        addressDTO.setFlatNumber(addressComarch.getFlatNumber());
-        addressDTO.setPostalCode(addressComarch.getPostalCode());
-        addressDTO.setCity(addressComarch.getCity());
-        log.info("mapping from {} = {}", addressComarch, addressDTO);
-        return addressDTO;
+        addressComarchDTO.setIdExternalApi(addressComarch.getId().longValue());
+        addressComarchDTO.setStreet(addressComarch.getStreet());
+        addressComarchDTO.setBuildingNumber(addressComarch.getBuildingNumber());
+        addressComarchDTO.setFlatNumber(addressComarch.getFlatNumber());
+        addressComarchDTO.setPostalCode(addressComarch.getPostalCode());
+        addressComarchDTO.setCity(addressComarch.getCity());
+        log.info("mapping from {} = {}", addressComarch, addressComarchDTO);
+        return addressComarchDTO;
     }
 }
