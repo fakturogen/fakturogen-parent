@@ -75,11 +75,8 @@ public class HttpConnectorUtils {
         headersMap.put("Authorization", "Bearer " + token);
         Headers headers = Headers.of(headersMap);
 
-
         String json = mapper.writeValueAsString(object);
 
-//        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
-//        RequestBody body = RequestBody.create(json, JSON);
         RequestBody body = RequestBody.create(JSON, json);
         System.out.println(json);
         Request request = new Request.Builder()
@@ -92,10 +89,6 @@ public class HttpConnectorUtils {
         return response;
 
     }
-    // ta klasa zawiera listę adresów, pod które są wysyłane zapytania do Comarchu
-    // udostępnia metody, które przyjmują typ np. Product i działa na request i response,
-    // wysyła na zewnąrz request i otrzymuje response, w którym jest JSON z odpowiedzią z Comarchu, odpowiedź przekazuje
-    // do odpowiedniego serwisu, który wywołał tą klasę i serwis przerabia JSONa (wykorzystuje Converter) i serwis wysyła
-    // dalej odpowiedź do ComarchDataProvider i ten do ExternalApiDataProvider
+
 
 }
