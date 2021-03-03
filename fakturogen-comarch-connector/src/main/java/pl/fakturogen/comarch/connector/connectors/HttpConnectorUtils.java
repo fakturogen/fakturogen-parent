@@ -19,11 +19,10 @@ public class HttpConnectorUtils {
 
 
     private final ComarchApiTokenConnector comarchApiTokenConnector;
-    private final ObjectMapper mapper;
 
-    public HttpConnectorUtils(ComarchApiTokenConnector comarchApiTokenConnector, ObjectMapper mapper) {
+
+    public HttpConnectorUtils(ComarchApiTokenConnector comarchApiTokenConnector) {
         this.comarchApiTokenConnector = comarchApiTokenConnector;
-        this.mapper = mapper;
     }
 
     public Response httpGetAll(String url) throws IOException {
@@ -69,6 +68,7 @@ public class HttpConnectorUtils {
         OkHttpClient okHttpClient = new OkHttpClient();
         Map<String, String> headersMap = new HashMap<>();
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
+        ObjectMapper mapper = new ObjectMapper();
 
         String token = comarchApiTokenConnector.getToken().getAccessToken();
 
