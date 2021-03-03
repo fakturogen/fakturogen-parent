@@ -10,11 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Converter for token")
 class TokenResponseConverterTest {
 
-    TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
-
     @DisplayName(" - should return all fields")
     @Test
     void test1() throws JsonProcessingException {
+        TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
 
         String json = "{\"access_token\":\"GXwAb03xC+V1xbUzoSJ5YQ00009b8f35\",\"token_type\":\"bearer\",\"expires\":600}";
 
@@ -38,7 +37,9 @@ class TokenResponseConverterTest {
     @DisplayName(" - should give null fields")
     @Test
     void test2() throws JsonProcessingException {
-        String json = "{}";
+        TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
+
+        String json = "";
 
         ApiToken actual = tokenResponseConverter.toObject(json);
 

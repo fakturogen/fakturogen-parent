@@ -54,7 +54,7 @@ public class ComarchApiTokenConnector {
         Response response = call.execute();
         //z response wyciagnac token
         ResponseBody responseBody = response.body();
-
+        // czy responseBody != null
         String json = response.body().string();
 
        ApiToken apiTokenDetail = tokenResponseConverter.toObject(json);
