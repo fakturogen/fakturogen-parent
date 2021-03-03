@@ -15,33 +15,31 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "id_external_api")
     private Long idExternalApi;
 
+    @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "building_number")
+    @Column(name = "building_number", nullable = false)
     private String buildingNumber;
 
-    @Column(name = "flat_number")
+    @Column(name = "flat_number", nullable = false)
     private String flatNumber;
 
-    @Column(name = "postal_code")
+    @Column(name = "postal_code", nullable = false)
     private String postalCode;
 
-    private String postOffice;
-
+    @Column(name = "city", nullable = false)
     private String city;
 
-    private String country;
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -85,14 +83,6 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public String getPostOffice() {
-        return postOffice;
-    }
-
-    public void setPostOffice(String postOffice) {
-        this.postOffice = postOffice;
-    }
-
     public String getCity() {
         return city;
     }
@@ -101,20 +91,12 @@ public class Address {
         this.city = city;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return Objects.equals(id, address.id) &&
+        return id == address.id &&
                 Objects.equals(idExternalApi, address.idExternalApi);
     }
 
@@ -132,9 +114,7 @@ public class Address {
                 ", buildingNumber='" + buildingNumber + '\'' +
                 ", flatNumber='" + flatNumber + '\'' +
                 ", postalCode='" + postalCode + '\'' +
-                ", postOffice='" + postOffice + '\'' +
                 ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
                 '}';
     }
 }

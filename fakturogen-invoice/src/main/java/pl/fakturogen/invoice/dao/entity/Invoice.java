@@ -16,20 +16,18 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = Invoice.TABLE_NAME)
+@Table(name = "invoices")
 public class Invoice {
 
-    final static String TABLE_NAME = "invoices";
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String number;
-    @Column(name = "issue_date")
+    @Column (name = "issue_date")
     private LocalDate issueDate;
-    @Column(name = "sale_date")
+    @Column (name = "sale_date")
     private LocalDate saleDate;
-    @Column(name = "payment_method")
+    @Column (name = "payment_method")
     private Integer paymentMethod;
     private Double total;
     private Double tax;
@@ -42,25 +40,24 @@ public class Invoice {
     @OneToMany
     private List<Product> items;
 
-    @Column(name = "bank_account_id")
+    @Column (name = "bank_account_id")
     private Integer bankAccountId;
-    @Column(name = "invoice_type")
+    @Column (name = "invoice_type")
     private Integer invoiceType;
     @Column(name = "additional_information")
     private String additionalInformation;
 
-    @Column(name = "orinal_id")
+    @Column (name = "orinal_id")
     private Long originalId; // Document id from provider database
-    @Column(name = "created_on", nullable = false)
+    @Column (name = "created_on", nullable = false)
     private LocalDateTime createdOn;
-    @Column(name = "updated_on")
+    @Column (name = "updated_on")
     private LocalDateTime updatedOn;
 
     @PrePersist
     public void setCreatedOn() {
         this.createdOn = LocalDateTime.now();
     }
-
     @PreUpdate
     public void setUpdatedOn() {
         this.updatedOn = LocalDateTime.now();

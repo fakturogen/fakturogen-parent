@@ -49,7 +49,7 @@ class InvoiceMapperTest {
 
         customer.setName("Jan");
         customer.setId(4L);
-        customer.setCustomerTaxNumber("123");
+        customer.setNip("123");
 
         InvoiceSaveDTO receivedDTO = InvoiceSaveDTO.builder()
                 .number("1/1/2021")
@@ -84,7 +84,7 @@ class InvoiceMapperTest {
                 () -> assertThat(result.getDiscount()).isEqualTo(receivedDTO.getDiscount()),
                 () -> assertThat(result.getStatus()).isEqualTo(receivedDTO.getStatus()),
                 () -> assertThat(result.getCustomer()).isNotNull(),
-                () -> assertThat(result.getCustomer().getCustomerTaxNumber()).isEqualTo(receivedDTO.getCustomer().getCustomerTaxNumber()),
+                () -> assertThat(result.getCustomer().getNip()).isEqualTo(receivedDTO.getCustomer().getNip()),
                 () -> assertThat(result.getBankAccountId()).isEqualTo(receivedDTO.getBankAccountId()),
                 () -> assertThat(result.getInvoiceType()).isEqualTo(receivedDTO.getInvoiceType()),
                 () -> assertThat(result.getAdditionalInformation()).isEqualTo(receivedDTO.getAdditionalInformation()),
@@ -95,7 +95,7 @@ class InvoiceMapperTest {
 
     @DisplayName(" - should map empty object ")
     @Test
-    public void test2() {
+    public void test2(){
         InvoiceSaveDTO invoiceSaveDTO = new InvoiceSaveDTO();
 
         Invoice invoice = new Invoice();
@@ -104,7 +104,7 @@ class InvoiceMapperTest {
 
         Invoice result = invoiceMapper.from(invoiceSaveDTO);
 
-        assertThat(result).hasAllNullFieldsOrProperties();
+       assertThat(result).hasAllNullFieldsOrProperties();
 
     }
 

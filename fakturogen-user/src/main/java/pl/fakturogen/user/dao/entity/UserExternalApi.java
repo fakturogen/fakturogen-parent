@@ -24,11 +24,9 @@ public class UserExternalApi {
     @Column(name = "client_secret", nullable = false)
     private String clientSecret;
 
-    @Column(name = "token")
-    private String accessToken;
-
     @OneToOne
     private User user;
+
 
     public Long getId() {
         return id;
@@ -52,14 +50,6 @@ public class UserExternalApi {
 
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
     }
 
     public User getUser() {
@@ -90,7 +80,6 @@ public class UserExternalApi {
                 "id=" + id +
                 ", clientId='" + clientId + '\'' +
                 ", clientSecret='" + clientSecret + '\'' +
-                ", accessToken='" + accessToken + '\'' +
                 ", user=" + user +
                 '}';
     }
