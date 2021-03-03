@@ -101,4 +101,16 @@ public class ApiItem {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "ApiItem{" +
+                "$id='" + $id + '\'' +
+                ", productId=" + productId +
+                ", quantity=" + quantity +
+                ", productCurrencyPrice=" + productCurrencyPrice +
+                ", productDescription='" + productDescription + '\'' +
+                ", id=" + id +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

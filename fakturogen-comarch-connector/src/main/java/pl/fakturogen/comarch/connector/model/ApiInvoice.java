@@ -206,4 +206,24 @@ public class ApiInvoice {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "ApiInvoice{" +
+                "$id='" + $id + '\'' +
+                ", paymentStatus=" + paymentStatus +
+                ", purchasingPartyId=" + purchasingPartyId +
+                ", receivingPartyId=" + receivingPartyId +
+                ", paymentTypeId=" + paymentTypeId +
+                ", bankAccountId=" + bankAccountId +
+                ", salesDate='" + salesDate + '\'' +
+                ", invoiceType=" + invoiceType +
+                ", items=" + items +
+                ", description=" + description +
+                ", issueDate='" + issueDate + '\'' +
+                ", number='" + number + '\'' +
+                ", status=" + status +
+                ", id=" + id +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }
