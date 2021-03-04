@@ -10,7 +10,7 @@ import pl.fakturogen.invoice.web.dto.InvoiceSaveDTO;
 @Slf4j
 public class InvoiceMapper {
 
-    public Invoice from(InvoiceSaveDTO invoiceSaveDTO) {
+    public Invoice from (InvoiceSaveDTO invoiceSaveDTO){
         log.info("from {{}}", invoiceSaveDTO);
         ModelMapper modelMapper = new ModelMapper();
         Invoice invoice = modelMapper.map(invoiceSaveDTO, Invoice.class);
