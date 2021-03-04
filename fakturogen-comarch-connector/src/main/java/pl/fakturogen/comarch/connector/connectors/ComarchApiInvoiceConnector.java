@@ -6,6 +6,7 @@ import pl.fakturogen.comarch.connector.model.ApiInvoice;
 import pl.fakturogen.comarchconnector.converter.InvoiceResponseConverter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class ComarchApiInvoiceConnector {
@@ -21,9 +22,10 @@ public class ComarchApiInvoiceConnector {
         this.invoiceResponseConverter = invoiceResponseConverter;
     }
 
-    public String getInvoices() throws IOException {
+    public List<ApiInvoice> getInvoices() throws IOException {
         Response response = httpConnectorUtils.httpGetAll(url);
-        return response.body().string();
+
+        return invoiceResponseConverter.listFrom(response.body().string());
     }
     public ApiInvoice getInvoiceById(long id) throws IOException {
         Response response = httpConnectorUtils.httpGetById(url, id);

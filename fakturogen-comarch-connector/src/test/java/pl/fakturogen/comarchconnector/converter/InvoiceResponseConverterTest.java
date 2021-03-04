@@ -1,6 +1,7 @@
 package pl.fakturogen.comarchconnector.converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,8 +43,14 @@ class InvoiceResponseConverterTest {
         apiInvoice.setItems(apiItems);
         apiInvoice.setId(18369406);
 
+        ApiInvoice apiInvoiceJson = new ApiInvoice();
+        apiInvoiceJson.setId(1);
 
-        String json = "{\"$id\":\"1\"," +
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(apiInvoiceJson);
+
+        /*String json = "{\"$id\":\"1\"," +
                 "\"PaymentStatus\":1," +
                 "\"PurchasingPartyId\":12641710," +
                 "\"ReceivingPartyId\":null," +
@@ -63,7 +70,7 @@ class InvoiceResponseConverterTest {
                 "\"IssueDate\":\"2020-11-17T00:00:00+01:00\"," +
                 "\"Number\":\"FS/20/11/1\"," +
                 "\"Status\":0," +
-                "\"Id\":18369406}";
+                "\"Id\":18369406}";*/
 
         ApiInvoice result = invoiceResponseConverter.from(json);
 

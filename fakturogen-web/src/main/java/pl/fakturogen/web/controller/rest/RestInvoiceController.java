@@ -8,6 +8,7 @@ import pl.fakturogen.comarch.connector.connectors.ComarchApiInvoiceConnector;
 import pl.fakturogen.comarch.connector.model.ApiInvoice;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class RestInvoiceController {
@@ -21,7 +22,7 @@ public class RestInvoiceController {
     }
 
     @RequestMapping("/getInvoices")
-    public String getInvoices() throws IOException {
+    public List<ApiInvoice> getInvoices() throws IOException {
         String[] args = applicationArguments.getSourceArgs();
         apiInvoiceConnector.setClientId(args[0]);
         apiInvoiceConnector.setSecret(args[1]);
