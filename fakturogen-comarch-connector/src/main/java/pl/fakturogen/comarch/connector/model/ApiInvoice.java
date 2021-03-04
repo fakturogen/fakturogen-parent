@@ -32,11 +32,11 @@ public class ApiInvoice {
     @JsonProperty("PurchasingPartyId")
     private Integer purchasingPartyId;
     @JsonProperty("ReceivingPartyId")
-    private Object receivingPartyId;
+    private Integer receivingPartyId;
     @JsonProperty("PaymentTypeId")
     private Integer paymentTypeId;
     @JsonProperty("BankAccountId")
-    private Object bankAccountId;
+    private Integer bankAccountId;
     @JsonProperty("SalesDate")
     private String salesDate;
     @JsonProperty("InvoiceType")
@@ -44,7 +44,7 @@ public class ApiInvoice {
     @JsonProperty("Items")
     private List<ApiItem> items = null;
     @JsonProperty("Description")
-    private Object description;
+    private String description;
     @JsonProperty("IssueDate")
     private String issueDate;
     @JsonProperty("Number")
@@ -92,7 +92,7 @@ public class ApiInvoice {
     }
 
     @JsonProperty("ReceivingPartyId")
-    public void setReceivingPartyId(Object receivingPartyId) {
+    public void setReceivingPartyId(Integer receivingPartyId) {
         this.receivingPartyId = receivingPartyId;
     }
 
@@ -112,7 +112,7 @@ public class ApiInvoice {
     }
 
     @JsonProperty("BankAccountId")
-    public void setBankAccountId(Object bankAccountId) {
+    public void setBankAccountId(Integer bankAccountId) {
         this.bankAccountId = bankAccountId;
     }
 
@@ -152,7 +152,7 @@ public class ApiInvoice {
     }
 
     @JsonProperty("Description")
-    public void setDescription(Object description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

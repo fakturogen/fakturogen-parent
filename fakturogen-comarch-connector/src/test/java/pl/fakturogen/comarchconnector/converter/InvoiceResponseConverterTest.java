@@ -11,11 +11,23 @@ import pl.fakturogen.comarch.connector.model.ApiItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 @DisplayName("Comarch invoice converter")
 class InvoiceResponseConverterTest {
-
-
+    private static final String FOLLOWING_NUMBER = "1";
+    private static final Integer PAYMENT_STATUS = 1;
+    private static final Integer PURCHASING_PARTY_ID = 12641710;
+    private static final Integer RECEIVING_PARTY_ID = null;
+    private static final int PAYMENT_TYPE_ID = 10301770;
+    private static final Integer BANK_ACCOUNT_ID = null;
+    private static final String SALES_DATE = "2020-11-17T00:00:00+01:00";
+    private static final int INVOICE_TYPE = 1;
+    private static final String DESCRIPTION = null;
+    private static final String ISSUE_DATE = "2020-11-17T00:00:00+01:00";
+    private static final String NUMBER = "FS/20/11/1";
+    private static final int STATUS = 0;
+    private static final Integer ID = 18369406;
 
     @DisplayName(" - should convert all fields from json to an ApiInvoice object")
     @Test
@@ -44,33 +56,24 @@ class InvoiceResponseConverterTest {
         apiInvoice.setId(18369406);
 
         ApiInvoice apiInvoiceJson = new ApiInvoice();
-        apiInvoiceJson.setId(1);
+        apiInvoiceJson.set$id(FOLLOWING_NUMBER);
+        apiInvoiceJson.setPaymentStatus(PAYMENT_STATUS);
+        apiInvoiceJson.setPurchasingPartyId(PURCHASING_PARTY_ID);
+        apiInvoiceJson.setReceivingPartyId(RECEIVING_PARTY_ID);
+        apiInvoiceJson.setPaymentTypeId(PAYMENT_TYPE_ID);
+        apiInvoiceJson.setBankAccountId(BANK_ACCOUNT_ID);
+        apiInvoiceJson.setSalesDate(SALES_DATE);
+        apiInvoiceJson.setInvoiceType(INVOICE_TYPE);
+        apiInvoiceJson.setItems(apiItems);
+        apiInvoiceJson.setDescription(DESCRIPTION);
+        apiInvoiceJson.setIssueDate(ISSUE_DATE);
+        apiInvoiceJson.setNumber(NUMBER);
+        apiInvoiceJson.setStatus(STATUS);
+        apiInvoiceJson.setId(ID);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         String json = objectMapper.writeValueAsString(apiInvoiceJson);
-
-        /*String json = "{\"$id\":\"1\"," +
-                "\"PaymentStatus\":1," +
-                "\"PurchasingPartyId\":12641710," +
-                "\"ReceivingPartyId\":null," +
-                "\"PaymentTypeId\":10301770," +
-                "\"BankAccountId\":null," +
-                "\"SalesDate\":\"2020-11-17T00:00:00+01:00\"," +
-                "\"InvoiceType\":1," +
-                "\"Items\":" +
-                "[{\"$id\":\"2\"," +
-                "\"ProductId\":null," +
-                "\"Quantity\":1.0000," +
-                "\"ProductCurrencyPrice\":1000.00," +
-                "\"ProductDescription\":\"\"," +
-                "\"Id\":27760788}, " +
-                "{\"$id\":\"4\",\"ProductId\":null,\"Quantity\":3.0000,\"ProductCurrencyPrice\":500.00,\"ProductDescription\":\"\",\"Id\":788}]," +
-                "\"Description\":null," +
-                "\"IssueDate\":\"2020-11-17T00:00:00+01:00\"," +
-                "\"Number\":\"FS/20/11/1\"," +
-                "\"Status\":0," +
-                "\"Id\":18369406}";*/
 
         ApiInvoice result = invoiceResponseConverter.from(json);
 
