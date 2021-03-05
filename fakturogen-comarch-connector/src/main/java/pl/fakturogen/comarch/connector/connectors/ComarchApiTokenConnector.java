@@ -10,7 +10,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.model.ApiToken;
-import pl.fakturogen.comarchconnector.converter.TokenResponseConverter;
+import pl.fakturogen.comarch.converter.TokenResponseConverter;
 
 import java.io.IOException;
 import java.util.Base64;
