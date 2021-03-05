@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.api.customer.CustomerComarch;
 import pl.fakturogen.comarch.connector.connectors.HttpConnectorUtils;
 import pl.fakturogen.comarch.connector.dto.CustomerComarchDTO;
-import pl.fakturogen.comarch.converter.ComarchCustomerConverter;
+import pl.fakturogen.comarch.connector.converters.ComarchCustomerConverter;
 
 import java.io.IOException;
 import java.util.Random;
