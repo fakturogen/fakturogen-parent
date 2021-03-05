@@ -1,4 +1,4 @@
 package pl.fakturogen.comarch.connector.dto;
 
-public class ProductComarchDTO {
+public class ComarchProductDTO {
 }
