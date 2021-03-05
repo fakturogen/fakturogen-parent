@@ -46,7 +46,7 @@ public class ComarchProduct {
     @JsonProperty("Quantity")
     private Double quantity;
     @JsonProperty("Id")
-    private Integer id;
+    private Long id;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -151,12 +151,12 @@ public class ComarchProduct {
     }
 
     @JsonProperty("Id")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @JsonProperty("Id")
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
