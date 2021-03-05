@@ -5,14 +5,5 @@ import pl.fakturogen.comarch.connector.connectors.HttpConnectorUtils;
 
 public class InvoiceServiceDefault {
 
-    private HttpConnectorUtils httpConnectorUtils;
-    private InvoiceDTOConverter invoiceDTOConverter;
 
-
-    public InvoiceComarchDTO getInvoiceById(long id){
-
-
-
-        return new InvoiceComarchDTO();
-    }
 }

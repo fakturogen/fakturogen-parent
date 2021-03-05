@@ -16,7 +16,6 @@ public class ComarchProductConverter {
     public ComarchProduct from(String productJson) throws JsonProcessingException {
         log.info("from {{}}", productJson);
         ObjectMapper mapper = new ObjectMapper();
-
         ComarchProduct product = mapper.readValue(productJson, ComarchProduct.class);
         log.info("to {{}}", product);
         return product;

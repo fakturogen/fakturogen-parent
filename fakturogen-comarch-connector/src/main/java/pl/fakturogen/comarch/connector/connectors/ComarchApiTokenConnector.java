@@ -8,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.model.ApiToken;
 import pl.fakturogen.comarch.connector.converters.TokenResponseConverter;
@@ -24,9 +25,18 @@ public class ComarchApiTokenConnector {
     private String url = "https://app.erpxt.pl/api2/public/token";
 
     private TokenResponseConverter tokenResponseConverter;
+    private ApplicationArguments applicationArguments;
 
-    public ComarchApiTokenConnector(TokenResponseConverter tokenResponseConverter) {
+    public ComarchApiTokenConnector(TokenResponseConverter tokenResponseConverter, ApplicationArguments applicationArguments) {
         this.tokenResponseConverter = tokenResponseConverter;
+        this.applicationArguments = applicationArguments;
+        setCredentials();
+    }
+
+    private void setCredentials() {
+        String[] sourceArgs = applicationArguments.getSourceArgs();
+        clientId = sourceArgs[0];
+        secret = sourceArgs[1];
     }
 
     public ApiToken getToken() throws IOException {
