@@ -5,8 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.fakturogen.comarch.connector.model.ApiInvoice;
-import pl.fakturogen.comarch.connector.model.ApiItem;
+import pl.fakturogen.comarch.connector.model.ComarchInvoice;
+import pl.fakturogen.comarch.connector.model.ComarchItem;
+import pl.fakturogen.comarch.converter.InvoiceResponseConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,58 +35,58 @@ class InvoiceResponseConverterTest {
     void test1() throws JsonProcessingException {
         InvoiceResponseConverter invoiceResponseConverter = new InvoiceResponseConverter();
 
-        ApiItem apiItem1 = new ApiItem();
-        apiItem1.set$id("2");
-        apiItem1.setProductCurrencyPrice(1000.00);
-        apiItem1.setId(27760788);
+        ComarchItem comarchItem1 = new ComarchItem();
+        comarchItem1.set$id("2");
+        comarchItem1.setProductCurrencyPrice(1000.00);
+        comarchItem1.setId(27760788);
 
-        ApiItem apiItem2 = new ApiItem();
-        apiItem2.set$id("4");
-        apiItem2.setProductCurrencyPrice(500.00);
-        apiItem2.setId(788);
+        ComarchItem comarchItem2 = new ComarchItem();
+        comarchItem2.set$id("4");
+        comarchItem2.setProductCurrencyPrice(500.00);
+        comarchItem2.setId(788);
 
-        List<ApiItem> apiItems = new ArrayList<>();
-        apiItems.add(apiItem1);
-        apiItems.add(apiItem2);
+        List<ComarchItem> comarchItems = new ArrayList<>();
+        comarchItems.add(comarchItem1);
+        comarchItems.add(comarchItem2);
 
-        ApiInvoice apiInvoice = new ApiInvoice();
-        apiInvoice.set$id("1");
-        apiInvoice.setPaymentStatus(1);
-        apiInvoice.setPurchasingPartyId(12641710);
-        apiInvoice.setItems(apiItems);
-        apiInvoice.setId(18369406);
+        ComarchInvoice comarchInvoice = new ComarchInvoice();
+        comarchInvoice.set$id("1");
+        comarchInvoice.setPaymentStatus(1);
+        comarchInvoice.setPurchasingPartyId(12641710);
+        comarchInvoice.setItems(comarchItems);
+        comarchInvoice.setId(18369406);
 
-        ApiInvoice apiInvoiceJson = new ApiInvoice();
-        apiInvoiceJson.set$id(FOLLOWING_NUMBER);
-        apiInvoiceJson.setPaymentStatus(PAYMENT_STATUS);
-        apiInvoiceJson.setPurchasingPartyId(PURCHASING_PARTY_ID);
-        apiInvoiceJson.setReceivingPartyId(RECEIVING_PARTY_ID);
-        apiInvoiceJson.setPaymentTypeId(PAYMENT_TYPE_ID);
-        apiInvoiceJson.setBankAccountId(BANK_ACCOUNT_ID);
-        apiInvoiceJson.setSalesDate(SALES_DATE);
-        apiInvoiceJson.setInvoiceType(INVOICE_TYPE);
-        apiInvoiceJson.setItems(apiItems);
-        apiInvoiceJson.setDescription(DESCRIPTION);
-        apiInvoiceJson.setIssueDate(ISSUE_DATE);
-        apiInvoiceJson.setNumber(NUMBER);
-        apiInvoiceJson.setStatus(STATUS);
-        apiInvoiceJson.setId(ID);
+        ComarchInvoice comarchInvoiceJson = new ComarchInvoice();
+        comarchInvoiceJson.set$id(FOLLOWING_NUMBER);
+        comarchInvoiceJson.setPaymentStatus(PAYMENT_STATUS);
+        comarchInvoiceJson.setPurchasingPartyId(PURCHASING_PARTY_ID);
+        comarchInvoiceJson.setReceivingPartyId(RECEIVING_PARTY_ID);
+        comarchInvoiceJson.setPaymentTypeId(PAYMENT_TYPE_ID);
+        comarchInvoiceJson.setBankAccountId(BANK_ACCOUNT_ID);
+        comarchInvoiceJson.setSalesDate(SALES_DATE);
+        comarchInvoiceJson.setInvoiceType(INVOICE_TYPE);
+        comarchInvoiceJson.setItems(comarchItems);
+        comarchInvoiceJson.setDescription(DESCRIPTION);
+        comarchInvoiceJson.setIssueDate(ISSUE_DATE);
+        comarchInvoiceJson.setNumber(NUMBER);
+        comarchInvoiceJson.setStatus(STATUS);
+        comarchInvoiceJson.setId(ID);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        String json = objectMapper.writeValueAsString(apiInvoiceJson);
+        String json = objectMapper.writeValueAsString(comarchInvoiceJson);
 
-        ApiInvoice result = invoiceResponseConverter.from(json);
+        ComarchInvoice result = invoiceResponseConverter.from(json);
 
         Assertions.assertAll(
                 () -> assertThat(result.get$id()).isNotNull(),
-                () -> assertThat(result.getPaymentStatus()).isEqualTo(apiInvoice.getPaymentStatus()),
-                () -> assertThat(result.getPurchasingPartyId()).isEqualTo(apiInvoice.getPurchasingPartyId()),
+                () -> assertThat(result.getPaymentStatus()).isEqualTo(comarchInvoice.getPaymentStatus()),
+                () -> assertThat(result.getPurchasingPartyId()).isEqualTo(comarchInvoice.getPurchasingPartyId()),
                 () -> assertThat(result.getItems()).isNotNull(),
-                () -> assertThat(result.getItems().size()).isEqualTo(apiItems.size()),
-                () -> assertThat(result.getItems().get(0).get$id()).isEqualTo(apiItems.get(0).get$id()), // czy tak porównywać z listą?
-                () -> assertThat(result.getItems().get(0).getProductCurrencyPrice()).isEqualTo(apiItem1.getProductCurrencyPrice()),
-                () -> assertThat(result.getItems().get(0).getId()).isEqualTo(apiItem1.getId())
+                () -> assertThat(result.getItems().size()).isEqualTo(comarchItems.size()),
+                () -> assertThat(result.getItems().get(0).get$id()).isEqualTo(comarchItems.get(0).get$id()), // czy tak porównywać z listą?
+                () -> assertThat(result.getItems().get(0).getProductCurrencyPrice()).isEqualTo(comarchItem1.getProductCurrencyPrice()),
+                () -> assertThat(result.getItems().get(0).getId()).isEqualTo(comarchItem1.getId())
         );
 
 

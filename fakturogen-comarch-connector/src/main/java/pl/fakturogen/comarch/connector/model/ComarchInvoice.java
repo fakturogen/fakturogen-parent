@@ -23,7 +23,7 @@ import java.util.Map;
         "Status",
         "Id"
 })
-public class ApiInvoice {
+public class ComarchInvoice {
 
     @JsonProperty("$id")
     private String $id;
@@ -42,7 +42,7 @@ public class ApiInvoice {
     @JsonProperty("InvoiceType")
     private Integer invoiceType;
     @JsonProperty("Items")
-    private List<ApiItem> items = null;
+    private List<ComarchItem> items = null;
     @JsonProperty("Description")
     private String description;
     @JsonProperty("IssueDate")
@@ -137,12 +137,12 @@ public class ApiInvoice {
     }
 
     @JsonProperty("Items")
-    public List<ApiItem> getItems() {
+    public List<ComarchItem> getItems() {
         return items;
     }
 
     @JsonProperty("Items")
-    public void setItems(List<ApiItem> items) {
+    public void setItems(List<ComarchItem> items) {
         this.items = items;
     }
 

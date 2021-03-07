@@ -14,7 +14,7 @@ import java.util.Map;
         "ProductDescription",
         "Id"
 })
-public class ApiItem {
+public class ComarchItem {
 
     @JsonProperty("$id")
     private String $id;

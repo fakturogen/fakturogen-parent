@@ -1,4 +1,4 @@
-package pl.fakturogen.comarchconnector.converter;
+package pl.fakturogen.comarch.converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
