@@ -10,7 +10,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.model.ApiToken;
-import pl.fakturogen.comarchconnector.converter.TokenResponseConverter;
+import pl.fakturogen.comarch.converter.TokenResponseConverter;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -54,7 +54,7 @@ public class ComarchApiTokenConnector {
         Response response = call.execute();
         //z response wyciagnac token
         ResponseBody responseBody = response.body();
-
+        // czy responseBody != null
         String json = response.body().string();
 
        ApiToken apiTokenDetail = tokenResponseConverter.toObject(json);
