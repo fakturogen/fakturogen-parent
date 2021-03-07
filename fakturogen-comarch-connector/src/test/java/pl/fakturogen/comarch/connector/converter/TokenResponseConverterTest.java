@@ -1,6 +1,7 @@
-package pl.fakturogen.comarchconnector.converter;
+package pl.fakturogen.comarch.connector.converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,18 +12,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Converter for token")
 class TokenResponseConverterTest {
 
+    private static final String ACCESS_TOKEN = "GXwAb03xC+V1xbUzoSJ5YQ00009b8f35";
+    private static final String TOKEN_TYPE = "bearer";
+    private static final int EXPIRES = 600;
+
     @DisplayName(" - should return all fields")
     @Test
     void test1() throws JsonProcessingException {
         TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setAccessToken(ACCESS_TOKEN);
+        apiToken.setTokenType(TOKEN_TYPE);
+        apiToken.setExpires(EXPIRES);
 
-        String json = "{\"access_token\":\"GXwAb03xC+V1xbUzoSJ5YQ00009b8f35\",\"token_type\":\"bearer\",\"expires\":600}";
-
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(apiToken);
 
         ApiToken expected = new ApiToken();
-        expected.setAccessToken("GXwAb03xC+V1xbUzoSJ5YQ00009b8f35");
-        expected.setTokenType("bearer");
-        expected.setExpires(600);
+        expected.setAccessToken(ACCESS_TOKEN);
+        expected.setTokenType(TOKEN_TYPE);
+        expected.setExpires(EXPIRES);
 
 
         ApiToken actual = tokenResponseConverter.toObject(json);
@@ -40,7 +49,10 @@ class TokenResponseConverterTest {
     void test2() throws JsonProcessingException {
         TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
 
-        String json = "";
+        ApiToken apiToken = new ApiToken();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json = objectMapper.writeValueAsString(apiToken);
 
         ApiToken actual = tokenResponseConverter.toObject(json);
 
