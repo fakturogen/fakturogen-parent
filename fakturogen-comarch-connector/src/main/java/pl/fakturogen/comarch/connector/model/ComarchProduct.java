@@ -2,6 +2,8 @@ package pl.fakturogen.comarch.connector.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -185,5 +187,29 @@ public class ComarchProduct {
                 ", quantity=" + quantity +
                 ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComarchProduct that = (ComarchProduct) o;
+        return Objects.equals($id, that.$id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(itemCode, that.itemCode) &&
+                Objects.equals(productCode, that.productCode) &&
+                Objects.equals(unitOfMeasurment, that.unitOfMeasurment) &&
+                Objects.equals(rate, that.rate) &&
+                Objects.equals(saleNetPrice, that.saleNetPrice) &&
+                Objects.equals(saleGrossPrice, that.saleGrossPrice) &&
+                Objects.equals(quantity, that.quantity) &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(additionalProperties, that.additionalProperties);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash($id, name, description, itemCode, productCode, unitOfMeasurment, rate, saleNetPrice, saleGrossPrice, quantity, id, additionalProperties);
     }
 }
