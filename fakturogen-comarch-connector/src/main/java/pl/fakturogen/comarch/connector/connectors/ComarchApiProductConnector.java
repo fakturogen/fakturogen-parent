@@ -17,8 +17,7 @@ public class ComarchApiProductConnector {
     private ComarchProductConverter comarchProductConverter;
     private ComarchProductMapper comarchProductMapper;
 
-    private final String getAllEndpoint = "https://app.erpxt.pl/api2/public/products";
-    private final String getByIdEndpoint = "https://app.erpxt.pl/api2/public/products/";
+    private final String productEndpoint = "https://app.erpxt.pl/api2/public/products";
 
     public ComarchApiProductConnector(HttpConnectorUtils httpConnectorUtils, ComarchProductConverter
             comarchProductConverter, ComarchProductMapper comarchProductMapper) {
@@ -28,14 +27,14 @@ public class ComarchApiProductConnector {
     }
 
     public List<ComarchProductDTO> getAllProductList () throws IOException {
-        Response response = httpConnectorUtils.httpGetAll(getAllEndpoint);
+        Response response = httpConnectorUtils.httpGetAll(productEndpoint);
         String responseString = response.body().string();
         List<ComarchProduct> comarchProductList = comarchProductConverter.fromList(responseString);
         return comarchProductMapper.fromList(comarchProductList);
     }
 
     public ComarchProductDTO getProductById(Long id) throws IOException {
-        Response response = httpConnectorUtils.httpGetById(getByIdEndpoint, id);
+        Response response = httpConnectorUtils.httpGetById(productEndpoint, id);
         String responseString = response.body().string();
         ComarchProduct comarchProduct = comarchProductConverter.from(responseString);
         return comarchProductMapper.from(comarchProduct);

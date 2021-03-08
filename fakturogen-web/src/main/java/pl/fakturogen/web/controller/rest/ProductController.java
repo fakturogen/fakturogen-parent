@@ -1,6 +1,7 @@
 package pl.fakturogen.web.controller.rest;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.connectors.ComarchApiProductConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
@@ -16,8 +17,13 @@ public class ProductController {
         this.comarchApiProductConnector = comarchApiProductConnector;
     }
 
-    @RequestMapping("/getProductList")
+    @GetMapping("/getProductList")
     public List<ComarchProductDTO> getProductList() throws IOException {
         return comarchApiProductConnector.getAllProductList();
+    }
+
+    @GetMapping("/getProductById/{id}")
+    public ComarchProductDTO getProductById(@PathVariable Long id) throws IOException {
+        return comarchApiProductConnector.getProductById(id);
     }
 }
