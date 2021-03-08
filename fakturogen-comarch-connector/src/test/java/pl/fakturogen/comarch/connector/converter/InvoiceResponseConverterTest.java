@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 import pl.fakturogen.comarch.connector.model.ComarchItem;
-import pl.fakturogen.comarch.converter.InvoiceResponseConverter;
 
 import java.util.ArrayList;
 import java.util.List;

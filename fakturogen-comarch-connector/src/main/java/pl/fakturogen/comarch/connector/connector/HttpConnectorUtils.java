@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.connectors;
+package pl.fakturogen.comarch.connector.connector;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Call;

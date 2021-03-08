@@ -4,7 +4,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.fakturogen.comarch.connector.connectors.ComarchApiInvoiceConnector;
+import pl.fakturogen.comarch.connector.connector.ComarchApiInvoiceConnector;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 
 import java.io.IOException;

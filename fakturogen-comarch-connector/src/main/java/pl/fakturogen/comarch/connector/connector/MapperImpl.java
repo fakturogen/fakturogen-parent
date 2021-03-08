@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.connectors;
+package pl.fakturogen.comarch.connector.connector;
 
 public class MapperImpl implements Mapper<String, Integer> {
     @Override

@@ -1,9 +1,9 @@
-package pl.fakturogen.comarch.connector.connectors;
+package pl.fakturogen.comarch.connector.connector;
 
 import okhttp3.Response;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
-import pl.fakturogen.comarch.converter.InvoiceResponseConverter;
+import pl.fakturogen.comarch.connector.converter.InvoiceResponseConverter;
 
 import java.io.IOException;
 import java.util.List;

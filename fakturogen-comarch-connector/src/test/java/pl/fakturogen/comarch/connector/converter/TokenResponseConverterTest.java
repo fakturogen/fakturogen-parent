@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pl.fakturogen.comarch.connector.model.ApiToken;
-import pl.fakturogen.comarch.converter.TokenResponseConverter;
+import pl.fakturogen.comarch.connector.converter.TokenResponseConverter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Converter for token")
