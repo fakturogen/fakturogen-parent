@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.converters;
+package pl.fakturogen.comarch.connector.converter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

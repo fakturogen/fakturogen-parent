@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.converters;
+package pl.fakturogen.comarch.connector.converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

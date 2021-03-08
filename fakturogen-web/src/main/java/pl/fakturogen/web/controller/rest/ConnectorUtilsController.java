@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.api.customer.CustomerComarch;
-import pl.fakturogen.comarch.connector.connectors.HttpConnectorUtils;
+import pl.fakturogen.comarch.connector.connector.HttpConnectorUtils;
 import pl.fakturogen.comarch.connector.dto.CustomerComarchDTO;
-import pl.fakturogen.comarch.connector.converters.ComarchCustomerConverter;
+import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 
 import java.io.IOException;
 import java.util.Random;

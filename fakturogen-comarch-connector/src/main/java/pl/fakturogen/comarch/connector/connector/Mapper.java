@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.connectors;
+package pl.fakturogen.comarch.connector.connector;
 
 public interface Mapper <I,O>{
     O from(I input);

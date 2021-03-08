@@ -3,7 +3,7 @@ package pl.fakturogen.web.controller.rest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pl.fakturogen.comarch.connector.connectors.ComarchApiProductConnector;
+import pl.fakturogen.comarch.connector.connector.ComarchApiProductConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
 
 import java.io.IOException;

@@ -1,8 +1,8 @@
-package pl.fakturogen.comarch.connector.connectors;
+package pl.fakturogen.comarch.connector.connector;
 
 import okhttp3.Response;
 import org.springframework.stereotype.Component;
-import pl.fakturogen.comarch.connector.converters.ComarchProductConverter;
+import pl.fakturogen.comarch.connector.converter.ComarchProductConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
 import pl.fakturogen.comarch.connector.mapper.ComarchProductMapper;
 import pl.fakturogen.comarch.connector.model.ComarchProduct;
