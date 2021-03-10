@@ -5,8 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.fakturogen.comarch.connector.model.ApiToken;
-import pl.fakturogen.comarch.connector.converter.TokenResponseConverter;
+import pl.fakturogen.comarch.connector.model.ComarchToken;
 
 import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Converter for token")
@@ -20,21 +19,21 @@ class TokenResponseConverterTest {
     @Test
     void test1() throws JsonProcessingException {
         TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
-        ApiToken apiToken = new ApiToken();
-        apiToken.setAccessToken(ACCESS_TOKEN);
-        apiToken.setTokenType(TOKEN_TYPE);
-        apiToken.setExpires(EXPIRES);
+        ComarchToken comarchToken = new ComarchToken();
+        comarchToken.setAccessToken(ACCESS_TOKEN);
+        comarchToken.setTokenType(TOKEN_TYPE);
+        comarchToken.setExpires(EXPIRES);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(apiToken);
+        String json = objectMapper.writeValueAsString(comarchToken);
 
-        ApiToken expected = new ApiToken();
+        ComarchToken expected = new ComarchToken();
         expected.setAccessToken(ACCESS_TOKEN);
         expected.setTokenType(TOKEN_TYPE);
         expected.setExpires(EXPIRES);
 
 
-        ApiToken actual = tokenResponseConverter.toObject(json);
+        ComarchToken actual = tokenResponseConverter.toObject(json);
 
         Assertions.assertAll(
                 () -> assertThat(actual).isNotNull(),
@@ -49,12 +48,12 @@ class TokenResponseConverterTest {
     void test2() throws JsonProcessingException {
         TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
 
-        ApiToken apiToken = new ApiToken();
+        ComarchToken comarchToken = new ComarchToken();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        String json = objectMapper.writeValueAsString(apiToken);
+        String json = objectMapper.writeValueAsString(comarchToken);
 
-        ApiToken actual = tokenResponseConverter.toObject(json);
+        ComarchToken actual = tokenResponseConverter.toObject(json);
 
         Assertions.assertAll(
                 () -> assertThat(actual.getAccessToken()).isNull(),

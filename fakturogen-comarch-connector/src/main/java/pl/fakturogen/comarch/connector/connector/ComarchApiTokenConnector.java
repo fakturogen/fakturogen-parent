@@ -10,7 +10,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Service;
-import pl.fakturogen.comarch.connector.model.ApiToken;
+import pl.fakturogen.comarch.connector.model.ComarchToken;
 import pl.fakturogen.comarch.connector.converter.TokenResponseConverter;
 
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class ComarchApiTokenConnector {
         secret = sourceArgs[1];
     }
 
-    public ApiToken getToken() throws IOException {
+    public ComarchToken getToken() throws IOException {
         String encoded  = Base64.getEncoder().withoutPadding().encodeToString((clientId + ":" + secret).getBytes());
 
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -67,9 +67,9 @@ public class ComarchApiTokenConnector {
         // czy responseBody != null
         String json = response.body().string();
 
-       ApiToken apiTokenDetail = tokenResponseConverter.toObject(json);
+       ComarchToken comarchTokenDetail = tokenResponseConverter.toObject(json);
 
-        return apiTokenDetail;
+        return comarchTokenDetail;
     }
 
 
