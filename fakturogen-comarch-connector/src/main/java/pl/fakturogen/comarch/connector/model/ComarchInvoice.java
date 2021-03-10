@@ -208,7 +208,7 @@ public class ComarchInvoice {
 
     @Override
     public String toString() {
-        return "ApiInvoice{" +
+        return "ComarchInvoice{" +
                 "$id='" + $id + '\'' +
                 ", paymentStatus=" + paymentStatus +
                 ", purchasingPartyId=" + purchasingPartyId +
@@ -223,7 +223,6 @@ public class ComarchInvoice {
                 ", number='" + number + '\'' +
                 ", status=" + status +
                 ", id=" + id +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }

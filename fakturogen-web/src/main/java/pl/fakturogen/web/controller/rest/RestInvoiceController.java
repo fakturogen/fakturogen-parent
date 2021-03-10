@@ -1,8 +1,8 @@
 package pl.fakturogen.web.controller.rest;
 
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.connector.ComarchApiInvoiceConnector;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
@@ -21,7 +21,7 @@ public class RestInvoiceController {
         this.apiInvoiceConnector = apiInvoiceConnector;
     }
 
-    @RequestMapping("/getInvoices")
+    @GetMapping("/getInvoices")
     public List<ComarchInvoice> getInvoices() throws IOException {
         String[] args = applicationArguments.getSourceArgs();
         apiInvoiceConnector.setClientId(args[0]);
@@ -29,7 +29,7 @@ public class RestInvoiceController {
         return apiInvoiceConnector.getInvoices();
     }
 
-    @RequestMapping("/getInvoices/{id}")
+    @GetMapping("/getInvoices/{id}")
     public ComarchInvoice getInvoice(@PathVariable long id) throws IOException {
         String[] args = applicationArguments.getSourceArgs();
         apiInvoiceConnector.setClientId(args[0]);

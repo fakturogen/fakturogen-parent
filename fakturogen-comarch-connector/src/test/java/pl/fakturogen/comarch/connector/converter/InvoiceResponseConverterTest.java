@@ -74,8 +74,9 @@ class InvoiceResponseConverterTest {
         ObjectMapper objectMapper = new ObjectMapper();
 
         String json = objectMapper.writeValueAsString(comarchInvoiceJson);
+        String json2 = "{\"Message\":\"No row with the given identifier exists[Invoice#1]\",\"Data\":{\"EntityId\":\"1\",\"EntityName\":\"Invoice\"},\"Code\":\"EntityNotFoundException\"}";
 
-        ComarchInvoice result = invoiceResponseConverter.from(json);
+        ComarchInvoice result = invoiceResponseConverter.from(json2);
 
         Assertions.assertAll(
                 () -> assertThat(result.get$id()).isNotNull(),
