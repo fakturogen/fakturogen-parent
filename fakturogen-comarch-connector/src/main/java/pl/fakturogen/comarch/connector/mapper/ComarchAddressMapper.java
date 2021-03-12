@@ -1,15 +1,15 @@
-package pl.fakturogen.comarch.connector.converter;
+package pl.fakturogen.comarch.connector.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pl.fakturogen.comarch.api.customer.Address;
+import pl.fakturogen.comarch.connector.model.ComarchAddress;
 import pl.fakturogen.comarch.connector.dto.AddressComarchDTO;
 
 @Component
 @Slf4j
-public class ComarchAddressConverter {
+public class ComarchAddressMapper {
 
-    public AddressComarchDTO from(Address addressComarch) {
+    public AddressComarchDTO from(ComarchAddress addressComarch) {
         AddressComarchDTO addressComarchDTO = new AddressComarchDTO();
         log.info("mapping from {}", addressComarch);
         addressComarchDTO.setIdExternalApi(addressComarch.getId().longValue());

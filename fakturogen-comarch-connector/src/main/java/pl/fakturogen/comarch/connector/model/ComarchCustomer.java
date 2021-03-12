@@ -1,5 +1,5 @@
 
-package pl.fakturogen.comarch.api.customer;
+package pl.fakturogen.comarch.connector.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -23,7 +23,7 @@ import java.util.Map;
     "Address",
     "Id"
 })
-public class CustomerComarch {
+public class ComarchCustomer {
 
     @JsonProperty("$id")
     private String $id;
@@ -40,7 +40,7 @@ public class CustomerComarch {
     @JsonProperty("CustomerType")
     private Integer customerType;
     @JsonProperty("Address")
-    private Address address;
+    private ComarchAddress address;
     @JsonProperty("Id")
     private Integer id;
     @JsonIgnore
@@ -117,12 +117,12 @@ public class CustomerComarch {
     }
 
     @JsonProperty("Address")
-    public Address getAddress() {
+    public ComarchAddress getAddress() {
         return address;
     }
 
     @JsonProperty("Address")
-    public void setAddress(Address address) {
+    public void setAddress(ComarchAddress address) {
         this.address = address;
     }
 
