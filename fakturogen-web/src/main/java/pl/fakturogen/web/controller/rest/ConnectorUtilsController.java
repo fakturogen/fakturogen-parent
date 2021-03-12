@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 import pl.fakturogen.comarch.connector.connector.HttpConnectorUtils;
 import pl.fakturogen.comarch.connector.dto.CustomerComarchDTO;
-import pl.fakturogen.comarch.connector.mapper.ComarchProductMapper;
+import pl.fakturogen.comarch.connector.mapper.ComarchCustomerMapper;
+import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
 import java.io.IOException;
 import java.util.Random;
@@ -19,9 +19,11 @@ import java.util.Random;
 public class ConnectorUtilsController {
     public final static String BASE_URL = "https://app.erpxt.pl/api2/public/customers";
     private final HttpConnectorUtils httpConnectorUtils;
-    private final ComarchProductMapper.ComarchCustomerMapper comarchCustomerMapper;
+    private final ComarchCustomerMapper comarchCustomerMapper;
 
-    public ConnectorUtilsController(HttpConnectorUtils httpConnectorUtils, ComarchProductMapper.ComarchCustomerMapper comarchCustomerMapper) {
+
+
+    public ConnectorUtilsController(HttpConnectorUtils httpConnectorUtils, ComarchCustomerMapper comarchCustomerMapper) {
         this.httpConnectorUtils = httpConnectorUtils;
         this.comarchCustomerMapper = comarchCustomerMapper;
     }
