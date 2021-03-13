@@ -1,7 +1,6 @@
 package pl.fakturogen.comarch.connector.mapper;
 
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
 import pl.fakturogen.invoice.dao.entity.Rate;
@@ -19,7 +18,7 @@ public class FakturogenProductMapper {
         productDTO.setName(comarchProduct.getName());
         productDTO.setDescription(comarchProduct.getDescription());
         productDTO.setItemCode(comarchProduct.getItemCode());
-        productDTO.setUnitOfMeasurement(comarchProduct.getUnitOfMeasurement());
+        productDTO.setUnitOfMeasurement(comarchProduct.getUnitOfMeasurment());
         productDTO.setSaleNetPrice(comarchProduct.getSaleNetPrice());
         productDTO.setSaleGrossPrice(comarchProduct.getSaleGrossPrice());
         Rate rate = Rate.valueOf("R" + comarchProduct.getRate());

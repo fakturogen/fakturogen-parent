@@ -16,8 +16,9 @@ public class ProductServiceDefault implements ProductService {
     private ProductRepository productRepository;
     private ProductMapper productMapper;
 
-    public ProductServiceDefault(ProductRepository productRepository) {
+    public ProductServiceDefault(ProductRepository productRepository, ProductMapper productMapper) {
         this.productRepository = productRepository;
+        this.productMapper = productMapper;
     }
 
     @Override
