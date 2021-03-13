@@ -26,14 +26,14 @@ public class ComarchApiProductConnector {
         this.comarchProductMapper = comarchProductMapper;
     }
 
-    public List<ComarchProductDTO> getAllProductList () throws IOException {
+    public List<ComarchProductDTO> readAll() throws IOException {
         Response response = httpConnectorUtils.httpGetAll(productEndpoint);
         String responseString = response.body().string();
         List<ComarchProduct> comarchProductList = comarchProductConverter.fromList(responseString);
         return comarchProductMapper.fromList(comarchProductList);
     }
 
-    public ComarchProductDTO getProductById(Long id) throws IOException {
+    public ComarchProductDTO read(Long id) throws IOException {
         Response response = httpConnectorUtils.httpGetById(productEndpoint, id);
         String responseString = response.body().string();
         ComarchProduct comarchProduct = comarchProductConverter.from(responseString);

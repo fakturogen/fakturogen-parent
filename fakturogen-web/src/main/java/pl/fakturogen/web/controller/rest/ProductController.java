@@ -19,11 +19,11 @@ public class ProductController {
 
     @GetMapping("/getProductList")
     public List<ComarchProductDTO> getProductList() throws IOException {
-        return comarchApiProductConnector.getAllProductList();
+        return comarchApiProductConnector.readAll();
     }
 
     @GetMapping("/getProductById/{id}")
     public ComarchProductDTO getProductById(@PathVariable Long id) throws IOException {
-        return comarchApiProductConnector.getProductById(id);
+        return comarchApiProductConnector.read(id);
     }
 }
