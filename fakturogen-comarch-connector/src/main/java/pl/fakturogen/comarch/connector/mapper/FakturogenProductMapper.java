@@ -13,7 +13,7 @@ import pl.fakturogen.invoice.web.dto.ProductDTO;
 public class FakturogenProductMapper {
 
     public ProductDTO from(ComarchProductDTO comarchProduct) {
-        log.info("from {{}}", comarchProduct);
+        log.info("from ({})", comarchProduct);
 
         ProductDTO productDTO = new ProductDTO();
         productDTO.setName(comarchProduct.getName());
@@ -26,7 +26,7 @@ public class FakturogenProductMapper {
         productDTO.setRate(rate);
         productDTO.setIdExternalApi(comarchProduct.getId());
 
-        log.info("to {{}}", productDTO);
+        log.info("to ({})", productDTO);
         return productDTO;
     }
 
