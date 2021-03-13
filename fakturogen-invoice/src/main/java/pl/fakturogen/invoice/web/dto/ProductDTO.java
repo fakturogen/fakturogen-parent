@@ -9,6 +9,7 @@ import pl.fakturogen.invoice.dao.entity.Rate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDTO {
+    private Long id;
     private String name;
     private String description;
     private String itemCode;
