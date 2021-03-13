@@ -1,4 +1,4 @@
 package pl.fakturogen.comarch.connector.services;
 
-public interface CustomerService {
+public interface ComarchProductService {
 }
