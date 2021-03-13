@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.connector.ComarchApiProductConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
+import pl.fakturogen.web.exception.ProductNotFoundException;
 
-import java.io.IOException;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -18,12 +20,13 @@ public class ProductController {
     }
 
     @GetMapping("/getProductList")
-    public List<ComarchProductDTO> getProductList() throws IOException {
+    public List<ComarchProductDTO> getProductList() {
         return comarchApiProductConnector.readAll();
     }
 
     @GetMapping("/getProductById/{id}")
-    public ComarchProductDTO getProductById(@PathVariable Long id) throws IOException {
-        return comarchApiProductConnector.read(id);
+    public ComarchProductDTO getProductById(@PathVariable Long id) throws ProductNotFoundException {
+        Optional<ComarchProductDTO> optionalProduct = comarchApiProductConnector.read(id);
+        return optionalProduct.orElseThrow(() -> new ProductNotFoundException("Product with given id not found."));
     }
 }

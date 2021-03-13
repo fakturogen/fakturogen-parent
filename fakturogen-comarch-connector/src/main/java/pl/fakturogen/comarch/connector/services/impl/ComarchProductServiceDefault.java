@@ -18,11 +18,11 @@ public class ComarchProductServiceDefault implements ComarchProductService {
 
     @Override
     public Optional<ComarchProductDTO> read(Long id) {
-        return Optional.empty();
+        return connector.read(id);
     }
 
     @Override
     public List<ComarchProductDTO> readAll() {
-        return null;
+        return connector.readAll();
     }
 }
