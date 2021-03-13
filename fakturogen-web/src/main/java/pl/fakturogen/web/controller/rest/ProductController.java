@@ -7,7 +7,6 @@ import pl.fakturogen.comarch.connector.connector.ComarchApiProductConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
 import pl.fakturogen.web.exception.ProductNotFoundException;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
