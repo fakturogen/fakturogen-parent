@@ -5,32 +5,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerComarchDTO {
+public class ComarchCustomerDTO {
 
-    private Long id;
-
-    private Long idExternalApi;
-
-    @NotBlank
+    private String $id;
     private String name;
-
-    private String nip;
-
-    private String pesel;
-
+    private String customerTaxNumber;
     private String customerCode;
-
     private String mail;
-
     private String phoneNumber;
-
-    private CustomerTypeComarchDTO customerType;
-
-    private AddressComarchDTO address;
+    private Integer customerType;
+    private ComarchAddressDTO address;
+    private Integer id;
 }

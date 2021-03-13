@@ -10,19 +10,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddressComarchDTO {
+public class ComarchAddressDTO {
 
-    private Long id;
-
-    private Long idExternalApi;
-
+    private String $id;
     private String street;
-
     private String buildingNumber;
-
     private String flatNumber;
-
     private String postalCode;
-
     private String city;
+    private Integer id;
 }
