@@ -41,6 +41,8 @@ public class CustomerController {
         ComarchCustomerDTO customerComarchDTO = new ComarchCustomerDTO();
         customerComarchDTO.setName("NAME");
         Random random = new Random();
+        customerComarchDTO.setCustomerTaxNumber("K/001");
+        customerComarchDTO.setCustomerType(0);
         customerComarchDTO.setCustomerCode(String.valueOf(random.nextInt(100)));
         customerComarchDTO.setMail("MAIL");
         customerComarchDTO.setPhoneNumber("PHONE_NUMBER");
