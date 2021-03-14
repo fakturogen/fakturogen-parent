@@ -2,6 +2,7 @@ package pl.fakturogen.comarch.connector.connector;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import okhttp3.Response;
+import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
 import pl.fakturogen.comarch.connector.mapper.ComarchCustomerMapper;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ComarchApiCustomerConnector {
 
     private HttpConnectorUtils httpConnectorUtils;
@@ -32,7 +34,7 @@ public class ComarchApiCustomerConnector {
         Optional<ComarchCustomerDTO> optionalCustomerDTO = Optional.empty();
         try {
             Response response = httpConnectorUtils.httpGetById(url, id);
-            String responseString = response.body().toString();
+            String responseString = response.body().string();
             ComarchCustomer comarchCustomer = comarchCustomerConverter.from(responseString);
             optionalCustomerDTO = Optional.of(comarchCustomerMapper.from(comarchCustomer));
         } catch (JsonProcessingException e) {
@@ -47,7 +49,7 @@ public class ComarchApiCustomerConnector {
         List<ComarchCustomerDTO> comarchCustomerDTOList = new ArrayList<>();
         try {
             Response response = httpConnectorUtils.httpGetAll(url);
-            String responseString = response.body().toString();
+            String responseString = response.body().string();
             List<ComarchCustomer> comarchCustomerList = comarchCustomerConverter.fromList(responseString);
             comarchCustomerDTOList = comarchCustomerMapper.fromList(comarchCustomerList);
         } catch (JsonProcessingException e) {
@@ -63,8 +65,10 @@ public class ComarchApiCustomerConnector {
         Long externalId = 0L;
         try{
             Response response = httpConnectorUtils.httpPost(url, comarchCustomerDTO);
-            String responseString = response.body().toString();
+            String responseString = response.body().string();
             externalId = Long.parseLong(responseString);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
