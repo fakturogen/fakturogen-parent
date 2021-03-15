@@ -22,4 +22,12 @@ public class ComarchProductDTO {
     private Double saleGrossPrice;
     private Double quantity;
     private Long id;
+
+    public String get$id() {
+        return $id;
+    }
+
+    public void set$id(String $id) {
+        this.$id = $id;
+    }
 }
