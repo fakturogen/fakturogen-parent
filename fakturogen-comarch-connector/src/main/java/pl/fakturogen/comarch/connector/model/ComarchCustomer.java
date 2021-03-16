@@ -146,4 +146,19 @@ public class ComarchCustomer {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "ComarchCustomer{" +
+                "$id='" + $id + '\'' +
+                ", name='" + name + '\'' +
+                ", customerTaxNumber='" + customerTaxNumber + '\'' +
+                ", customerCode='" + customerCode + '\'' +
+                ", mail='" + mail + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", customerType=" + customerType +
+                ", address=" + address +
+                ", id=" + id +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

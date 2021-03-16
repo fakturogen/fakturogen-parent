@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.mapper.toEntityDTO;
+package pl.fakturogen.comarch.connector.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import pl.fakturogen.invoice.web.dto.CustomerTypeDTO;
 
 @Slf4j
 @Component
-public class ComarchCustomerTypeDTOEntityMapper {
+public class FakturogenCustomerTypeMapper {
 
     public static final int CUSTOMER_TYPE_OSOBA_FIZYCZNA = 0;
     public static final int CUSTOMER_TYPE_PODMIOT_GOSPODARCZY = 1;

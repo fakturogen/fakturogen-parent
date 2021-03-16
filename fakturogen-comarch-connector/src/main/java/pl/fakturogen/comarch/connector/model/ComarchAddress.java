@@ -120,4 +120,17 @@ public class ComarchAddress {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "ComarchAddress{" +
+                "$id='" + $id + '\'' +
+                ", street='" + street + '\'' +
+                ", buildingNumber='" + buildingNumber + '\'' +
+                ", flatNumber='" + flatNumber + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", id=" + id +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

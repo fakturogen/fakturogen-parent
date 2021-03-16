@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.mapper.toEntityDTO;
+package pl.fakturogen.comarch.connector.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import pl.fakturogen.invoice.web.dto.AddressDTO;
 
 @Component
 @Slf4j
-public class ComarchAddressDTOEntityMapper {
+public class FakturogenAddressMapper {
 
     public AddressDTO from(ComarchAddressDTO comarchAddressDTO) {
        AddressDTO addressDTO = new AddressDTO();
