@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Component
-public class InvoiceResponseConverter {
+public class ComarchInvoiceConverter {
 
-    private static final Logger LOGGER = Logger.getLogger(InvoiceResponseConverter.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ComarchInvoiceConverter.class.getName());
 
     public ComarchInvoice from(String json) throws JsonProcessingException {
         LOGGER.info("from json string: " + json);
