@@ -26,7 +26,7 @@ import java.util.Map;
 public class ComarchInvoice {
 
     @JsonProperty("$id")
-    private String $id;
+    private String consecutiveNumber;
     @JsonProperty("PaymentStatus")
     private Integer paymentStatus;
     @JsonProperty("PurchasingPartyId")
@@ -57,13 +57,13 @@ public class ComarchInvoice {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("$id")
-    public String get$id() {
-        return $id;
+    public String getConsecutiveNumber() {
+        return consecutiveNumber;
     }
 
     @JsonProperty("$id")
-    public void set$id(String $id) {
-        this.$id = $id;
+    public void setConsecutiveNumber(String consecutiveNumber) {
+        this.consecutiveNumber = consecutiveNumber;
     }
 
     @JsonProperty("PaymentStatus")
@@ -209,7 +209,7 @@ public class ComarchInvoice {
     @Override
     public String toString() {
         return "ComarchInvoice{" +
-                "$id='" + $id + '\'' +
+                "consecutiveNumber='" + consecutiveNumber + '\'' +
                 ", paymentStatus=" + paymentStatus +
                 ", purchasingPartyId=" + purchasingPartyId +
                 ", receivingPartyId=" + receivingPartyId +

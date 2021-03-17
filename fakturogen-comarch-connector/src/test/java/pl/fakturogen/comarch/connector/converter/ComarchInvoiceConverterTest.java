@@ -49,14 +49,14 @@ class ComarchInvoiceConverterTest {
         comarchItems.add(comarchItem2);
 
         ComarchInvoice comarchInvoice = new ComarchInvoice();
-        comarchInvoice.set$id("1");
+        comarchInvoice.setConsecutiveNumber("1");
         comarchInvoice.setPaymentStatus(1);
         comarchInvoice.setPurchasingPartyId(12641710);
         comarchInvoice.setItems(comarchItems);
         comarchInvoice.setId(18369406);
 
         ComarchInvoice comarchInvoiceJson = new ComarchInvoice();
-        comarchInvoiceJson.set$id(FOLLOWING_NUMBER);
+        comarchInvoiceJson.setConsecutiveNumber(FOLLOWING_NUMBER);
         comarchInvoiceJson.setPaymentStatus(PAYMENT_STATUS);
         comarchInvoiceJson.setPurchasingPartyId(PURCHASING_PARTY_ID);
         comarchInvoiceJson.setReceivingPartyId(RECEIVING_PARTY_ID);
@@ -76,10 +76,10 @@ class ComarchInvoiceConverterTest {
         String json = objectMapper.writeValueAsString(comarchInvoiceJson);
         String json2 = "{\"Message\":\"No row with the given identifier exists[Invoice#1]\",\"Data\":{\"EntityId\":\"1\",\"EntityName\":\"Invoice\"},\"Code\":\"EntityNotFoundException\"}";
 
-        ComarchInvoice result = comarchInvoiceConverter.from(json2);
+        ComarchInvoice result = comarchInvoiceConverter.from(json);
 
         Assertions.assertAll(
-                () -> assertThat(result.get$id()).isNotNull(),
+                () -> assertThat(result.getConsecutiveNumber()).isNotNull(),
                 () -> assertThat(result.getPaymentStatus()).isEqualTo(comarchInvoice.getPaymentStatus()),
                 () -> assertThat(result.getPurchasingPartyId()).isEqualTo(comarchInvoice.getPurchasingPartyId()),
                 () -> assertThat(result.getItems()).isNotNull(),

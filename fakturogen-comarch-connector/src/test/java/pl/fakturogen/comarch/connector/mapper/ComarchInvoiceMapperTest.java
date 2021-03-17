@@ -46,7 +46,7 @@ class ComarchInvoiceMapperTest {
         itemList.add(item1);
 
         ComarchInvoice comarchInvoice = new ComarchInvoice();
-        comarchInvoice.set$id(INVOICE_$ID);
+        comarchInvoice.setConsecutiveNumber(INVOICE_$ID);
         comarchInvoice.setPaymentStatus(PAYMENT_STATUS);
         comarchInvoice.setPurchasingPartyId(PURCHASING_PARTY_ID);
         comarchInvoice.setReceivingPartyId(RECEIVING_PARTY_ID);

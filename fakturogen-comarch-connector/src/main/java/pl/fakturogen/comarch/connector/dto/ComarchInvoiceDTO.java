@@ -8,7 +8,7 @@ import java.util.List;
 @Builder
 public class ComarchInvoiceDTO {
 
-    private String $id; // builder nie widzi tego pola
+    private String consecutiveNumber;
     private Integer paymentStatus;
     private Integer purchasingPartyId;
     private Integer receivingPartyId;
@@ -26,8 +26,8 @@ public class ComarchInvoiceDTO {
     public ComarchInvoiceDTO() {
     }
 
-    public ComarchInvoiceDTO(Integer paymentStatus, Integer purchasingPartyId, Integer receivingPartyId, Integer paymentTypeId, Integer bankAccountId, String salesDate, Integer invoiceType, List<ComarchItem> items, String description, String issueDate, String number, Integer status, Integer id) {
-        this.$id = $id;
+    public ComarchInvoiceDTO(String consecutiveNumber, Integer paymentStatus, Integer purchasingPartyId, Integer receivingPartyId, Integer paymentTypeId, Integer bankAccountId, String salesDate, Integer invoiceType, List<ComarchItem> items, String description, String issueDate, String number, Integer status, Integer id) {
+        this.consecutiveNumber = consecutiveNumber;
         this.paymentStatus = paymentStatus;
         this.purchasingPartyId = purchasingPartyId;
         this.receivingPartyId = receivingPartyId;
@@ -43,12 +43,12 @@ public class ComarchInvoiceDTO {
         this.id = id;
     }
 
-    public String get$id() {
-        return $id;
+    public String getConsecutiveNumber() {
+        return consecutiveNumber;
     }
 
-    public void set$id(String $id) {
-        this.$id = $id;
+    public void setConsecutiveNumber(String consecutiveNumber) {
+        this.consecutiveNumber = consecutiveNumber;
     }
 
     public Integer getPaymentStatus() {
@@ -158,7 +158,7 @@ public class ComarchInvoiceDTO {
     @Override
     public String toString() {
         return "ComarchInvoiceDTO{" +
-                "$id='" + $id + '\'' +
+                "consecutiveNumber='" + consecutiveNumber + '\'' +
                 ", paymentStatus=" + paymentStatus +
                 ", purchasingPartyId=" + purchasingPartyId +
                 ", receivingPartyId=" + receivingPartyId +
