@@ -29,7 +29,7 @@ public class ProductServiceDefault implements ProductService {
     }
 
     @Override
-    public Optional<ProductDTO> read(long id) {
+    public Optional<ProductDTO> read(Long id) {
         return Optional.empty();
     }
 
@@ -39,12 +39,12 @@ public class ProductServiceDefault implements ProductService {
     }
 
     @Override
-    public void update(ProductDTO productDTO, long id) {
+    public void update(ProductDTO productDTO, Long id) {
 
     }
 
     @Override
-    public void delete(ProductDTO productDTO, long id) {
+    public void delete(ProductDTO productDTO, Long id) {
 
     }
 }

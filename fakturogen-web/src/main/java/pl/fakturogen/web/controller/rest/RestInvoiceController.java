@@ -31,9 +31,9 @@ public class RestInvoiceController {
 
     @RequestMapping("/getInvoices/{id}")
     public ComarchInvoice getInvoice(@PathVariable long id) throws IOException {
-        String[] args = applicationArguments.getSourceArgs();
-        apiInvoiceConnector.setClientId(args[0]);
-        apiInvoiceConnector.setSecret(args[1]);
+//        String[] args = applicationArguments.getSourceArgs();
+//        apiInvoiceConnector.setClientId(args[0]);
+//        apiInvoiceConnector.setSecret(args[1]);
         return apiInvoiceConnector.getInvoiceById(id);
     }
 }

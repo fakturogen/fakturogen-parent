@@ -11,6 +11,7 @@ import pl.fakturogen.comarch.connector.model.ComarchProduct;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Component
@@ -50,6 +51,12 @@ public class ComarchApiProductConnector {
             Response response = httpConnectorUtils.httpGetById(productEndpoint, id);
             String responseString = response.body().string();
             ComarchProduct comarchProduct = comarchProductConverter.from(responseString);
+            Map<String, Object> additionalProperties = comarchProduct.getAdditionalProperties();
+            boolean codeIsPresent = additionalProperties.containsKey("Code");
+
+            if(codeIsPresent && additionalProperties.get("Code").equals("EntityNotFoundException"))
+                return optionalProduct;
+
             optionalProduct = Optional.of(comarchProductMapper.from(comarchProduct));
         } catch (JsonProcessingException e) {
             e.printStackTrace();

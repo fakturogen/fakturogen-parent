@@ -8,11 +8,11 @@ import java.util.Optional;
 
 @Service
 public interface ProductService {
-
-    ProductDTO create(ProductDTO productDTO);
-    Optional<ProductDTO> read(long id);
-    List<ProductDTO> readAll();
-    void update(ProductDTO productDTO, long id);
-    void delete(ProductDTO productDTO, long id);
+    // ProductException wszystkie wyjątki tutaj dziedziczą po tym ProductException
+    ProductDTO create(ProductDTO productDTO); //throws ProductCreateException
+    Optional<ProductDTO> read(Long id); //throws ProductReadException jak nie będzie optionala
+    List<ProductDTO> readAll(); // AllProductReadException
+    void update(ProductDTO productDTO, Long id); //throws ProductDeleteException
+    void delete(ProductDTO productDTO, Long id); //throws ProductDeleteException
 
 }
