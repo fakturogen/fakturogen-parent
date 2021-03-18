@@ -11,16 +11,13 @@ public class RestInvoiceController {
 
     private ComarchInvoiceService comarchInvoiceService;
 
-    public RestInvoiceController() {
-    }
-
     public RestInvoiceController(ComarchInvoiceService comarchInvoiceService) {
         this.comarchInvoiceService = comarchInvoiceService;
     }
 
-   /* @GetMapping("/getInvoices")
+/*    @GetMapping("/getInvoices")
     public List<ComarchInvoice> getInvoices() throws IOException {
-        return comarchInvoiceService.getInvoices();
+        return comarchApiInvoiceConnector.getInvoices();
     }*/
 
     @GetMapping("/getInvoices/{id}")
