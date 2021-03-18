@@ -29,7 +29,7 @@ class ComarchInvoiceMapperTest {
     private static final Integer STATUS = 0;
     private static final Integer INVOICE_ID = 123456;
 
-    @DisplayName(" - should return all fields filed")
+    @DisplayName(" - should return all filed fields")
     @Test
     void test1(){
         ComarchInvoiceMapper comarchInvoiceMapper = new ComarchInvoiceMapper();
@@ -62,6 +62,7 @@ class ComarchInvoiceMapperTest {
         comarchInvoice.setId(INVOICE_ID);
 
         ComarchInvoiceDTO comarchInvoiceDTO = ComarchInvoiceDTO.builder()
+                .consecutiveNumber(INVOICE_$ID)
                 .paymentStatus(PAYMENT_STATUS)
                 .purchasingPartyId(PURCHASING_PARTY_ID)
                 .receivingPartyId(RECEIVING_PARTY_ID)

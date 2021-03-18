@@ -2,16 +2,15 @@ package pl.fakturogen.comarch.connector.connector;
 
 import okhttp3.Response;
 import org.springframework.stereotype.Service;
-import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 import pl.fakturogen.comarch.connector.converter.ComarchInvoiceConverter;
+import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 
 import java.io.IOException;
 import java.util.List;
 
 @Service
 public class ComarchApiInvoiceConnector {
-    private String clientId;
-    private String secret;
+
     private String url = "https://app.erpxt.pl/api2/public/v1.1/invoices";
 
     private HttpConnectorUtils httpConnectorUtils;
@@ -27,17 +26,10 @@ public class ComarchApiInvoiceConnector {
 
         return comarchInvoiceConverter.listFrom(response.body().string());
     }
+
     public ComarchInvoice getInvoiceById(long id) throws IOException {
         Response response = httpConnectorUtils.httpGetById(url, id);
 
         return comarchInvoiceConverter.from(response.body().string());
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
     }
 }

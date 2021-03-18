@@ -17,9 +17,7 @@ public class ComarchInvoiceConverter {
         LOGGER.info("from json string: " + json);
         ObjectMapper mapper = new ObjectMapper();
         ComarchInvoice comarchInvoice = mapper.readValue(json, ComarchInvoice.class);
-        /*List<ApiItem> items = apiInvoice.getItems().stream()
-                .map(item -> mapper.convertValue(item, ApiItem.class))
-                .collect(Collectors.toList());*/
+
         LOGGER.info("to object: " + comarchInvoice);
         return comarchInvoice;
     }

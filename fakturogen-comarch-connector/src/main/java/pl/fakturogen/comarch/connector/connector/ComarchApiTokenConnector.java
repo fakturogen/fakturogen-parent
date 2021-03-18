@@ -39,7 +39,7 @@ public class ComarchApiTokenConnector {
         secret = sourceArgs[1];
     }
 
-    public ComarchToken getToken() throws IOException {
+    public ComarchToken getToken() throws IOException { // throws ComarchApiTokenException
         String encoded  = Base64.getEncoder().withoutPadding().encodeToString((clientId + ":" + secret).getBytes());
 
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -61,6 +61,20 @@ public class ComarchApiTokenConnector {
                 .post(requestBody)
                 .build();
         Call call = okHttpClient.newCall(request);
+
+       /* //try catch
+
+        try {
+            Response response = call.execute();
+            //z response wyciagnac token
+            ResponseBody responseBody = response.body();
+            // czy responseBody != null
+            String json = response.body().string();
+        } catch (IOException e) {
+            // LOGGER.severe("Komunikat dla użytkownika na www", e);
+            //throw new ComarchApiTokenException("Komunikat dla użytkownika na www", e);
+        }*/
+
         Response response = call.execute();
         //z response wyciagnac token
         ResponseBody responseBody = response.body();
