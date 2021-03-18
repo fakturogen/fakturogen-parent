@@ -84,7 +84,7 @@ class InvoiceResponseConverterTest {
                 () -> assertThat(result.getItems()).isNotNull(),
                 () -> assertThat(result.getItems().size()).isEqualTo(comarchItems.size()),
                 () -> assertThat(result.getItems().get(0).get$id()).isEqualTo(comarchItems.get(0).get$id()), // czy tak porównywać z listą?
-                () -> assertThat(result.getItems().get(0).getProductCurrencyPrice()).isEqualTo(comarchItem1.getProductCurrencyPrice()),
+//                () -> assertThat(result.getItems().get(0).getProductCurrencyPrice()).isEqualTo(comarchItem1.getProductCurrencyPrice()),
                 () -> assertThat(result.getItems().get(0).getId()).isEqualTo(comarchItem1.getId())
         );
 

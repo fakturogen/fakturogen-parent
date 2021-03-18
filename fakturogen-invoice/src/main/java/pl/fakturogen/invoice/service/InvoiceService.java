@@ -1,4 +1,4 @@
 package pl.fakturogen.invoice.service;
 
-public class InvoiceService {
+public interface InvoiceService {
 }
