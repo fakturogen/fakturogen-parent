@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 @AllArgsConstructor
 @Builder
 public class ComarchProductDTO {
-    private String $id;
     private String name;
     private String description;
     private String itemCode;
@@ -22,12 +21,4 @@ public class ComarchProductDTO {
     private Double saleGrossPrice;
     private Double quantity;
     private Long id;
-
-    public String get$id() {
-        return $id;
-    }
-
-    public void set$id(String $id) {
-        this.$id = $id;
-    }
 }

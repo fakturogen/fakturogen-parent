@@ -23,7 +23,6 @@ class ComarchProductMapperTest {
         comarchProductMapper = new ComarchProductMapper();
 
         comarchProduct1 = new ComarchProduct();
-        comarchProduct1.set$id("ID_ID");
         comarchProduct1.setName("PRODUCT NAME");
         comarchProduct1.setDescription("EXPECTED DESCRIPTION");
         comarchProduct1.setItemCode("Item code expected");
@@ -36,7 +35,6 @@ class ComarchProductMapperTest {
         comarchProduct1.setId(112L);
 
         comarchProduct2 = new ComarchProduct();
-        comarchProduct2.set$id("id");
         comarchProduct2.setName("prod name");
         comarchProduct2.setDescription("some description");
         comarchProduct2.setItemCode("item code");
@@ -49,7 +47,6 @@ class ComarchProductMapperTest {
         comarchProduct2.setId(999911L);
 
         comarchProductDTO1 = new ComarchProductDTO();
-        comarchProductDTO1.set$id("ID_ID");
         comarchProductDTO1.setName("PRODUCT NAME");
         comarchProductDTO1.setDescription("EXPECTED DESCRIPTION");
         comarchProductDTO1.setItemCode("Item code expected");
@@ -62,7 +59,6 @@ class ComarchProductMapperTest {
         comarchProductDTO1.setId(112L);
 
         comarchProductDTO2 = new ComarchProductDTO();
-        comarchProductDTO2.set$id("id");
         comarchProductDTO2.setName("prod name");
         comarchProductDTO2.setDescription("some description");
         comarchProductDTO2.setItemCode("item code");
