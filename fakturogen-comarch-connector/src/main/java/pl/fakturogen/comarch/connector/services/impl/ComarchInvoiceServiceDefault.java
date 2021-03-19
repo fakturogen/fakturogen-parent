@@ -3,11 +3,15 @@ package pl.fakturogen.comarch.connector.services.impl;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.connector.ComarchApiInvoiceConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchInvoiceDTO;
+import pl.fakturogen.comarch.connector.exeption.InvoiceNotFoundException;
+import pl.fakturogen.comarch.connector.exeption.InvoicesNotFoundException;
 import pl.fakturogen.comarch.connector.mapper.ComarchInvoiceMapper;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 import pl.fakturogen.comarch.connector.services.ComarchInvoiceService;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ComarchInvoiceServiceDefault implements ComarchInvoiceService {
@@ -21,9 +25,28 @@ public class ComarchInvoiceServiceDefault implements ComarchInvoiceService {
     }
 
     @Override
-    public ComarchInvoiceDTO read(long id) throws IOException {
-        ComarchInvoice invoiceById = connector.getInvoiceById(id);
-        ComarchInvoiceDTO comarchInvoiceDTO = comarchInvoiceMapper.from(invoiceById);
-        return comarchInvoiceDTO;
+    public ComarchInvoiceDTO read(long id) {
+        Optional<ComarchInvoiceDTO> comarchInvoiceDTO = Optional.empty();
+        try {
+            ComarchInvoice invoiceById = connector.getInvoiceById(id);
+            comarchInvoiceDTO = Optional.of(comarchInvoiceMapper.from(invoiceById));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return comarchInvoiceDTO.orElseThrow(() -> new InvoiceNotFoundException(id));
+    }
+
+    @Override
+    public List<ComarchInvoiceDTO> readAll() {
+        Optional<List<ComarchInvoiceDTO>> comarchInvoiceDTOList = Optional.empty();
+        try {
+            List<ComarchInvoice> invoices = connector.getInvoices();
+            comarchInvoiceDTOList = Optional.of(comarchInvoiceMapper.from(invoices));
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return comarchInvoiceDTOList.orElseThrow(() -> new InvoicesNotFoundException());
     }
 }
