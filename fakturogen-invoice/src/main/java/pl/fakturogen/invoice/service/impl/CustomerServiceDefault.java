@@ -1,4 +1,4 @@
 package pl.fakturogen.invoice.service.impl;
 
-public class CustomerServiceImpl {
+public class CustomerServiceDefault {
 }

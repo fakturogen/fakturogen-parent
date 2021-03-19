@@ -14,19 +14,19 @@ import java.util.List;
 public class ComarchProductConverter {
 
     public ComarchProduct from(String productJson) throws JsonProcessingException {
-        log.info("from {{}}", productJson);
+        log.info("from ({})", productJson);
         ObjectMapper mapper = new ObjectMapper();
         ComarchProduct product = mapper.readValue(productJson, ComarchProduct.class);
-        log.info("to {{}}", product);
+        log.info("to ({})", product);
         return product;
     }
 
     public List<ComarchProduct> fromList(String productListJson) throws JsonProcessingException {
-        log.info("from {{}}", productListJson);
+        log.info("from ({})", productListJson);
         ObjectMapper mapper = new ObjectMapper();
 
         List<ComarchProduct> product = mapper.readValue(productListJson, new TypeReference<>() {});
-        log.info("to {{}}", product);
+        log.info("to ({})", product);
         return product;
     }
 }

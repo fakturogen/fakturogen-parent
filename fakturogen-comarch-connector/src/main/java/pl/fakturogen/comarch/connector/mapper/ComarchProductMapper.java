@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ComarchProductMapper {
     public ComarchProductDTO from(ComarchProduct comarchProduct) {
-        log.info("from {{}}", comarchProduct);
+        log.info("from ({})", comarchProduct);
         ModelMapper mapper = new ModelMapper();
 
         ComarchProductDTO productDTO = mapper.map(comarchProduct, ComarchProductDTO.class);
-        log.info("to {{}}", productDTO);
+        log.info("to ({})", productDTO);
         return productDTO;
     }
 

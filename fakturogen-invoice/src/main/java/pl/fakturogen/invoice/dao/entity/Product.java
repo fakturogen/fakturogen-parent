@@ -19,10 +19,10 @@ public class Product {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "item_code", nullable = true)
+    @Column(name = "item_code")
     private String itemCode;
 
-    @Column(name = "unit_of_measurement", nullable = false)
+    @Column(name = "unit_of_measurement")
     private String unitOfMeasurement;
 
     @Column(name = "sale_net_price", nullable = false)

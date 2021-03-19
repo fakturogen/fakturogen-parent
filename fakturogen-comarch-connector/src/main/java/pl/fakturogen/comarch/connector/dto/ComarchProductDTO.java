@@ -11,12 +11,11 @@ import org.springframework.context.annotation.Bean;
 @AllArgsConstructor
 @Builder
 public class ComarchProductDTO {
-    private String $id;
     private String name;
     private String description;
     private String itemCode;
     private String productCode;
-    private String unitOfMeasurement;
+    private String unitOfMeasurment;
     private Integer rate;
     private Double saleNetPrice;
     private Double saleGrossPrice;
