@@ -26,4 +26,5 @@ public class ComarchProductMapper {
                 .map(this::from)
                 .collect(Collectors.toList());
     }
+
 }

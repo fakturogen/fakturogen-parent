@@ -75,7 +75,7 @@ public class CustomerMapperTest {
     }
 
     @Nested
-    @DisplayName("Maapping from Customer to CustomerDTO")
+    @DisplayName("Mapping from Customer to CustomerDTO")
     class CustomerToCustomerDTO {
 
         @Test
