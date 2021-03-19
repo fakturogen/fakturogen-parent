@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.connector.ComarchApiCustomerConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchAddressDTO;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
+import pl.fakturogen.comarch.connector.mapper.FakturogenCustomerMapper;
+import pl.fakturogen.comarch.connector.services.ComarchCustomerService;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,9 +20,13 @@ import java.util.Random;
 @RequestMapping("/api/get/customer")
 public class CustomerController {
     private final ComarchApiCustomerConnector comarchApiCustomerConnector;
+    private final ComarchCustomerService comarchCustomerService;
+    private final FakturogenCustomerMapper fakturogenCustomerMapper;
 
-    public CustomerController(ComarchApiCustomerConnector comarchApiCustomerConnector) {
+    public CustomerController(ComarchApiCustomerConnector comarchApiCustomerConnector, ComarchCustomerService comarchCustomerService, FakturogenCustomerMapper fakturogenCustomerMapper) {
         this.comarchApiCustomerConnector = comarchApiCustomerConnector;
+        this.comarchCustomerService = comarchCustomerService;
+        this.fakturogenCustomerMapper = fakturogenCustomerMapper;
     }
 
     @GetMapping
