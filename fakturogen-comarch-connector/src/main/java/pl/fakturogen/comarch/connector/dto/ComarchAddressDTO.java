@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ComarchAddressDTO {
 
-    private String $id;
+
     private String street;
     private String buildingNumber;
     private String flatNumber;

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ComarchCustomerDTO {
 
-    private String $id;
+
     private String name;
     private String customerTaxNumber;
     private String customerCode;
