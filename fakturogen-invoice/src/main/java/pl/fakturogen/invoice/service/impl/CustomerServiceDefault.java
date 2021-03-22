@@ -1,6 +1,7 @@
 package pl.fakturogen.invoice.service.impl;
 
 import org.springframework.stereotype.Service;
+import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.dao.repository.CustomerRepository;
 import pl.fakturogen.invoice.service.CustomerService;
 import pl.fakturogen.invoice.service.mapper.CustomerMapper;
@@ -22,7 +23,9 @@ public class CustomerServiceDefault implements CustomerService {
 
     @Override
     public CustomerDTO create(CustomerDTO customerDTO) {
-        return null;
+        Customer customer = customerMapper.from(customerDTO);
+        Customer savedCustomer = customerRepository.save(customer);
+        return customerMapper.from(savedCustomer);
     }
 
     @Override
