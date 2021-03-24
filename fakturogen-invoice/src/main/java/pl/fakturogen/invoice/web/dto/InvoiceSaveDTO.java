@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.fakturogen.invoice.dao.entity.Customer;
-import pl.fakturogen.invoice.dao.entity.Product;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,8 +23,8 @@ public class InvoiceSaveDTO {
     private Double net;
     private Double discount;
     private Integer status;
-    private Customer customer; //TO DO should be change to CustomerDTO
-    private List<Product> items;
+    private CustomerDTO customer;
+    private List<ProductDTO> items;
     private Integer bankAccountId;
     private Integer invoiceType;
     private String additionalInformation;
