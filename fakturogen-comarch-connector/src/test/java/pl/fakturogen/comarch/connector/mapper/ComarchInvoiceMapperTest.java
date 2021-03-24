@@ -77,7 +77,6 @@ class ComarchInvoiceMapperTest {
 
         assertAll(
                 () -> assertThat(resultInvoiceDTO).isNotNull(),
-//                () -> assertThat(resultInvoiceDTO.get$id()).isEqualTo(comarchInvoiceDTO.get$id()),
                 () -> assertThat(resultInvoiceDTO.getPaymentStatus()).isEqualTo(comarchInvoiceDTO.getPaymentStatus()),
                 () -> assertThat(resultInvoiceDTO.getPurchasingPartyId()).isEqualTo(comarchInvoiceDTO.getPurchasingPartyId()),
                 () -> assertThat(resultInvoiceDTO.getReceivingPartyId()).isEqualTo(comarchInvoiceDTO.getReceivingPartyId()),
