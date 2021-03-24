@@ -22,6 +22,9 @@ public class ComarchInvoiceDTO {
     private Integer status;
     private Integer id;
 
+    public ComarchInvoiceDTO() {
+    }
+
     public ComarchInvoiceDTO(Integer paymentStatus, Integer purchasingPartyId, Integer receivingPartyId, Integer paymentTypeId, Integer bankAccountId, String salesDate, Integer invoiceType, List<ComarchItem> items, String description, String issueDate, String number, Integer status, Integer id) {
         this.paymentStatus = paymentStatus;
         this.purchasingPartyId = purchasingPartyId;
