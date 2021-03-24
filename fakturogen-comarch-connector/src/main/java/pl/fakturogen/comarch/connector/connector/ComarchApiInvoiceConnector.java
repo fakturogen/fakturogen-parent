@@ -10,7 +10,8 @@ import java.util.List;
 
 @Service
 public class ComarchApiInvoiceConnector {
-
+    private String clientId;
+    private String secret;
     private String url = "https://app.erpxt.pl/api2/public/v1.1/invoices";
 
     private HttpConnectorUtils httpConnectorUtils;
@@ -31,5 +32,21 @@ public class ComarchApiInvoiceConnector {
         Response response = httpConnectorUtils.httpGetById(url, id);
 
         return comarchInvoiceConverter.from(response.body().string());
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 }
