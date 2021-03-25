@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -15,8 +14,8 @@ import java.util.List;
 public class InvoiceSaveDTO {
 
     private String number;
-    private LocalDate issueDate;
-    private LocalDate saleDate;
+    private String issueDate;
+    private String saleDate;
     private Integer paymentMethod;
     private Double total;
     private Double tax;
@@ -28,5 +27,5 @@ public class InvoiceSaveDTO {
     private Integer bankAccountId;
     private Integer invoiceType;
     private String additionalInformation;
-    private Long originalId; // Document id from provider database
+    private Integer originalId; // Document id from provider database
 }
