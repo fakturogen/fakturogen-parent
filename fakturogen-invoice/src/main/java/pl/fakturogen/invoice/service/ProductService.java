@@ -15,4 +15,6 @@ public interface ProductService {
     void update(ProductDTO productDTO, Long id); //throws ProductDeleteException
     void delete(ProductDTO productDTO, Long id); //throws ProductDeleteException
 
+    //Krzysiek
+    Optional<ProductDTO> findByExternalId(Long id);
 }

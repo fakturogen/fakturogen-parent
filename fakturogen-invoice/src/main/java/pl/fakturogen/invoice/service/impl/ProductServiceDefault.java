@@ -47,4 +47,9 @@ public class ProductServiceDefault implements ProductService {
     public void delete(ProductDTO productDTO, Long id) {
 
     }
+
+    @Override
+    public Optional<ProductDTO> findByExternalId(Long id) {
+        return Optional.empty();
+    }
 }
