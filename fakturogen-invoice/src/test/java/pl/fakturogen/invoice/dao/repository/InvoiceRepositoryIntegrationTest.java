@@ -26,7 +26,7 @@ class InvoiceRepositoryIntegrationTest {
 
         //when
         Invoice savedInvoice = invoiceRepository.save(invoice);
-        Optional<Invoice> byId = invoiceRepository.findById(invoice.getId());
+        Optional<Invoice> byId = invoiceRepository.findById(savedInvoice.getId());
 
         //then
         assertAll(
