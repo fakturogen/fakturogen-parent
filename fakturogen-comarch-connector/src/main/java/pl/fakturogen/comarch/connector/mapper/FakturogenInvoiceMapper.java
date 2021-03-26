@@ -23,6 +23,7 @@ public class FakturogenInvoiceMapper {
 //        invoiceSaveDTO.setOriginalId(comarchInvoiceDTO.getId());
         ModelMapper modelMapper = new ModelMapper();
         InvoiceSaveDTO invoiceSaveDTO = modelMapper.map(comarchInvoiceDTO, InvoiceSaveDTO.class);
+        invoiceSaveDTO.setPaymentMethod(comarchInvoiceDTO.getPaymentTypeId());
         log.info("To: {{}}", invoiceSaveDTO);
 
         return invoiceSaveDTO;
