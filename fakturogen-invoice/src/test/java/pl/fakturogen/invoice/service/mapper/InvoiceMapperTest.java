@@ -4,13 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.dao.entity.Invoice;
-import pl.fakturogen.invoice.dao.entity.Product;
 import pl.fakturogen.invoice.dao.entity.Rate;
+import pl.fakturogen.invoice.web.dto.CustomerDTO;
 import pl.fakturogen.invoice.web.dto.InvoiceSaveDTO;
+import pl.fakturogen.invoice.web.dto.ProductDTO;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,27 +18,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Invoice ModelMapper ")
 class InvoiceMapperTest {
     InvoiceMapper invoiceMapper;
-    List<Product> items;
-    Customer customer;
+    List<ProductDTO> items;
+    CustomerDTO customer;
 
     @BeforeEach
     void init() {
         invoiceMapper = new InvoiceMapper();
-        customer = new Customer();
+        customer = new CustomerDTO();
         items = new ArrayList<>();
     }
 
     @DisplayName(" - should map InvoiceSaveDTO to entity")
     @Test
     public void test1() {
-        Product product1 = new Product();
-        product1.setId(1);
+        ProductDTO product1 = new ProductDTO();
+        product1.setId(1L);
         product1.setRate(Rate.R9);
         product1.setSaleNetPrice(100.00);
         product1.setName("Apartment no. 1");
 
-        Product product2 = new Product();
-        product2.setId(12);
+        ProductDTO product2 = new ProductDTO();
+        product2.setId(12L);
         product2.setRate(Rate.R9);
         product2.setSaleNetPrice(100.00);
         product2.setName("Apartment no. 2");
@@ -54,7 +53,7 @@ class InvoiceMapperTest {
         InvoiceSaveDTO receivedDTO = InvoiceSaveDTO.builder()
                 .number("1/1/2021")
                 .status(0)
-                .issueDate(LocalDate.of(2021, 1, 19))
+                .issueDate("01-10-2021")
                 .paymentMethod(1)
                 .total(246.00)
                 .tax(0.23)
@@ -99,8 +98,8 @@ class InvoiceMapperTest {
         InvoiceSaveDTO invoiceSaveDTO = new InvoiceSaveDTO();
 
         Invoice invoice = new Invoice();
-        invoice.setItems(invoiceSaveDTO.getItems());
-        invoice.setCustomer(invoiceSaveDTO.getCustomer());
+        invoice.setItems(null);
+        invoice.setCustomer(null);
 
         Invoice result = invoiceMapper.from(invoiceSaveDTO);
 
