@@ -27,5 +27,5 @@ public class InvoiceSaveDTO {
     private Integer bankAccountId;
     private Integer invoiceType;
     private String additionalInformation;
-    private Integer originalId; // Document id from provider database
+    private Long originalId; // Document id from provider database
 }

@@ -52,7 +52,7 @@ public class ComarchInvoice {
     @JsonProperty("Status")
     private Integer status;
     @JsonProperty("Id")
-    private Integer id;
+    private Long id;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -187,12 +187,12 @@ public class ComarchInvoice {
     }
 
     @JsonProperty("Id")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @JsonProperty("Id")
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

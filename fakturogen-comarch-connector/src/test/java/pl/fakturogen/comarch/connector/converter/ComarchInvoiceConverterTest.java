@@ -27,7 +27,7 @@ class ComarchInvoiceConverterTest {
     private static final String ISSUE_DATE = "2020-11-17T00:00:00+01:00";
     private static final String NUMBER = "FS/20/11/1";
     private static final int STATUS = 0;
-    private static final Integer ID = 18369406;
+    private static final Long ID = 18369L;
 
     @DisplayName(" - should convert all fields from json to an ApiInvoice object")
     @Test
@@ -53,7 +53,7 @@ class ComarchInvoiceConverterTest {
         comarchInvoice.setPaymentStatus(1);
         comarchInvoice.setPurchasingPartyId(12641710);
         comarchInvoice.setItems(comarchItems);
-        comarchInvoice.setId(18369406);
+        comarchInvoice.setId(18369406L);
 
         ComarchInvoice comarchInvoiceJson = new ComarchInvoice();
         comarchInvoiceJson.setConsecutiveNumber(FOLLOWING_NUMBER);
@@ -74,7 +74,7 @@ class ComarchInvoiceConverterTest {
         ObjectMapper objectMapper = new ObjectMapper();
 
         String json = objectMapper.writeValueAsString(comarchInvoiceJson);
-        String json2 = "{\"Message\":\"No row with the given identifier exists[Invoice#1]\",\"Data\":{\"EntityId\":\"1\",\"EntityName\":\"Invoice\"},\"Code\":\"EntityNotFoundException\"}";
+//        String json2 = "{\"Message\":\"No row with the given identifier exists[Invoice#1]\",\"Data\":{\"EntityId\":\"1\",\"EntityName\":\"Invoice\"},\"Code\":\"EntityNotFoundException\"}";
 
         ComarchInvoice result = comarchInvoiceConverter.from(json);
 
