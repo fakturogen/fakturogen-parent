@@ -16,7 +16,7 @@ import java.util.Map;
         "token_type",
         "expires"
 })
-public class ApiToken {
+public class ComarchToken {
 
     @JsonProperty("access_token")
     private String accessToken;
