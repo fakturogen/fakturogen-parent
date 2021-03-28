@@ -12,6 +12,10 @@ import java.util.Optional;
 public class ComarchCustomerServiceDefault implements ComarchCustomerService {
     private ComarchApiCustomerConnector comarchApiCustomerConnector;
 
+    public ComarchCustomerServiceDefault(ComarchApiCustomerConnector comarchApiCustomerConnector) {
+        this.comarchApiCustomerConnector = comarchApiCustomerConnector;
+    }
+
     @Override
     public Optional<ComarchCustomerDTO> read(Long id) {
         return comarchApiCustomerConnector.read(id);

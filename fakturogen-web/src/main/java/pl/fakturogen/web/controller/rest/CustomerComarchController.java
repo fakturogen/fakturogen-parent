@@ -18,12 +18,12 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/api/get/customer")
-public class CustomerController {
+public class CustomerComarchController {
     private final ComarchApiCustomerConnector comarchApiCustomerConnector;
     private final ComarchCustomerService comarchCustomerService;
     private final FakturogenCustomerMapper fakturogenCustomerMapper;
 
-    public CustomerController(ComarchApiCustomerConnector comarchApiCustomerConnector, ComarchCustomerService comarchCustomerService, FakturogenCustomerMapper fakturogenCustomerMapper) {
+    public CustomerComarchController(ComarchApiCustomerConnector comarchApiCustomerConnector, ComarchCustomerService comarchCustomerService, FakturogenCustomerMapper fakturogenCustomerMapper) {
         this.comarchApiCustomerConnector = comarchApiCustomerConnector;
         this.comarchCustomerService = comarchCustomerService;
         this.fakturogenCustomerMapper = fakturogenCustomerMapper;
