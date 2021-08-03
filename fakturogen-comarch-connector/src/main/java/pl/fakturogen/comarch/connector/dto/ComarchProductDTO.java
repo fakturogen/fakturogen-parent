@@ -6,6 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * @author damian
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
