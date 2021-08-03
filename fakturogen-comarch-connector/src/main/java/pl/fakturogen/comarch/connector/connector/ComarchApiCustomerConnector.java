@@ -17,15 +17,18 @@ import java.util.Optional;
 public class ComarchApiCustomerConnector {
 
     private HttpConnectorUtils httpConnectorUtils;
+    private HttpConnectorUtilsDecorator httpConnectorUtilsDecorator;
     private ComarchCustomerConverter comarchCustomerConverter;
     private ComarchCustomerMapper comarchCustomerMapper;
 
     private final String url = "https://app.erpxt.pl/api2/public/customers";
 
     public ComarchApiCustomerConnector(HttpConnectorUtils httpConnectorUtils,
+                                       HttpConnectorUtilsDecorator httpConnectorUtilsDecorator,
                                        ComarchCustomerConverter comarchCustomerConverter,
                                        ComarchCustomerMapper comarchCustomerMapper) {
         this.httpConnectorUtils = httpConnectorUtils;
+        this.httpConnectorUtilsDecorator = httpConnectorUtilsDecorator;
         this.comarchCustomerConverter = comarchCustomerConverter;
         this.comarchCustomerMapper = comarchCustomerMapper;
     }
@@ -33,13 +36,13 @@ public class ComarchApiCustomerConnector {
     public Optional<ComarchCustomerDTO> read(Long id) {
         Optional<ComarchCustomerDTO> optionalCustomerDTO = Optional.empty();
         try {
-            Response response = httpConnectorUtils.httpGetById(url, id);
-            String responseString = response.body().string();
-            ComarchCustomer comarchCustomer = comarchCustomerConverter.from(responseString);
+            ComarchCustomer comarchCustomer = httpConnectorUtilsDecorator.httpGet(url, id, comarchCustomerConverter);
             optionalCustomerDTO = Optional.of(comarchCustomerMapper.from(comarchCustomer));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return optionalCustomerDTO;

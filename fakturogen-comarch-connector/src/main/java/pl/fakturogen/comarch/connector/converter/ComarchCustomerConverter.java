@@ -11,7 +11,12 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class ComarchCustomerConverter {
+public class ComarchCustomerConverter implements ComarchConverter<ComarchCustomer> {
+
+    @Override
+    public ComarchCustomer convert(String bodyString) throws Exception {
+        return from(bodyString);
+    }
 
     public ComarchCustomer from(String customerJson) throws JsonProcessingException {
         log.info("from {}", customerJson);
@@ -36,5 +41,4 @@ public class ComarchCustomerConverter {
         log.info("mapping from {} = {}", customerListJson, comarchCustomers);
         return comarchCustomers;
     }
-
 }
