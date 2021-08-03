@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchAddress;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
@@ -43,7 +44,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map provided jsonString to ComarchCustomer class")
-    public void test1() throws JsonProcessingException {
+    public void test1() throws JsonProcessingException, ComarchConverterException {
         ComarchCustomer expectedComarchCustomer = initComarchCustomerObject();
         ComarchCustomer givenJson = initComarchCustomerObject();
         String json = objectMapper.writeValueAsString(givenJson);
@@ -67,7 +68,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map provided empty jsonString to empty ComarchCustomer object")
-    public void test2() throws JsonProcessingException {
+    public void test2() throws JsonProcessingException, ComarchConverterException {
 
         ComarchAddress address = new ComarchAddress();
         ComarchCustomer expectedComarchCustomer = new ComarchCustomer();

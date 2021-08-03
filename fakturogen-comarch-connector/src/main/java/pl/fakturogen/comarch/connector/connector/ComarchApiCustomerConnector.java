@@ -5,6 +5,7 @@ import okhttp3.Response;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
+import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
 import pl.fakturogen.comarch.connector.mapper.ComarchCustomerMapper;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
@@ -38,10 +39,6 @@ public class ComarchApiCustomerConnector {
         try {
             ComarchCustomer comarchCustomer = httpConnectorUtilsDecorator.httpGet(url, id, comarchCustomerConverter);
             optionalCustomerDTO = Optional.of(comarchCustomerMapper.from(comarchCustomer));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,22 +54,25 @@ public class ComarchApiCustomerConnector {
             comarchCustomerDTOList = comarchCustomerMapper.fromList(comarchCustomerList);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ComarchHttpConnectorException e) {
             e.printStackTrace();
         }
         return comarchCustomerDTOList;
     }
 
-    public Long create(ComarchCustomerDTO comarchCustomerDTO){
+    public Long create(ComarchCustomerDTO comarchCustomerDTO) {
         Long externalId = 0L;
-        try{
+        try {
             Response response = httpConnectorUtils.httpPost(url, comarchCustomerDTO);
             String responseString = response.body().string();
             externalId = Long.parseLong(responseString);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ComarchHttpConnectorException e) {
             e.printStackTrace();
         }
         return externalId;
