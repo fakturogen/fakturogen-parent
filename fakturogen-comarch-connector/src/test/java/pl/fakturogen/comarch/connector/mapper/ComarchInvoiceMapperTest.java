@@ -90,9 +90,9 @@ class ComarchInvoiceMapperTest {
 
     }
 
-    @DisplayName("- should map items list from Comarch invoice ")
-    @Test
-    void tes2(){
+//    @DisplayName("- should map items list from Comarch invoice ")
+//    @Test
+//    void tes2(){
 //        ComarchInvoiceMapper comarchInvoiceMapper = new ComarchInvoiceMapper();
 //
 //        ComarchItem item1 = new ComarchItem();
@@ -127,5 +127,5 @@ class ComarchInvoiceMapperTest {
 //        );
 //
 //
-    }
+//    }
 }
