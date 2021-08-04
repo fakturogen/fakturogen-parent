@@ -13,6 +13,10 @@ import pl.fakturogen.web.exception.ProductNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author damian
+ */
+
 @RestController
 public class ProductController {
     private ComarchProductService comarchProductService;

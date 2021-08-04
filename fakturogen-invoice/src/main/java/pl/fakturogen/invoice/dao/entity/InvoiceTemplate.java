@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author damian
+ */
+
 @Entity
 @Table(name = InvoiceTemplate.TABLE_NAME)
 public class InvoiceTemplate {

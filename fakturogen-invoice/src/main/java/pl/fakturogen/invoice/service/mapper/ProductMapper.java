@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 import pl.fakturogen.invoice.dao.entity.Product;
 import pl.fakturogen.invoice.web.dto.ProductDTO;
 
+/**
+ * @author damian
+ */
+
 @Component
 @Slf4j
 public class ProductMapper {
