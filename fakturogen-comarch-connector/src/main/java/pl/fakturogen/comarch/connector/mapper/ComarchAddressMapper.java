@@ -5,6 +5,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.dto.ComarchAddressDTO;
 import pl.fakturogen.comarch.connector.model.ComarchAddress;
+/**
+ * @author ewa-git
+ */
 
 @Component
 @Slf4j

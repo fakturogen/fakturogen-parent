@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
 import pl.fakturogen.invoice.web.dto.CustomerTypeDTO;
+/**
+ * @author ewa-git
+ */
 
 @Slf4j
 @Component

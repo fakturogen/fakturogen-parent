@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
 import java.util.List;
+/**
+ * @author ewa-git
+ */
 
 @Component
 @Slf4j

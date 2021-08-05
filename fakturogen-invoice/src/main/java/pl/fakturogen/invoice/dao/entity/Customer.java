@@ -10,6 +10,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Objects;
+/**
+ * @author ewa-git
+ */
+
 
 @Entity
 @Table(name = Customer.TABLE_NAME)

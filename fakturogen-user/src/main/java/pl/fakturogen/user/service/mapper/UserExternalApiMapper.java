@@ -5,6 +5,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.user.dao.entity.UserExternalApi;
 import pl.fakturogen.user.web.dto.UserExternalApiDTO;
+/**
+ * @author ewa-git
+ */
 
 @Component
 @Slf4j
