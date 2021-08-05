@@ -10,6 +10,10 @@ import pl.fakturogen.invoice.web.dto.ProductDTO;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author damian
+ */
+
 @Service
 public class ProductServiceDefault implements ProductService {
 

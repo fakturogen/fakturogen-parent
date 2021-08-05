@@ -9,6 +9,10 @@ import pl.fakturogen.invoice.web.dto.ProductDTO;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author damian
+ */
+
 class ProductMapperTest {
 
     private Product product;
