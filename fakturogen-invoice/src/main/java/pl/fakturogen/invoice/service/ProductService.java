@@ -6,6 +6,10 @@ import pl.fakturogen.invoice.web.dto.ProductDTO;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author damian
+ */
+
 @Service
 public interface ProductService {
     // ProductException wszystkie wyjątki tutaj dziedziczą po tym ProductException

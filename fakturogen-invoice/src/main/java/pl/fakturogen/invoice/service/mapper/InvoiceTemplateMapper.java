@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 import pl.fakturogen.invoice.dao.entity.InvoiceTemplate;
 import pl.fakturogen.invoice.web.dto.InvoiceTemplateDTO;
 
+/**
+ * @author damian
+ */
+
 @Component
 @Slf4j
 public class InvoiceTemplateMapper {

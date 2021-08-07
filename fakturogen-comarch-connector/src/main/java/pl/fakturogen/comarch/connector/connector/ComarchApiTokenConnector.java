@@ -10,7 +10,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Service;
-import pl.fakturogen.comarch.connector.model.ApiToken;
+import pl.fakturogen.comarch.connector.model.ComarchToken;
 import pl.fakturogen.comarch.connector.converter.TokenResponseConverter;
 
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class ComarchApiTokenConnector {
         secret = sourceArgs[1];
     }
 
-    public ApiToken getToken() throws IOException {
+    public ComarchToken getToken() throws IOException { // throws ComarchApiTokenException
         String encoded  = Base64.getEncoder().withoutPadding().encodeToString((clientId + ":" + secret).getBytes());
 
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -61,15 +61,29 @@ public class ComarchApiTokenConnector {
                 .post(requestBody)
                 .build();
         Call call = okHttpClient.newCall(request);
+
+       /* //try catch
+
+        try {
+            Response response = call.execute();
+            //z response wyciagnac token
+            ResponseBody responseBody = response.body();
+            // czy responseBody != null
+            String json = response.body().string();
+        } catch (IOException e) {
+            // LOGGER.severe("Komunikat dla użytkownika na www", e);
+            //throw new ComarchApiTokenException("Komunikat dla użytkownika na www", e);
+        }*/
+
         Response response = call.execute();
         //z response wyciagnac token
         ResponseBody responseBody = response.body();
         // czy responseBody != null
         String json = response.body().string();
 
-       ApiToken apiTokenDetail = tokenResponseConverter.toObject(json);
+       ComarchToken comarchTokenDetail = tokenResponseConverter.toObject(json);
 
-        return apiTokenDetail;
+        return comarchTokenDetail;
     }
 
 

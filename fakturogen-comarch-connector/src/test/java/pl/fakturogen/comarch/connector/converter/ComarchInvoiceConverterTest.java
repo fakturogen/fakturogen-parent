@@ -14,7 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Comarch invoice converter")
-class InvoiceResponseConverterTest {
+class ComarchInvoiceConverterTest {
     private static final String FOLLOWING_NUMBER = "1";
     private static final Integer PAYMENT_STATUS = 1;
     private static final Integer PURCHASING_PARTY_ID = 12641710;
@@ -32,7 +32,7 @@ class InvoiceResponseConverterTest {
     @DisplayName(" - should convert all fields from json to an ApiInvoice object")
     @Test
     void test1() throws JsonProcessingException {
-        InvoiceResponseConverter invoiceResponseConverter = new InvoiceResponseConverter();
+        ComarchInvoiceConverter comarchInvoiceConverter = new ComarchInvoiceConverter();
 
         ComarchItem comarchItem1 = new ComarchItem();
         comarchItem1.set$id("2");
@@ -49,14 +49,14 @@ class InvoiceResponseConverterTest {
         comarchItems.add(comarchItem2);
 
         ComarchInvoice comarchInvoice = new ComarchInvoice();
-        comarchInvoice.set$id("1");
+        comarchInvoice.setConsecutiveNumber("1");
         comarchInvoice.setPaymentStatus(1);
         comarchInvoice.setPurchasingPartyId(12641710);
         comarchInvoice.setItems(comarchItems);
         comarchInvoice.setId(18369406);
 
         ComarchInvoice comarchInvoiceJson = new ComarchInvoice();
-        comarchInvoiceJson.set$id(FOLLOWING_NUMBER);
+        comarchInvoiceJson.setConsecutiveNumber(FOLLOWING_NUMBER);
         comarchInvoiceJson.setPaymentStatus(PAYMENT_STATUS);
         comarchInvoiceJson.setPurchasingPartyId(PURCHASING_PARTY_ID);
         comarchInvoiceJson.setReceivingPartyId(RECEIVING_PARTY_ID);
@@ -74,11 +74,12 @@ class InvoiceResponseConverterTest {
         ObjectMapper objectMapper = new ObjectMapper();
 
         String json = objectMapper.writeValueAsString(comarchInvoiceJson);
+        String json2 = "{\"Message\":\"No row with the given identifier exists[Invoice#1]\",\"Data\":{\"EntityId\":\"1\",\"EntityName\":\"Invoice\"},\"Code\":\"EntityNotFoundException\"}";
 
-        ComarchInvoice result = invoiceResponseConverter.from(json);
+        ComarchInvoice result = comarchInvoiceConverter.from(json);
 
         Assertions.assertAll(
-                () -> assertThat(result.get$id()).isNotNull(),
+                () -> assertThat(result.getConsecutiveNumber()).isNotNull(),
                 () -> assertThat(result.getPaymentStatus()).isEqualTo(comarchInvoice.getPaymentStatus()),
                 () -> assertThat(result.getPurchasingPartyId()).isEqualTo(comarchInvoice.getPurchasingPartyId()),
                 () -> assertThat(result.getItems()).isNotNull(),

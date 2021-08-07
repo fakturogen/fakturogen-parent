@@ -3,6 +3,10 @@ package pl.fakturogen.invoice.dao.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * @author damian
+ */
+
 @Entity
 @Table(name = Product.TABLE_NAME)
 public class Product {
