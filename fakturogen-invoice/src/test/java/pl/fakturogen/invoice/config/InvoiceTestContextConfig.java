@@ -16,14 +16,14 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = {"pl.fakturogen.invoice"})
-@EnableJpaRepositories(basePackages = {"pl.fakturogen.invoice.dao.repository"})
+@EnableJpaRepositories(basePackages = {"pl.fakturogen.invoice.dao"})
 public class InvoiceTestContextConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
-        emf.setPackagesToScan("pl.fakturogen.invoice.dao.repository");
+        emf.setPackagesToScan("pl.fakturogen.invoice.dao");
         emf.setPersistenceUnitName("invoicePU");
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         emf.setJpaProperties(jpaProperties());
@@ -34,7 +34,8 @@ public class InvoiceTestContextConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:~/h2database/repository-db-test");
+//        dataSource.setUrl("jdbc:h2:~/h2database/repository-db-test");
+        dataSource.setUrl("jdbc:h2:~/h2database/fakturogen-test;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;FILE_LOCK=SOCKET;");
         dataSource.setUsername("sa");
         dataSource.setPassword("");
         return dataSource;
