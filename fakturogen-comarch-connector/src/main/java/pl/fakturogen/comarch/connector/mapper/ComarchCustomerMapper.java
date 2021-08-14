@@ -10,6 +10,9 @@ import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
 import java.util.List;
 import java.util.stream.Collectors;
+/**
+ * @author ewa-git
+ */
 
 @Component
 @Slf4j

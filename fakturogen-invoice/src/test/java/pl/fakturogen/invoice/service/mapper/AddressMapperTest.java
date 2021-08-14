@@ -8,6 +8,9 @@ import pl.fakturogen.invoice.dao.entity.Address;
 import pl.fakturogen.invoice.web.dto.AddressDTO;
 
 import static org.junit.jupiter.api.Assertions.*;
+/**
+ * @author ewa-git
+ */
 
 @DisplayName("AddressMapper specification")
 public class AddressMapperTest {

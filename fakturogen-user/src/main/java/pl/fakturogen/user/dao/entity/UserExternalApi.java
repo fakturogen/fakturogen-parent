@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Objects;
+/**
+ * @author ewa-git
+ */
 
 @Entity
 @Table(name = UserExternalApi.TABLE_NAME)

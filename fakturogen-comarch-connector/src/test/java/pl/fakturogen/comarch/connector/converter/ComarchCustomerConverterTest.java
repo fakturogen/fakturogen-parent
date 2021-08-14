@@ -13,6 +13,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+/**
+ * @author ewa-git
+ */
 
 @DisplayName("ComarchCustomerConverter specification")
 public class ComarchCustomerConverterTest {

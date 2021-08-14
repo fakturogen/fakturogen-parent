@@ -6,6 +6,9 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.web.dto.CustomerDTO;
+/**
+ * @author ewa-git
+ */
 
 @Component
 @Slf4j

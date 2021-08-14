@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.HashMap;
 import java.util.Map;
+/**
+ * @author ewa-git
+ */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({

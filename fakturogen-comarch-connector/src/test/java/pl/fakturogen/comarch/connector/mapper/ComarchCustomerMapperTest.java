@@ -14,6 +14,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+/**
+ * @author ewa-git
+ */
 
 @DisplayName("ComarchCustomerMapper specification")
 public class ComarchCustomerMapperTest {
