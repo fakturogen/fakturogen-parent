@@ -40,7 +40,7 @@ class ProductRepositoryIntegrationTest {
     }
 
     @Test
-    public void givenEntityWhenSaveShouldReturnIncreasedSizeByOne() {
+    public void givenProductEntityWhenSaveShouldReturnIncreasedSizeByOne() {
         List<Product> productList = productRepository.findAll();
         int currentProductListSize = productList.size();
         int expectedProductListSize = currentProductListSize + 1;
@@ -72,6 +72,7 @@ class ProductRepositoryIntegrationTest {
         productExpected.setId(productId);
 
         Optional<Product> optionalProduct = productRepository.findById(productId);
+
         Product productFound = optionalProduct.orElseThrow();
 
         assertAll(() -> assertEquals(productExpected.getId(), productFound.getId()),
@@ -81,6 +82,50 @@ class ProductRepositoryIntegrationTest {
                 () -> assertEquals(productExpected.getSaleGrossPrice(), productFound.getSaleGrossPrice()),
                 () -> assertEquals(productExpected.getRate(), productFound.getRate()),
                 () -> assertEquals(productExpected.getIdExternalApi(), productFound.getIdExternalApi()));
+    }
+
+    @Test
+    public void givenProductUpdateDataShouldUpdateProduct() {
+        Product productExpected = new Product();
+        productExpected.setName("Product New Name");
+        productExpected.setDescription("Product NEW DESC");
+        productExpected.setSaleNetPrice(99995.0);
+        productExpected.setSaleGrossPrice(12323.0);
+        productExpected.setRate(Rate.R2);
+        productExpected.setIdExternalApi(2222233331L);
+
+        Product savedProduct = productRepository.save(productInit);
+        Long productId = savedProduct.getId();
+        productExpected.setId(productId);
+
+        productRepository.save(productExpected);
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        Product updatedProduct = optionalProduct.orElseThrow();
+
+
+        assertAll(() -> assertEquals(productExpected.getId(), updatedProduct.getId()),
+                () -> assertEquals(productExpected.getName(), updatedProduct.getName()),
+                () -> assertEquals(productExpected.getDescription(), updatedProduct.getDescription()),
+                () -> assertEquals(productExpected.getSaleNetPrice(), updatedProduct.getSaleNetPrice()),
+                () -> assertEquals(productExpected.getSaleGrossPrice(), updatedProduct.getSaleGrossPrice()),
+                () -> assertEquals(productExpected.getRate(), updatedProduct.getRate()),
+                () -> assertEquals(productExpected.getIdExternalApi(), updatedProduct.getIdExternalApi()));
+    }
+
+    @Test
+    public void givenProductEntityWhenSaveAndDeleteShouldReturnCurrentListSize() {
+        List<Product> productList = productRepository.findAll();
+        int expectedProductListSize = productList.size();
+
+        Product savedProduct = productRepository.save(productInit);
+        productInit.setId(savedProduct.getId());
+
+        productRepository.delete(productInit);
+        List<Product> listAfterDelete = productRepository.findAll();
+        int currentListSize = listAfterDelete.size();
+
+        assertEquals(expectedProductListSize, currentListSize, "Products entity list size is not"
+                        + expectedProductListSize);
     }
 
 
