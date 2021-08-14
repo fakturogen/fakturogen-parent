@@ -2,7 +2,6 @@ package pl.fakturogen.invoice.dao.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.fakturogen.invoice.config.InvoiceTestContextConfig;
 import pl.fakturogen.invoice.dao.entity.Product;
@@ -48,11 +47,5 @@ class ProductRepositoryIntegrationTest {
                         + expectedProductListSize)
         );
     }
-
-//    @SpringBootApplication
-//    public static class TestConfiguration {
-//
-//    }
-
 
 }
