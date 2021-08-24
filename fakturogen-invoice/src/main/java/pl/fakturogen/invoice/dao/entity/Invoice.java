@@ -39,7 +39,7 @@ public class Invoice {
     private Integer status;
 
     @OneToOne ( cascade = CascadeType.ALL)
-    @JoinColumn (name = "customer_id")
+//    @JoinColumn (name = "customer_id")
     private Customer customer;
     @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> items;

@@ -70,8 +70,8 @@ class InvoiceRepositoryIntegrationTest {
                 () -> assertThat(invoiceInit.getInvoiceType()).isEqualTo(result.getInvoiceType()),
                 () -> assertThat(invoiceInit.getBankAccountId()).isEqualTo(result.getBankAccountId()),
                 () -> assertThat(invoiceInit.getAdditionalInformation()).isEqualTo(result.getAdditionalInformation()),
-                () -> assertThat(invoiceInit.getCustomer()).isEqualTo(result.getCustomer())
-//                () -> assertThat(invoiceInit.getItems()).isEqualTo(result.getItems())
+                () -> assertThat(invoiceInit.getCustomer()).isEqualTo(result.getCustomer()),
+                () -> assertThat(invoiceInit.getItems().get(0)).isEqualTo(result.getItems().get(0))
         );
     }
 
@@ -88,7 +88,9 @@ class InvoiceRepositoryIntegrationTest {
         updatedInvoice.setId(invoiceId);
         updatedInvoice.setNumber("23/1/2021");
 
-        Invoice result = invoiceRepository.save(updatedInvoice);
+        invoiceRepository.save(updatedInvoice);
+
+        Invoice result = invoiceRepository.findById(invoiceId).orElseThrow(() -> new RuntimeException("Not Found"));
 
         int sizeAfterUpdate = invoiceRepository.findAll().size();
 
