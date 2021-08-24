@@ -64,4 +64,13 @@ class InvoiceRepositoryIntegrationTest {
                 () -> assertThat(invoice.getItems()).isEqualTo(result.getItems())
         );
     }
+
+    @DisplayName("Update should save in existing record")
+    @Test
+    void test2(){
+        List<Invoice> invoices = invoiceRepository.findAll();
+        Integer existingSize = invoices.size();
+
+
+    }
 }
