@@ -1,5 +1,6 @@
 package pl.fakturogen.invoice.dao.repository;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ class InvoiceRepositoryIntegrationTest {
 
     @Autowired
     private InvoiceRepository invoiceRepository;
+    
+    @BeforeEach
+    void init(){
+
+    }
 
     @DisplayName("Given entity when save should find equal one")
     @Test
