@@ -38,8 +38,7 @@ public class Invoice {
     private Double discount;
     private Integer status;
 
-    @OneToOne ( cascade = CascadeType.ALL)
-//    @JoinColumn (name = "customer_id")
+    @OneToOne (cascade = CascadeType.ALL)
     private Customer customer;
     @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> items;
