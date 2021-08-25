@@ -42,8 +42,6 @@ public class CustomerRepositoryIntegrationTest {
 
     @BeforeEach
     void prepareTest() {
-
-
         newCustomerToDatabase = new Customer();
         newCustomerToDatabase.setId(ID);
         newCustomerToDatabase.setIdExternalApi(ID_EXTERNAL_API);
@@ -102,6 +100,57 @@ public class CustomerRepositoryIntegrationTest {
                 () -> assertEquals(expectedCustomer.getPhoneNumber(), customerFromDatabase.getPhoneNumber())
         );
     }
+
+    @Test
+    @DisplayName("Given updated data should update customer in database")
+    void test3() {
+        Customer expectedCustomer = new Customer();
+        expectedCustomer.setIdExternalApi(123L);
+        expectedCustomer.setName("New name");
+        expectedCustomer.setNip("2");
+        expectedCustomer.setCustomerCode("0");
+        expectedCustomer.setMail("new email");
+        expectedCustomer.setPhoneNumber("123-123-789");
+
+        Customer savedCustomer = customerRepository.save(newCustomerToDatabase);
+        Long customerId= savedCustomer.getId();
+        expectedCustomer.setId(customerId);
+
+        customerRepository.save(expectedCustomer);
+        Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
+        Customer updatedCustomer = optionalCustomer.orElseThrow();
+
+
+        assertAll(
+                () -> assertEquals(expectedCustomer.getId(), updatedCustomer.getId()),
+                () -> assertEquals(expectedCustomer.getIdExternalApi(), updatedCustomer.getIdExternalApi()),
+                () -> assertEquals(expectedCustomer.getName(), updatedCustomer.getName()),
+                () -> assertEquals(expectedCustomer.getNip(), updatedCustomer.getNip()),
+                () -> assertEquals(expectedCustomer.getCustomerCode(), updatedCustomer.getCustomerCode()),
+                () -> assertEquals(expectedCustomer.getMail(), updatedCustomer.getMail()),
+                () -> assertEquals(expectedCustomer.getPhoneNumber(), updatedCustomer.getPhoneNumber())
+        );
+
+    }
+
+
+    @Test
+    @DisplayName("When delete should return current list size")
+    void test4() {
+        List<Customer> initialCustomerList = customerRepository.findAll();
+        int expectedCustomerListSize = initialCustomerList.size();
+
+        Customer savedCustomer = customerRepository.save(newCustomerToDatabase);
+        newCustomerToDatabase.setId(savedCustomer.getId());
+
+        customerRepository.delete(newCustomerToDatabase);
+        List<Customer> deletedCustomerList = customerRepository.findAll();
+        int currentCustomerListSize = deletedCustomerList.size();
+
+        assertEquals(expectedCustomerListSize, currentCustomerListSize);
+
+    }
+
 
 
 }
