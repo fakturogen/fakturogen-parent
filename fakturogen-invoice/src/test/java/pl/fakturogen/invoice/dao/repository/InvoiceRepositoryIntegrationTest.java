@@ -17,6 +17,10 @@ import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * @author krzysiek
+ */
 @SpringBootTest(classes = {InvoiceTestContextConfiguration.class})
 class InvoiceRepositoryIntegrationTest {
 
@@ -128,10 +132,10 @@ class InvoiceRepositoryIntegrationTest {
     @DisplayName("Given wrong id should return exception")
     @Test
     void test4(){
-        assertThrows(RuntimeException.class, () ->{
-            Invoice invoiceSaved = invoiceRepository.save(invoiceInit);
-            Long id = invoiceSaved.getId();
+        Invoice invoiceSaved = invoiceRepository.save(invoiceInit);
+        Long id = invoiceSaved.getId();
 
+        assertThrows(RuntimeException.class, () ->{
             invoiceRepository.findById(id + 1).orElseThrow(() -> new RuntimeException("Not found"));
         });
     }
