@@ -38,9 +38,9 @@ public class Invoice {
     private Double discount;
     private Integer status;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.PERSIST)
     private Customer customer;
-    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany (cascade = CascadeType.PERSIST)
     private List<Product> items;
 
     @Column (name = "bank_account_id")

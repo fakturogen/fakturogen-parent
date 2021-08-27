@@ -1,5 +1,6 @@
 package pl.fakturogen.invoice.dao.repository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import pl.fakturogen.invoice.dao.entity.Invoice;
 import pl.fakturogen.invoice.dao.entity.Product;
 import pl.fakturogen.invoice.dao.entity.Rate;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -26,6 +28,8 @@ class InvoiceRepositoryIntegrationTest {
 
     @Autowired
     private InvoiceRepository invoiceRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
 
     Product productInit;
     Customer customerInit;
@@ -58,8 +62,16 @@ class InvoiceRepositoryIntegrationTest {
         invoiceInit.setItems(items);
     }
 
+    @AfterEach
+    void clear() {
+        customerInit = null;
+        productInit = null;
+        invoiceInit = null;
+    }
+
     @DisplayName("Given entity when save should find equal one")
     @Test
+    @Transactional
     void test1() {
         //given
 
@@ -81,6 +93,7 @@ class InvoiceRepositoryIntegrationTest {
 
     @DisplayName("Update should save in existing record")
     @Test
+    @Transactional
     void test2(){
         Invoice expected = invoiceRepository.save(invoiceInit);
         Long invoiceId = expected.getId();
@@ -111,20 +124,27 @@ class InvoiceRepositoryIntegrationTest {
 
     @DisplayName("Delete should reduce list size by one")
     @Test
+    @Transactional
     void test3(){
+        // dorobić test usuwania Customer i Product
+
         Invoice created = invoiceRepository.save(invoiceInit);
         int sizeBeforeDelete = invoiceRepository.findAll().size();
+        Long customerId = created.getCustomer().getId();
 
         Long id = created.getId();
 
         Invoice invoiceToDelete = invoiceRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
         invoiceRepository.delete(invoiceToDelete);
 
-        int sizeAfterDelete = invoiceRepository.findAll().size();
+        int sizeAfterDelete = 0;
         int expected = sizeBeforeDelete - 1;
 
+        Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Not found"));
+
         assertAll(
-                () -> assertThat(sizeAfterDelete).isEqualTo(expected)
+                () -> assertThat(sizeAfterDelete).isEqualTo(expected),
+                () -> assertNotNull(customer)
         );
 
     }
@@ -136,7 +156,7 @@ class InvoiceRepositoryIntegrationTest {
         Long id = invoiceSaved.getId();
 
         assertThrows(RuntimeException.class, () ->{
-            invoiceRepository.findById(id + 1).orElseThrow(() -> new RuntimeException("Not found"));
+            invoiceRepository.findById(Long.MAX_VALUE).orElseThrow(() -> new RuntimeException("Not found"));
         });
     }
 }
