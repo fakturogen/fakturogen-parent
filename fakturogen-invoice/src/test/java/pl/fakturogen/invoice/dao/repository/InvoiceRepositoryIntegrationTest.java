@@ -101,12 +101,6 @@ class InvoiceRepositoryIntegrationTest {
         List<Invoice> invoices = invoiceRepository.findAll();
         Integer existingSize = invoices.size();
 
-        Invoice updatedInvoice = new Invoice();
-        updatedInvoice.setId(invoiceId);
-        updatedInvoice.setNumber("23/1/2021");
-        updatedInvoice.setCreatedOn(expected.getCreatedOn()); // czy powinno się tak robić i ustawiać nowe/stare wartości w polach?
-
-        // czy w expected zmienić tyklko edytowane wartości
         expected.setNumber("23/1/2021");
         invoiceRepository.save(expected);
 
@@ -116,7 +110,7 @@ class InvoiceRepositoryIntegrationTest {
 
         assertAll(
                 () -> assertThat(existingSize).isEqualTo(sizeAfterUpdate),
-                () -> assertThat(expected.getNumber()).isEqualTo("23/1/2021")
+                () -> assertThat(expected.getNumber()).isEqualTo(result.getNumber())
         );
 
 
