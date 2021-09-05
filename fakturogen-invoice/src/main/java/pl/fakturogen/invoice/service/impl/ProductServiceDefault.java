@@ -74,4 +74,15 @@ public class ProductServiceDefault implements ProductService {
         }
     }
 
+    @Override
+    public Optional<ProductDTO> findByExternalId(Long id) throws ReadProductException {
+        try {
+            productRepository.findByIdExternalApi(id);
+        } catch (Exception ex) {
+            log.warn(ex.getMessage(), ex);
+            throw new ReadProductException("Error during reading product from database");
+        }
+        return Optional.empty();
+    }
+
 }

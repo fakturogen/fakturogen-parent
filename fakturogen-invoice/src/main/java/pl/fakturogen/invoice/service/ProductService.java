@@ -17,4 +17,5 @@ public interface ProductService {
     ProductDTO create(ProductDTO productDTO) throws CreateProductException;
     Optional<ProductDTO> read(Long id) throws ReadProductException;
     List<ProductDTO> readAll() throws ReadProductException;
+    Optional<ProductDTO> findByExternalId(Long id) throws ReadProductException;
 }
