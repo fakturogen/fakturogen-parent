@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface InvoiceService {
 
     InvoiceDTO create(InvoiceSaveDTO invoiceSaveDTO);
-    Optional<InvoiceDTO> read(InvoiceDTO invoiceDTO);
+    InvoiceDTO read(Long id);
     List<InvoiceDTO> readAll();
     InvoiceDTO update(InvoiceDTO invoiceDTO);
     void delete(InvoiceDTO invoiceDTO);

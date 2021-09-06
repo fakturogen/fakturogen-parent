@@ -1,5 +1,6 @@
 package pl.fakturogen.invoice.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.invoice.dao.entity.Invoice;
 import pl.fakturogen.invoice.dao.repository.InvoiceRepository;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class InvoiceServiceDefault implements InvoiceService {
 
     private InvoiceMapper invoiceMapper;
@@ -31,8 +33,16 @@ public class InvoiceServiceDefault implements InvoiceService {
     }
 
     @Override
-    public Optional<InvoiceDTO> read(InvoiceDTO invoiceDTO) {
-        return Optional.empty();
+    public InvoiceDTO read(Long id) {
+        try{
+            Invoice invoice = invoiceRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+            InvoiceDTO invoiceDTO = invoiceMapper.from(invoice);
+            return invoiceDTO;
+        } catch (RuntimeException ex) {
+            log.warn(ex.getMessage(), ex);
+            throw new RuntimeException("Not Found");
+        }
+
     }
 
     @Override
