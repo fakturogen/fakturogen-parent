@@ -30,6 +30,8 @@ class InvoiceRepositoryIntegrationTest {
     private InvoiceRepository invoiceRepository;
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     Product productInit;
     Customer customerInit;
@@ -116,15 +118,16 @@ class InvoiceRepositoryIntegrationTest {
 
     }
 
-    @DisplayName("Delete should reduce list size by one")
+    @DisplayName("Delete should reduce list of invoices size by one")
     @Test
     @Transactional
     void test3(){
-        // dorobić test usuwania Customer i Product
 
         Invoice created = invoiceRepository.save(invoiceInit);
         int sizeBeforeDelete = invoiceRepository.findAll().size();
         Long customerId = created.getCustomer().getId();
+
+        int productListSizeExpected = productRepository.findAll().size();
 
         Long id = created.getId();
 
@@ -136,9 +139,11 @@ class InvoiceRepositoryIntegrationTest {
 
         Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Not found"));
 
+        int productListSizeActual = productRepository.findAll().size();
         assertAll(
                 () -> assertThat(sizeAfterDelete).isEqualTo(expected),
-                () -> assertNotNull(customer)
+                () -> assertNotNull(customer),
+                () -> assertThat(productListSizeActual).isEqualTo(productListSizeExpected)
         );
 
     }
@@ -147,7 +152,6 @@ class InvoiceRepositoryIntegrationTest {
     @Test
     void test4(){
         Invoice invoiceSaved = invoiceRepository.save(invoiceInit);
-        Long id = invoiceSaved.getId();
 
         assertThrows(RuntimeException.class, () ->{
             invoiceRepository.findById(Long.MAX_VALUE).orElseThrow(() -> new RuntimeException("Not found"));
