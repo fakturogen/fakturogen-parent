@@ -9,6 +9,7 @@ import pl.fakturogen.invoice.config.CustomerTestContextConfig;
 import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.dao.entity.CustomerType;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,14 +32,10 @@ public class CustomerRepositoryIntegrationTest {
     private static final String PHONE_NUMBER = "123-456-789";
     private static final CustomerType CUSTOMER_TYPE = new CustomerType(1L, "podmiot gospodarczy");
 
+    @Autowired
     CustomerRepository customerRepository;
     Customer newCustomerToDatabase;
 
-
-    @Autowired
-    public CustomerRepositoryIntegrationTest(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     @BeforeEach
     void prepareTest() {
@@ -55,6 +52,7 @@ public class CustomerRepositoryIntegrationTest {
 
     @Test
     @DisplayName("List size should be 1")
+    @Transactional
     void test1() {
         List<Customer> customerList = customerRepository.findAll();
         int listFromDatabaseSize = customerList.size();
@@ -73,6 +71,7 @@ public class CustomerRepositoryIntegrationTest {
 
     @Test
     @DisplayName("Given id should return customer")
+    @Transactional
     void test2() {
         Customer expectedCustomer = new Customer();
         expectedCustomer.setIdExternalApi(ID_EXTERNAL_API);
@@ -103,6 +102,7 @@ public class CustomerRepositoryIntegrationTest {
 
     @Test
     @DisplayName("Given updated data should update customer in database")
+    @Transactional
     void test3() {
         Customer expectedCustomer = new Customer();
         expectedCustomer.setIdExternalApi(123L);
@@ -136,6 +136,7 @@ public class CustomerRepositoryIntegrationTest {
 
     @Test
     @DisplayName("When delete should return current list size")
+    @Transactional
     void test4() {
         List<Customer> initialCustomerList = customerRepository.findAll();
         int expectedCustomerListSize = initialCustomerList.size();
