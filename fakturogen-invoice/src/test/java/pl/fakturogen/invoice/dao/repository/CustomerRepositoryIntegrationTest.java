@@ -1,11 +1,13 @@
 package pl.fakturogen.invoice.dao.repository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.fakturogen.invoice.config.CustomerTestContextConfig;
+import pl.fakturogen.invoice.dao.entity.Address;
 import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.dao.entity.CustomerType;
 
@@ -23,31 +25,64 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 @SpringBootTest(classes = CustomerTestContextConfig.class)
 public class CustomerRepositoryIntegrationTest {
-    private static final Long ID = 1L;
     private static final Long ID_EXTERNAL_API = 1L;
     private static final String NAME = "testowa nazwa";
     private static final String NIP = "123";
     private static final String CUSTOMER_CODE = "0";
     private static final String MAIL = "testowy mail";
     private static final String PHONE_NUMBER = "123-456-789";
-    private static final CustomerType CUSTOMER_TYPE = new CustomerType(1L, "podmiot gospodarczy");
+    private static final String CUSTOMER_TYPE_DESCRIPTION = "podmiot gospodarczy";
+
+    private static final String STREET = "Testowa ulica";
+    private static final String BUILDING_NUMBER = "10";
+    private static final String FLAT_NUMBER = "8";
+    private static final String POSTAL_CODE = "92-202";
+    private static final String CITY = "Testowe miastio";
 
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
+    @Autowired
+    private CustomerTypeRepository customerTypeRepository;
+    @Autowired
+    private AddressRepository addressRepository;
+
     Customer newCustomerToDatabase;
+    CustomerType customerType;
+    Address address;
 
 
     @BeforeEach
     void prepareTest() {
         newCustomerToDatabase = new Customer();
-        newCustomerToDatabase.setId(ID);
+
         newCustomerToDatabase.setIdExternalApi(ID_EXTERNAL_API);
         newCustomerToDatabase.setName(NAME);
         newCustomerToDatabase.setNip(NIP);
         newCustomerToDatabase.setCustomerCode(CUSTOMER_CODE);
         newCustomerToDatabase.setMail(MAIL);
         newCustomerToDatabase.setPhoneNumber(PHONE_NUMBER);
-//        newCustomerToDatabase.setCustomerType(CUSTOMER_TYPE);
+
+        customerType = new CustomerType();
+        customerType.setDescription(CUSTOMER_TYPE_DESCRIPTION);
+        customerTypeRepository.save(customerType);
+
+        address = new Address();
+        address.setStreet(STREET);
+        address.setCity(CITY);
+        address.setPostalCode(POSTAL_CODE);
+        address.setBuildingNumber(BUILDING_NUMBER);
+        address.setFlatNumber(FLAT_NUMBER);
+        addressRepository.save(address);
+
+        newCustomerToDatabase.setAddress(address);
+        newCustomerToDatabase.setCustomerType(customerType);
+    }
+
+    @AfterEach
+    void cleanTest() {
+        newCustomerToDatabase = null;
+        customerType = null;
+        address = null;
     }
 
     @Test
@@ -81,9 +116,23 @@ public class CustomerRepositoryIntegrationTest {
         expectedCustomer.setMail(MAIL);
         expectedCustomer.setPhoneNumber(PHONE_NUMBER);
 
+        CustomerType expectedCustomerType = new CustomerType();
+        expectedCustomerType.setDescription(CUSTOMER_TYPE_DESCRIPTION);
+
+        Address expectedAddress = new Address();
+        expectedAddress.setStreet(STREET);
+        expectedAddress.setCity(CITY);
+        expectedAddress.setPostalCode(POSTAL_CODE);
+        expectedAddress.setBuildingNumber(BUILDING_NUMBER);
+        expectedAddress.setFlatNumber(FLAT_NUMBER);
+
         Customer savedCustomer = customerRepository.save(newCustomerToDatabase);
         Long customerId = savedCustomer.getId();
         expectedCustomer.setId(customerId);
+        expectedCustomerType.setId(savedCustomer.getCustomerType().getId());
+        expectedAddress.setId(savedCustomer.getAddress().getId());
+        expectedCustomer.setCustomerType(expectedCustomerType);
+        expectedCustomer.setAddress(expectedAddress);
 
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
 
@@ -96,7 +145,16 @@ public class CustomerRepositoryIntegrationTest {
                 () -> assertEquals(expectedCustomer.getNip(), customerFromDatabase.getNip()),
                 () -> assertEquals(expectedCustomer.getCustomerCode(), customerFromDatabase.getCustomerCode()),
                 () -> assertEquals(expectedCustomer.getMail(), customerFromDatabase.getMail()),
-                () -> assertEquals(expectedCustomer.getPhoneNumber(), customerFromDatabase.getPhoneNumber())
+                () -> assertEquals(expectedCustomer.getPhoneNumber(), customerFromDatabase.getPhoneNumber()),
+                () -> assertEquals(expectedCustomer.getCustomerType().getId(), customerFromDatabase.getCustomerType().getId()),
+                () -> assertEquals(expectedCustomer.getCustomerType().getDescription(), customerFromDatabase.getCustomerType().getDescription()),
+                () -> assertEquals(expectedCustomer.getAddress().getId(), customerFromDatabase.getAddress().getId()),
+                () -> assertEquals(expectedCustomer.getAddress().getIdExternalApi(), customerFromDatabase.getAddress().getIdExternalApi()),
+                () -> assertEquals(expectedCustomer.getAddress().getCity(), customerFromDatabase.getAddress().getCity()),
+                () -> assertEquals(expectedCustomer.getAddress().getStreet(), customerFromDatabase.getAddress().getStreet()),
+                () -> assertEquals(expectedCustomer.getAddress().getBuildingNumber(), customerFromDatabase.getAddress().getBuildingNumber()),
+                () -> assertEquals(expectedCustomer.getAddress().getFlatNumber(), customerFromDatabase.getAddress().getFlatNumber()),
+                () -> assertEquals(expectedCustomer.getAddress().getPostalCode(), customerFromDatabase.getAddress().getPostalCode())
         );
     }
 
@@ -112,11 +170,28 @@ public class CustomerRepositoryIntegrationTest {
         expectedCustomer.setMail("new email");
         expectedCustomer.setPhoneNumber("123-123-789");
 
+        CustomerType expectedCustomerType = new CustomerType();
+        expectedCustomerType.setDescription("CUSTOMER_TYPE_DESCRIPTION");
+
+        Address expectedAddress = new Address();
+        expectedAddress.setStreet("STREET");
+        expectedAddress.setCity("CITY");
+        expectedAddress.setPostalCode("92-400");
+        expectedAddress.setBuildingNumber("1");
+        expectedAddress.setFlatNumber("1");
+
         Customer savedCustomer = customerRepository.save(newCustomerToDatabase);
-        Long customerId= savedCustomer.getId();
+        Long customerId = savedCustomer.getId();
         expectedCustomer.setId(customerId);
+        expectedCustomerType.setId(savedCustomer.getCustomerType().getId());
+        expectedAddress.setId(savedCustomer.getAddress().getId());
+        expectedCustomer.setCustomerType(expectedCustomerType);
+        expectedCustomer.setAddress(expectedAddress);
+
 
         customerRepository.save(expectedCustomer);
+        customerTypeRepository.save(expectedCustomerType);
+        addressRepository.save(expectedAddress);
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
         Customer updatedCustomer = optionalCustomer.orElseThrow();
 
@@ -128,7 +203,16 @@ public class CustomerRepositoryIntegrationTest {
                 () -> assertEquals(expectedCustomer.getNip(), updatedCustomer.getNip()),
                 () -> assertEquals(expectedCustomer.getCustomerCode(), updatedCustomer.getCustomerCode()),
                 () -> assertEquals(expectedCustomer.getMail(), updatedCustomer.getMail()),
-                () -> assertEquals(expectedCustomer.getPhoneNumber(), updatedCustomer.getPhoneNumber())
+                () -> assertEquals(expectedCustomer.getPhoneNumber(), updatedCustomer.getPhoneNumber()),
+                () -> assertEquals(expectedCustomer.getCustomerType().getId(), updatedCustomer.getCustomerType().getId()),
+                () -> assertEquals(expectedCustomer.getCustomerType().getDescription(), updatedCustomer.getCustomerType().getDescription()),
+                () -> assertEquals(expectedCustomer.getAddress().getId(), updatedCustomer.getAddress().getId()),
+                () -> assertEquals(expectedCustomer.getAddress().getIdExternalApi(), updatedCustomer.getAddress().getIdExternalApi()),
+                () -> assertEquals(expectedCustomer.getAddress().getCity(), updatedCustomer.getAddress().getCity()),
+                () -> assertEquals(expectedCustomer.getAddress().getStreet(), updatedCustomer.getAddress().getStreet()),
+                () -> assertEquals(expectedCustomer.getAddress().getBuildingNumber(), updatedCustomer.getAddress().getBuildingNumber()),
+                () -> assertEquals(expectedCustomer.getAddress().getFlatNumber(), updatedCustomer.getAddress().getFlatNumber()),
+                () -> assertEquals(expectedCustomer.getAddress().getPostalCode(), updatedCustomer.getAddress().getPostalCode())
         );
 
     }
@@ -151,7 +235,6 @@ public class CustomerRepositoryIntegrationTest {
         assertEquals(expectedCustomerListSize, currentCustomerListSize);
 
     }
-
 
 
 }
