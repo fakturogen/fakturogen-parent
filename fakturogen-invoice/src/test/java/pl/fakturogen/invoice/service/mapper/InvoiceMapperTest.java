@@ -33,13 +33,13 @@ class InvoiceMapperTest {
     @Test
     public void test1() {
         Product product1 = new Product();
-        product1.setId(1);
+        product1.setId(1L);
         product1.setRate(Rate.R9);
         product1.setSaleNetPrice(100.00);
         product1.setName("Apartment no. 1");
 
         Product product2 = new Product();
-        product2.setId(12);
+        product2.setId(12L);
         product2.setRate(Rate.R9);
         product2.setSaleNetPrice(100.00);
         product2.setName("Apartment no. 2");
