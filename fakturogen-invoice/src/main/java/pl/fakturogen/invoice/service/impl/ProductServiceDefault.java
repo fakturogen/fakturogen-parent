@@ -11,7 +11,6 @@ import pl.fakturogen.invoice.service.ProductService;
 import pl.fakturogen.invoice.service.mapper.ProductMapper;
 import pl.fakturogen.invoice.web.dto.ProductDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
