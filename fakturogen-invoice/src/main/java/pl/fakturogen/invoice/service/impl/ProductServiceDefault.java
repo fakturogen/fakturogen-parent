@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.fakturogen.invoice.dao.entity.Product;
 import pl.fakturogen.invoice.dao.repository.ProductRepository;
 import pl.fakturogen.invoice.exception.CreateProductException;
+import pl.fakturogen.invoice.exception.ProductException;
 import pl.fakturogen.invoice.exception.ReadProductException;
 import pl.fakturogen.invoice.service.ProductService;
 import pl.fakturogen.invoice.service.mapper.ProductMapper;
@@ -32,7 +33,7 @@ public class ProductServiceDefault implements ProductService {
     }
 
     @Override
-    public ProductDTO create(ProductDTO productDTO) throws CreateProductException {
+    public ProductDTO create(ProductDTO productDTO) throws ProductException {
         try {
             Product product = productMapper.from(productDTO);
             Product savedProduct = productRepository.save(product);
@@ -44,7 +45,7 @@ public class ProductServiceDefault implements ProductService {
     }
 
     @Override
-    public Optional<ProductDTO> read(Long id) throws ReadProductException {
+    public Optional<ProductDTO> read(Long id) throws ProductException {
         try {
             Optional<Product> optionalProduct = productRepository.findById(id);
             ProductDTO returnProductDTO = null;
@@ -62,7 +63,7 @@ public class ProductServiceDefault implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> readAll() throws ReadProductException {
+    public List<ProductDTO> readAll() throws ProductException {
         try {
             List<Product> allProductList = productRepository.findAll();
             return allProductList.stream()
@@ -75,7 +76,7 @@ public class ProductServiceDefault implements ProductService {
     }
 
     @Override
-    public Optional<ProductDTO> findByExternalId(Long id) throws ReadProductException {
+    public Optional<ProductDTO> findByExternalId(Long id) throws ProductException {
         try {
             productRepository.findByIdExternalApi(id);
         } catch (Exception ex) {
