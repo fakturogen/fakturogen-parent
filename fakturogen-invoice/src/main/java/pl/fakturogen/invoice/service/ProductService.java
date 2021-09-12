@@ -1,9 +1,7 @@
 package pl.fakturogen.invoice.service;
 
 import org.springframework.stereotype.Service;
-import pl.fakturogen.invoice.exception.CreateProductException;
 import pl.fakturogen.invoice.exception.ProductException;
-import pl.fakturogen.invoice.exception.ReadProductException;
 import pl.fakturogen.invoice.web.dto.ProductDTO;
 
 import java.util.List;
