@@ -5,6 +5,7 @@ import pl.fakturogen.comarch.connector.dto.ComarchInvoiceDTO;
 import pl.fakturogen.comarch.connector.mapper.FakturogenInvoiceMapper;
 import pl.fakturogen.comarch.connector.services.ComarchInvoiceService;
 import pl.fakturogen.invoice.service.InvoiceService;
+import pl.fakturogen.invoice.service.exception.InvoiceException;
 import pl.fakturogen.invoice.web.dto.CustomerDTO;
 import pl.fakturogen.invoice.web.dto.InvoiceDTO;
 import pl.fakturogen.invoice.web.dto.InvoiceSaveDTO;
@@ -29,7 +30,7 @@ public class InvoiceManagerService {
         this.productForInvoiceService = productForInvoiceService;
     }
 
-    public InvoiceDTO saveInvoice(long id) {
+    public InvoiceDTO saveInvoice(long id) throws InvoiceException {
         ComarchInvoiceDTO comarchInvoiceDTO = comarchInvoiceService.read(id);
         InvoiceSaveDTO invoiceToSave = fakturogenInvoiceMapper.from(comarchInvoiceDTO);
 
