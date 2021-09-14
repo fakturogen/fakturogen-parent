@@ -33,8 +33,9 @@ public class InvoiceServiceDefault implements InvoiceService {
     }
 
     @Override
-    public InvoiceDTO read(Long id) {
+    public InvoiceDTO read(Long id)  {
         try{
+
             Invoice invoice = invoiceRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
             InvoiceDTO invoiceDTO = invoiceMapper.from(invoice);
             return invoiceDTO;
