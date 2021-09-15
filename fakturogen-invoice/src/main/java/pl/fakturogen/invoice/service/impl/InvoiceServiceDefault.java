@@ -48,9 +48,6 @@ public class InvoiceServiceDefault implements InvoiceService {
                     .orElseThrow(() -> new InvoiceReadException("Not found"));
             InvoiceDTO invoiceDTO = invoiceMapper.from(invoice);
             return invoiceDTO;
-        } catch (InvoiceReadException ex) {
-            log.warn(ex.getMessage(), ex);
-            throw new InvoiceReadException("Invoice not found");
         } catch (IllegalArgumentException ex) {
             log.warn(ex.getMessage(), ex);
             throw new InvoiceReadException("Error during read invoice with given id: " + id);
@@ -62,7 +59,9 @@ public class InvoiceServiceDefault implements InvoiceService {
     public List<InvoiceDTO> readAll() throws InvoiceException {
         try {
             List<Invoice> invoices = invoiceRepository.findAll();
-            return invoices.stream().map(invoice -> invoiceMapper.from(invoice)).collect(Collectors.toList());
+            return invoices.stream()
+                    .map(invoice -> invoiceMapper.from(invoice))
+                    .collect(Collectors.toList());
         } catch (Exception ex) {
             log.warn(ex.getMessage(), ex);
             throw new InvoiceReadException("Error during reading invoice list");
@@ -77,9 +76,6 @@ public class InvoiceServiceDefault implements InvoiceService {
                     .orElseThrow(() -> new InvoiceReadException("Invoice not found"));
             Invoice saved = invoiceRepository.save(invoice);
             return invoiceMapper.from(saved);
-        } catch (InvoiceReadException ex) {
-            log.warn(ex.getMessage(), ex);
-            throw new InvoiceReadException("Error during invoice update. Invoice with given id not found: " + id);
         } catch (IllegalArgumentException ex) {
             log.warn(ex.getMessage(), ex);
             throw new InvoiceUpdateException("Error during invoice update - id: : " + id);
