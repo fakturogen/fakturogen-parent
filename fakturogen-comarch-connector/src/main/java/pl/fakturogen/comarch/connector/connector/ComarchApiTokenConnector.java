@@ -1,5 +1,6 @@
 package pl.fakturogen.comarch.connector.connector;
 
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.Headers;
@@ -10,14 +11,16 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Service;
-import pl.fakturogen.comarch.connector.model.ComarchToken;
 import pl.fakturogen.comarch.connector.converter.TokenResponseConverter;
+import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.model.ComarchToken;
 
 import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class ComarchApiTokenConnector {
     private String clientId;
@@ -39,7 +42,7 @@ public class ComarchApiTokenConnector {
         secret = sourceArgs[1];
     }
 
-    public ComarchToken getToken() throws IOException { // throws ComarchApiTokenException
+    public ComarchToken getToken() throws ComarchConnectorException { // throws ComarchApiTokenException
         String encoded  = Base64.getEncoder().withoutPadding().encodeToString((clientId + ":" + secret).getBytes());
 
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -61,29 +64,24 @@ public class ComarchApiTokenConnector {
                 .post(requestBody)
                 .build();
         Call call = okHttpClient.newCall(request);
-
-       /* //try catch
-
         try {
             Response response = call.execute();
-            //z response wyciagnac token
+            // z response wyciagnac token
             ResponseBody responseBody = response.body();
             // czy responseBody != null
             String json = response.body().string();
+
+            ComarchToken comarchTokenDetail = tokenResponseConverter.toObject(json);
+
+             log.info("getToken(...) = {}", comarchTokenDetail);
+            return comarchTokenDetail;
         } catch (IOException e) {
-            // LOGGER.severe("Komunikat dla użytkownika na www", e);
-            //throw new ComarchApiTokenException("Komunikat dla użytkownika na www", e);
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
+        } /*catch (ComarchConverterException e) {
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
         }*/
-
-        Response response = call.execute();
-        //z response wyciagnac token
-        ResponseBody responseBody = response.body();
-        // czy responseBody != null
-        String json = response.body().string();
-
-       ComarchToken comarchTokenDetail = tokenResponseConverter.toObject(json);
-
-        return comarchTokenDetail;
     }
 
 
