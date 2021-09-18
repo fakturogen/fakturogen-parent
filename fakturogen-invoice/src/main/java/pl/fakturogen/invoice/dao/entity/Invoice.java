@@ -1,10 +1,13 @@
 package pl.fakturogen.invoice.dao.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -35,9 +38,9 @@ public class Invoice {
     private Double discount;
     private Integer status;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.PERSIST)
     private Customer customer;
-    @OneToMany
+    @OneToMany (cascade = CascadeType.PERSIST)
     private List<Product> items;
 
     @Column (name = "bank_account_id")
