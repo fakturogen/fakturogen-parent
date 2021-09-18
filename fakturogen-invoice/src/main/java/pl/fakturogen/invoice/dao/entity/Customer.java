@@ -1,5 +1,6 @@
 package pl.fakturogen.invoice.dao.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,7 +59,7 @@ public class Customer {
     private BigDecimal discount;
 
 //    @Column(name = "payment_form")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private PaymentForm paymentForm;
 
     @ManyToOne
