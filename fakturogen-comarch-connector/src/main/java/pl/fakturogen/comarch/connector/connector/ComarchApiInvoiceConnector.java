@@ -3,6 +3,7 @@ package pl.fakturogen.comarch.connector.connector;
 import okhttp3.Response;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.converter.ComarchInvoiceConverter;
+import pl.fakturogen.comarch.connector.exeption.ComarchHttpConnectorException;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 
 import java.io.IOException;
@@ -22,13 +23,13 @@ public class ComarchApiInvoiceConnector {
         this.comarchInvoiceConverter = comarchInvoiceConverter;
     }
 
-    public List<ComarchInvoice> getInvoices() throws IOException {
+    public List<ComarchInvoice> getInvoices() throws IOException, ComarchHttpConnectorException {
         Response response = httpConnectorUtils.httpGetAll(url);
 
         return comarchInvoiceConverter.listFrom(response.body().string());
     }
 
-    public ComarchInvoice getInvoiceById(long id) throws IOException {
+    public ComarchInvoice getInvoiceById(long id) throws IOException, ComarchHttpConnectorException {
         Response response = httpConnectorUtils.httpGetById(url, id);
 
         return comarchInvoiceConverter.from(response.body().string());
