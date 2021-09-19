@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface UserExternalApiService {
     UserExternalApiDTO create(UserExternalApiDTO userExternalApiDTO) throws UserExternalApiException;
     Optional<UserExternalApiDTO> read(Long id) throws UserExternalApiException;
-    void update(UserExternalApiDTO userExternalApiDTO) throws UserExternalApiException;
+    void update(UserExternalApiDTO userExternalApiDTO, Long id) throws UserExternalApiException;
 }
