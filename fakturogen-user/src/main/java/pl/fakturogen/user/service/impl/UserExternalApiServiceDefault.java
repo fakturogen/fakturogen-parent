@@ -1,15 +1,17 @@
 package pl.fakturogen.user.service.impl;
 
-import pl.fakturogen.user.dao.entity.UserExternalApi;
 import pl.fakturogen.user.exception.UserExternalApiException;
 import pl.fakturogen.user.service.UserExternalApiService;
 import pl.fakturogen.user.web.dto.UserExternalApiDTO;
 
 import java.util.Optional;
 
+/**
+ * @author ewa-git
+ */
 public class UserExternalApiServiceDefault implements UserExternalApiService {
     @Override
-    public UserExternalApi create(UserExternalApiDTO userExternalApiDTO) throws UserExternalApiException {
+    public UserExternalApiDTO create(UserExternalApiDTO userExternalApiDTO) throws UserExternalApiException {
         return null;
     }
 
@@ -23,8 +25,4 @@ public class UserExternalApiServiceDefault implements UserExternalApiService {
 
     }
 
-    @Override
-    public void delete(UserExternalApiDTO userExternalApiDTO) throws UserExternalApiException {
-
-    }
 }
