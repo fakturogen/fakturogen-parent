@@ -10,6 +10,10 @@ import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
 import java.util.List;
 
+/**
+ * @author ewa-git
+ */
+
 @Slf4j
 @Component
 public class ComarchCustomerConverter implements ComarchConverter<ComarchCustomer> {
@@ -32,19 +36,31 @@ public class ComarchCustomerConverter implements ComarchConverter<ComarchCustome
         }
     }
 
-    public String from(ComarchCustomer comarchCustomer) throws JsonProcessingException {
+    public String from(ComarchCustomer comarchCustomer) throws ComarchConverterException {
         log.info("from {}", comarchCustomer);
-        ObjectMapper mapper = new ObjectMapper();
-        String customerJson = mapper.writeValueAsString(comarchCustomer);
-        log.info("mapping from {} = {}", comarchCustomer, customerJson);
-        return customerJson;
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String customerJson = mapper.writeValueAsString(comarchCustomer);
+            log.info("mapping from {} = {}", comarchCustomer, customerJson);
+            return customerJson;
+        } catch (JsonProcessingException e) {
+            log.warn(e.getMessage(), e);
+            throw new ComarchConverterException("Error while parsing Comarch Customer data to JSON.", e);
+        }
     }
 
-    public List<ComarchCustomer> fromList(String customerListJson) throws JsonProcessingException {
+    public List<ComarchCustomer> fromList(String customerListJson) throws ComarchConverterException {
         log.info("from {}", customerListJson);
-        ObjectMapper mapper = new ObjectMapper();
-        List<ComarchCustomer> comarchCustomers = mapper.readValue(customerListJson, new TypeReference<>(){});
-        log.info("mapping from {} = {}", customerListJson, comarchCustomers);
-        return comarchCustomers;
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            List<ComarchCustomer> comarchCustomers = mapper.readValue(customerListJson, new TypeReference<>() {
+            });
+            log.info("mapping from {} = {}", customerListJson, comarchCustomers);
+            return comarchCustomers;
+        }catch (JsonProcessingException e){
+            log.warn(e.getMessage(), e);
+            throw new ComarchConverterException("Error while parsing JSON list with Comarch Customer data.", e);
+        }
+
     }
 }

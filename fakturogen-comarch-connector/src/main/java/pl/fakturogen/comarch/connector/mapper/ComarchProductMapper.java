@@ -9,6 +9,10 @@ import pl.fakturogen.comarch.connector.model.ComarchProduct;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author damian
+ */
+
 @Component
 @Slf4j
 public class ComarchProductMapper {

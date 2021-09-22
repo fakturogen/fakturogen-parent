@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * @author damian
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

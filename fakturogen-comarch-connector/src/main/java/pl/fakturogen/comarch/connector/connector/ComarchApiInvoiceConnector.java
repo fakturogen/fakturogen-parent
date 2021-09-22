@@ -15,6 +15,8 @@ import java.util.List;
 @Slf4j
 @Service
 public class ComarchApiInvoiceConnector {
+    private String clientId;
+    private String secret;
     private String url = "https://app.erpxt.pl/api2/public/v1.1/invoices";
 
     private HttpConnectorUtils httpConnectorUtils;
@@ -64,4 +66,21 @@ public class ComarchApiInvoiceConnector {
             throw new ComarchConnectorException(e.getMessage(), e);
         }
     }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+
 }

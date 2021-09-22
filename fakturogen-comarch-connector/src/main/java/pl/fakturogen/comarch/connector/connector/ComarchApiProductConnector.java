@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * @author damian
+ */
+
 @Slf4j
 @Component
 public class ComarchApiProductConnector {

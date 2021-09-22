@@ -1,5 +1,9 @@
 package pl.fakturogen.invoice.dao.entity;
 
+/**
+ * @author damian
+ */
+
 public enum Rate {
     R9("23%"),
     R8("8%"),

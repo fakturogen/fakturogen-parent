@@ -1,4 +1,13 @@
 package pl.fakturogen.invoice.dao.repository;
 
-public class CustomerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import pl.fakturogen.invoice.dao.entity.Customer;
+
+
+/**
+ * @author ewa-git
+ */
+
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
 }

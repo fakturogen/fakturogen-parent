@@ -1,9 +1,13 @@
+
 package pl.fakturogen.comarch.connector.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.dto.ComarchAddressDTO;
 import pl.fakturogen.invoice.web.dto.AddressDTO;
+/**
+ * @author ewa-git
+ */
 
 @Component
 @Slf4j
