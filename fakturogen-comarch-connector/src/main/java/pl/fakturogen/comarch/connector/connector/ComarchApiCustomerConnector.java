@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
 import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
+import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.mapper.ComarchCustomerMapper;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
@@ -60,6 +61,8 @@ public class ComarchApiCustomerConnector {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ComarchHttpConnectorException e) {
+            e.printStackTrace();
+        } catch (ComarchConverterException e) {
             e.printStackTrace();
         }
         return comarchCustomerDTOList;

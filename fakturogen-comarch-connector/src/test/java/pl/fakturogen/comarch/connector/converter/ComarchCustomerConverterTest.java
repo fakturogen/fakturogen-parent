@@ -99,7 +99,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map ComarchCustomer object to json")
-    public void test3() throws JsonProcessingException {
+    public void test3() throws JsonProcessingException, ComarchConverterException {
         ComarchCustomer givenComarchCustomer = initComarchCustomerObject();
         ComarchCustomer expectedComarchCustomer = initComarchCustomerObject();
         String expectedJson = objectMapper.writeValueAsString(expectedComarchCustomer);
@@ -109,7 +109,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map emptyComarchCustomer object to empty json")
-    public void test4() throws JsonProcessingException {
+    public void test4() throws JsonProcessingException, ComarchConverterException {
         ComarchCustomer givenComarchCustomer = new ComarchCustomer();
         ComarchCustomer expectedComarchCustomer = new ComarchCustomer();
         String expectedJson = objectMapper.writeValueAsString(expectedComarchCustomer);
@@ -119,7 +119,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map ComarchCustomerList to ComarchCutomerJsonList")
-    public void test5() throws JsonProcessingException {
+    public void test5() throws JsonProcessingException, ComarchConverterException {
         ComarchCustomer comarchCustomer1 = initComarchCustomerObject();
         ComarchCustomer comarchCustomer2 = initComarchCustomerObject();
         List<ComarchCustomer> expectedComarchCustomerList = new ArrayList<>();
@@ -171,7 +171,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map empty ComarchCustomerList to empty ComarchCutomerJsonList")
-    public void test6() throws JsonProcessingException {
+    public void test6() throws JsonProcessingException, ComarchConverterException {
         ComarchAddress address = new ComarchAddress();
         ComarchCustomer comarchCustomer1 = new ComarchCustomer();
         comarchCustomer1.setAddress(address);
