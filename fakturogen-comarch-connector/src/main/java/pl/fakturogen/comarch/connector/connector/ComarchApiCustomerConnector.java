@@ -2,6 +2,7 @@ package pl.fakturogen.comarch.connector.connector;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
@@ -20,7 +21,9 @@ public class ComarchApiCustomerConnector {
     private ComarchCustomerConverter comarchCustomerConverter;
     private ComarchCustomerMapper comarchCustomerMapper;
 
-    private final String url = "https://app.erpxt.pl/api2/public/customers";
+    @Value("${comarchApiCustomerConnector.url}")
+    public String url;
+ //   private final String url = "https://app.erpxt.pl/api2/public/customers";
 
     public ComarchApiCustomerConnector(HttpConnectorUtils httpConnectorUtils,
                                        ComarchCustomerConverter comarchCustomerConverter,
