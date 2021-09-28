@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.fakturogen.invoice.dao.entity.Rate;
 
+/**
+ * @author damian
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

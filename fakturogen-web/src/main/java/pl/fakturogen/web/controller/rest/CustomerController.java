@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
-import pl.fakturogen.web.exception.CustomerNotFoundException;
 import pl.fakturogen.comarch.connector.mapper.FakturogenCustomerMapper;
 import pl.fakturogen.comarch.connector.services.ComarchCustomerService;
 import pl.fakturogen.invoice.service.CustomerService;
+import pl.fakturogen.web.exception.CustomerNotFoundException;
 
 import java.util.List;
 import java.util.Optional;

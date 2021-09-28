@@ -8,6 +8,10 @@ import pl.fakturogen.comarch.connector.services.ComarchProductService;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author damian
+ */
+
 @Service
 public class ComarchProductServiceDefault implements ComarchProductService {
     private ComarchApiProductConnector connector;

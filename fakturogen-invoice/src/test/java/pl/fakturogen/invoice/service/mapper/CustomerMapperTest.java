@@ -13,6 +13,9 @@ import pl.fakturogen.invoice.web.dto.CustomerTypeDTO;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+/**
+ * @author ewa-git
+ */
 
 @DisplayName("CustomerMapper specification")
 public class CustomerMapperTest {

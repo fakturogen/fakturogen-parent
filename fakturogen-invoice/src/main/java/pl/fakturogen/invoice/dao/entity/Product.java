@@ -3,6 +3,10 @@ package pl.fakturogen.invoice.dao.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * @author damian
+ */
+
 @Entity
 @Table(name = Product.TABLE_NAME)
 public class Product {
@@ -50,11 +54,11 @@ public class Product {
         return TABLE_NAME;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

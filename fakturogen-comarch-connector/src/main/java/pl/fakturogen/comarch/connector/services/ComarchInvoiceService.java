@@ -10,4 +10,5 @@ public interface ComarchInvoiceService {
 
     ComarchInvoiceDTO read(long id);
     List<ComarchInvoiceDTO> readAll();
+
 }

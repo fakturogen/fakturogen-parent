@@ -6,6 +6,9 @@ import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
 import pl.fakturogen.invoice.web.dto.AddressDTO;
 import pl.fakturogen.invoice.web.dto.CustomerDTO;
 import pl.fakturogen.invoice.web.dto.CustomerTypeDTO;
+/**
+ * @author ewa-git
+ */
 
 @Component
 @Slf4j

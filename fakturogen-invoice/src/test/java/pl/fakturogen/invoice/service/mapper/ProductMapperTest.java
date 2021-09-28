@@ -9,6 +9,10 @@ import pl.fakturogen.invoice.web.dto.ProductDTO;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author damian
+ */
+
 class ProductMapperTest {
 
     private Product product;
@@ -35,7 +39,7 @@ class ProductMapperTest {
 
         partEmptyProduct = new Product();
         partEmptyProduct.setName("PRODUCT TEST NAME");
-        partEmptyProduct.setId(1);
+        partEmptyProduct.setId(1L);
         partEmptyProduct.setSaleNetPrice(99_999_999);
 
         productDTO = new ProductDTO();
@@ -53,6 +57,7 @@ class ProductMapperTest {
         partEmptyProductDTO = new ProductDTO();
         partEmptyProductDTO.setName("PRODUCT TEST NAME");
         partEmptyProductDTO.setSaleNetPrice(99_999_999);
+        partEmptyProductDTO.setId(1L);
 
         productMapper = new ProductMapper();
     }

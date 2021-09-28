@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @DisplayName("Default Comarch Invoice mapper")
 class ComarchInvoiceMapperTest {
 
-    private static final String INVOICE_$ID = "1";
     private static final Integer PAYMENT_STATUS = 1;
     private static final Integer PURCHASING_PARTY_ID = 34;
     private static final Integer RECEIVING_PARTY_ID = 0;
@@ -35,7 +34,6 @@ class ComarchInvoiceMapperTest {
         ComarchInvoiceMapper comarchInvoiceMapper = new ComarchInvoiceMapper();
 
         ComarchItem item1 = new ComarchItem();
-        item1.set$id("1");
         item1.setId(13);
         item1.setQuantity(1.000);
         item1.setProductCurrencyPrice(1000.00);
@@ -46,7 +44,6 @@ class ComarchInvoiceMapperTest {
         itemList.add(item1);
 
         ComarchInvoice comarchInvoice = new ComarchInvoice();
-        comarchInvoice.setConsecutiveNumber(INVOICE_$ID);
         comarchInvoice.setPaymentStatus(PAYMENT_STATUS);
         comarchInvoice.setPurchasingPartyId(PURCHASING_PARTY_ID);
         comarchInvoice.setReceivingPartyId(RECEIVING_PARTY_ID);
@@ -62,7 +59,6 @@ class ComarchInvoiceMapperTest {
         comarchInvoice.setId(INVOICE_ID);
 
         ComarchInvoiceDTO comarchInvoiceDTO = ComarchInvoiceDTO.builder()
-                .consecutiveNumber(INVOICE_$ID)
                 .paymentStatus(PAYMENT_STATUS)
                 .purchasingPartyId(PURCHASING_PARTY_ID)
                 .receivingPartyId(RECEIVING_PARTY_ID)
@@ -81,7 +77,6 @@ class ComarchInvoiceMapperTest {
 
         assertAll(
                 () -> assertThat(resultInvoiceDTO).isNotNull(),
-//                () -> assertThat(resultInvoiceDTO.get$id()).isEqualTo(comarchInvoiceDTO.get$id()),
                 () -> assertThat(resultInvoiceDTO.getPaymentStatus()).isEqualTo(comarchInvoiceDTO.getPaymentStatus()),
                 () -> assertThat(resultInvoiceDTO.getPurchasingPartyId()).isEqualTo(comarchInvoiceDTO.getPurchasingPartyId()),
                 () -> assertThat(resultInvoiceDTO.getReceivingPartyId()).isEqualTo(comarchInvoiceDTO.getReceivingPartyId()),

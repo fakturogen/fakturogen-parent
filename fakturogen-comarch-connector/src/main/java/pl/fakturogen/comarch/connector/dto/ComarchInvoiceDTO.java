@@ -8,7 +8,6 @@ import java.util.List;
 @Builder
 public class ComarchInvoiceDTO {
 
-    private String consecutiveNumber;
     private Integer paymentStatus;
     private Integer purchasingPartyId;
     private Integer receivingPartyId;
@@ -26,8 +25,7 @@ public class ComarchInvoiceDTO {
     public ComarchInvoiceDTO() {
     }
 
-    public ComarchInvoiceDTO(String consecutiveNumber, Integer paymentStatus, Integer purchasingPartyId, Integer receivingPartyId, Integer paymentTypeId, Integer bankAccountId, String salesDate, Integer invoiceType, List<ComarchItem> items, String description, String issueDate, String number, Integer status, Integer id) {
-        this.consecutiveNumber = consecutiveNumber;
+    public ComarchInvoiceDTO(Integer paymentStatus, Integer purchasingPartyId, Integer receivingPartyId, Integer paymentTypeId, Integer bankAccountId, String salesDate, Integer invoiceType, List<ComarchItem> items, String description, String issueDate, String number, Integer status, Integer id) {
         this.paymentStatus = paymentStatus;
         this.purchasingPartyId = purchasingPartyId;
         this.receivingPartyId = receivingPartyId;
@@ -41,14 +39,6 @@ public class ComarchInvoiceDTO {
         this.number = number;
         this.status = status;
         this.id = id;
-    }
-
-    public String getConsecutiveNumber() {
-        return consecutiveNumber;
-    }
-
-    public void setConsecutiveNumber(String consecutiveNumber) {
-        this.consecutiveNumber = consecutiveNumber;
     }
 
     public Integer getPaymentStatus() {
@@ -158,8 +148,7 @@ public class ComarchInvoiceDTO {
     @Override
     public String toString() {
         return "ComarchInvoiceDTO{" +
-                "consecutiveNumber='" + consecutiveNumber + '\'' +
-                ", paymentStatus=" + paymentStatus +
+                "paymentStatus=" + paymentStatus +
                 ", purchasingPartyId=" + purchasingPartyId +
                 ", receivingPartyId=" + receivingPartyId +
                 ", paymentTypeId=" + paymentTypeId +

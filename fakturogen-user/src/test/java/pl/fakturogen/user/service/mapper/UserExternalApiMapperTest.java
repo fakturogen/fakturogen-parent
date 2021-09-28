@@ -11,6 +11,9 @@ import pl.fakturogen.user.web.dto.UserExternalApiDTO;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+/**
+ * @author ewa-git
+ */
 
 @DisplayName("UserExternalApi mapper specification")
 public class UserExternalApiMapperTest {

@@ -6,6 +6,9 @@ import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
 import pl.fakturogen.invoice.dao.entity.Rate;
 import pl.fakturogen.invoice.web.dto.ProductDTO;
 
+/**
+ * @author damian
+ */
 
 @Component
 @Slf4j
