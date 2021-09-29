@@ -1,6 +1,7 @@
 package pl.fakturogen.web.controller.rest;
 
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.model.ComarchToken;
 
 @RestController
+//@Controller
 @RequestMapping("/api/token")
 public class TokenController {
     private ApplicationArguments applicationArguments;

@@ -1,10 +1,6 @@
 package pl.fakturogen.web.controller.rest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.fakturogen.comarch.connector.connector.ComarchApiCustomerConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchAddressDTO;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
