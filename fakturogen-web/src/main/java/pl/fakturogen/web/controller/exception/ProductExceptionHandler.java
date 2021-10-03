@@ -19,22 +19,26 @@ public class ProductExceptionHandler {
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public WebErrorResponse notFoundProductException(ProductNotFoundException ex) {
-        return WebErrorResponse.builder()
-                .errorStatus(HttpStatus.NOT_FOUND.toString())
-                .errorMessage(ex.getMessage())
-                .build();
+        return getDedicatedResponse(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
     }
 
     @ExceptionHandler(ReadProductException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String readProductException(ReadProductException ex) {
-        return ex.getMessage();
+    public WebErrorResponse readProductException(ReadProductException ex) {
+        return getDedicatedResponse(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
     }
 
     @ExceptionHandler(CreateProductException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String createProductException(CreateProductException ex) {
-        return ex.getMessage();
+    public WebErrorResponse createProductException(CreateProductException ex) {
+        return getDedicatedResponse(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
+    }
+
+    private WebErrorResponse getDedicatedResponse (String httpStatus, String message) {
+        return WebErrorResponse.builder()
+                .errorStatus(httpStatus)
+                .errorMessage(message)
+                .build();
     }
 
 }
