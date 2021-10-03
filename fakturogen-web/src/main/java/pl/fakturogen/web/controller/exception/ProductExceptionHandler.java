@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.fakturogen.invoice.exception.CreateProductException;
 import pl.fakturogen.invoice.exception.ReadProductException;
 import pl.fakturogen.web.exception.ProductNotFoundException;
+import pl.fakturogen.web.exception.WebErrorResponse;
 
 /**
  * @author damian
@@ -19,8 +20,11 @@ public class ProductExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String notFoundProductException(ProductNotFoundException ex) {
-        return ex.getMessage();
+    public WebErrorResponse notFoundProductException(ProductNotFoundException ex) {
+        return WebErrorResponse.builder()
+                .errorCode(HttpStatus.NOT_FOUND.toString())
+                .errorMessage(ex.getMessage())
+                .build();
     }
 
     @ExceptionHandler(ReadProductException.class)
