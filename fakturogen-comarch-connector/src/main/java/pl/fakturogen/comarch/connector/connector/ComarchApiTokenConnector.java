@@ -13,6 +13,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.converter.TokenResponseConverter;
 import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchToken;
 
 import java.io.IOException;
@@ -42,8 +43,8 @@ public class ComarchApiTokenConnector {
         secret = sourceArgs[1];
     }
 
-    public ComarchToken getToken() throws ComarchConnectorException { // throws ComarchApiTokenException
-        String encoded  = Base64.getEncoder().withoutPadding().encodeToString((clientId + ":" + secret).getBytes());
+    public ComarchToken getToken() throws ComarchConnectorException {
+        String encoded = Base64.getEncoder().withoutPadding().encodeToString((clientId + ":" + secret).getBytes());
 
         OkHttpClient okHttpClient = new OkHttpClient();
         Map<String, String> headersMap = new HashMap<>();
@@ -53,7 +54,7 @@ public class ComarchApiTokenConnector {
         Headers headers = Headers.of(headersMap);
 
         RequestBody requestBody = new FormBody.Builder()
-                .add("grant_type","client_credentials")
+                .add("grant_type", "client_credentials")
                 .build();
 
         Request request = new Request.Builder()
@@ -64,6 +65,7 @@ public class ComarchApiTokenConnector {
                 .post(requestBody)
                 .build();
         Call call = okHttpClient.newCall(request);
+
         try {
             Response response = call.execute();
             // z response wyciagnac token
@@ -73,17 +75,16 @@ public class ComarchApiTokenConnector {
 
             ComarchToken comarchTokenDetail = tokenResponseConverter.toObject(json);
 
-             log.info("getToken(...) = {}", comarchTokenDetail);
+            log.info("getToken(...) = {}", comarchTokenDetail);
             return comarchTokenDetail;
         } catch (IOException e) {
             log.warn(e.getMessage(), e);
             throw new ComarchConnectorException(e.getMessage(), e);
-        } /*catch (ComarchConverterException e) {
+        } catch (ComarchConverterException e) {
             log.warn(e.getMessage(), e);
             throw new ComarchConnectorException(e.getMessage(), e);
-        }*/
+        }
     }
-
 
     public void setClientId(String clientId) {
         this.clientId = clientId;

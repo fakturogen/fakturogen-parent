@@ -5,6 +5,8 @@ import okhttp3.Response;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
+import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
+import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.mapper.ComarchCustomerMapper;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
@@ -20,15 +22,18 @@ import java.util.Optional;
 public class ComarchApiCustomerConnector {
 
     private HttpConnectorUtils httpConnectorUtils;
+    private HttpConnectorUtilsDecorator httpConnectorUtilsDecorator;
     private ComarchCustomerConverter comarchCustomerConverter;
     private ComarchCustomerMapper comarchCustomerMapper;
 
     private final String url = "https://app.erpxt.pl/api2/public/customers";
 
     public ComarchApiCustomerConnector(HttpConnectorUtils httpConnectorUtils,
+                                       HttpConnectorUtilsDecorator httpConnectorUtilsDecorator,
                                        ComarchCustomerConverter comarchCustomerConverter,
                                        ComarchCustomerMapper comarchCustomerMapper) {
         this.httpConnectorUtils = httpConnectorUtils;
+        this.httpConnectorUtilsDecorator = httpConnectorUtilsDecorator;
         this.comarchCustomerConverter = comarchCustomerConverter;
         this.comarchCustomerMapper = comarchCustomerMapper;
     }
@@ -36,13 +41,9 @@ public class ComarchApiCustomerConnector {
     public Optional<ComarchCustomerDTO> read(Long id) {
         Optional<ComarchCustomerDTO> optionalCustomerDTO = Optional.empty();
         try {
-            Response response = httpConnectorUtils.httpGetById(url, id);
-            String responseString = response.body().string();
-            ComarchCustomer comarchCustomer = comarchCustomerConverter.from(responseString);
+            ComarchCustomer comarchCustomer = httpConnectorUtilsDecorator.httpGet(url, id, comarchCustomerConverter);
             optionalCustomerDTO = Optional.of(comarchCustomerMapper.from(comarchCustomer));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return optionalCustomerDTO;
@@ -57,22 +58,27 @@ public class ComarchApiCustomerConnector {
             comarchCustomerDTOList = comarchCustomerMapper.fromList(comarchCustomerList);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ComarchHttpConnectorException e) {
+            e.printStackTrace();
+        } catch (ComarchConverterException e) {
             e.printStackTrace();
         }
         return comarchCustomerDTOList;
     }
 
-    public Long create(ComarchCustomerDTO comarchCustomerDTO){
+    public Long create(ComarchCustomerDTO comarchCustomerDTO) {
         Long externalId = 0L;
-        try{
+        try {
             Response response = httpConnectorUtils.httpPost(url, comarchCustomerDTO);
             String responseString = response.body().string();
             externalId = Long.parseLong(responseString);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ComarchHttpConnectorException e) {
             e.printStackTrace();
         }
         return externalId;

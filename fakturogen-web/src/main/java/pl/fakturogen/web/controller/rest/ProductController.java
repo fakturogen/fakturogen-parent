@@ -33,7 +33,6 @@ public class ProductController {
         this.fakturogenProductMapper = fakturogenProductMapper;
     }
 
-
     @GetMapping("/getProductList")
     @ResponseStatus(HttpStatus.OK)
     public List<ComarchProductDTO> getProductList() {

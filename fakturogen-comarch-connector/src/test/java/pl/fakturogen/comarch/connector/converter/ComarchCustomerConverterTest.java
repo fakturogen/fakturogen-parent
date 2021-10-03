@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchAddress;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
@@ -46,7 +47,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map provided jsonString to ComarchCustomer class")
-    public void test1() throws JsonProcessingException {
+    public void test1() throws JsonProcessingException, ComarchConverterException {
         ComarchCustomer expectedComarchCustomer = initComarchCustomerObject();
         ComarchCustomer givenJson = initComarchCustomerObject();
         String json = objectMapper.writeValueAsString(givenJson);
@@ -70,7 +71,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map provided empty jsonString to empty ComarchCustomer object")
-    public void test2() throws JsonProcessingException {
+    public void test2() throws JsonProcessingException, ComarchConverterException {
 
         ComarchAddress address = new ComarchAddress();
         ComarchCustomer expectedComarchCustomer = new ComarchCustomer();
@@ -98,7 +99,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map ComarchCustomer object to json")
-    public void test3() throws JsonProcessingException {
+    public void test3() throws JsonProcessingException, ComarchConverterException {
         ComarchCustomer givenComarchCustomer = initComarchCustomerObject();
         ComarchCustomer expectedComarchCustomer = initComarchCustomerObject();
         String expectedJson = objectMapper.writeValueAsString(expectedComarchCustomer);
@@ -108,7 +109,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map emptyComarchCustomer object to empty json")
-    public void test4() throws JsonProcessingException {
+    public void test4() throws JsonProcessingException, ComarchConverterException {
         ComarchCustomer givenComarchCustomer = new ComarchCustomer();
         ComarchCustomer expectedComarchCustomer = new ComarchCustomer();
         String expectedJson = objectMapper.writeValueAsString(expectedComarchCustomer);
@@ -118,7 +119,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map ComarchCustomerList to ComarchCutomerJsonList")
-    public void test5() throws JsonProcessingException {
+    public void test5() throws JsonProcessingException, ComarchConverterException {
         ComarchCustomer comarchCustomer1 = initComarchCustomerObject();
         ComarchCustomer comarchCustomer2 = initComarchCustomerObject();
         List<ComarchCustomer> expectedComarchCustomerList = new ArrayList<>();
@@ -170,7 +171,7 @@ public class ComarchCustomerConverterTest {
 
     @Test
     @DisplayName("Should map empty ComarchCustomerList to empty ComarchCutomerJsonList")
-    public void test6() throws JsonProcessingException {
+    public void test6() throws JsonProcessingException, ComarchConverterException {
         ComarchAddress address = new ComarchAddress();
         ComarchCustomer comarchCustomer1 = new ComarchCustomer();
         comarchCustomer1.setAddress(address);

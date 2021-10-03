@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchToken;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +18,7 @@ class TokenResponseConverterTest {
 
     @DisplayName(" - should return all fields")
     @Test
-    void test1() throws JsonProcessingException {
+    void test1() throws JsonProcessingException, ComarchConverterException {
         TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
         ComarchToken comarchToken = new ComarchToken();
         comarchToken.setAccessToken(ACCESS_TOKEN);
@@ -45,7 +46,7 @@ class TokenResponseConverterTest {
 
     @DisplayName(" - should give null fields")
     @Test
-    void test2() throws JsonProcessingException {
+    void test2() throws ComarchConverterException, JsonProcessingException {
         TokenResponseConverter tokenResponseConverter = new TokenResponseConverter();
 
         ComarchToken comarchToken = new ComarchToken();
