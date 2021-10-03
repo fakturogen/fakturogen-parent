@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class WebErrorResponse {
-    private String errorCode;
+    private String errorStatus;
     private String errorMessage;
     private String [] errorDetails;
 }

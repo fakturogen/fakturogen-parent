@@ -1,6 +1,5 @@
 package pl.fakturogen.web.controller.exception;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,14 +14,13 @@ import pl.fakturogen.web.exception.WebErrorResponse;
  */
 
 @RestControllerAdvice
-@Slf4j
 public class ProductExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public WebErrorResponse notFoundProductException(ProductNotFoundException ex) {
         return WebErrorResponse.builder()
-                .errorCode(HttpStatus.NOT_FOUND.toString())
+                .errorStatus(HttpStatus.NOT_FOUND.toString())
                 .errorMessage(ex.getMessage())
                 .build();
     }
@@ -38,8 +36,5 @@ public class ProductExceptionHandler {
     public String createProductException(CreateProductException ex) {
         return ex.getMessage();
     }
-
-
-
 
 }
