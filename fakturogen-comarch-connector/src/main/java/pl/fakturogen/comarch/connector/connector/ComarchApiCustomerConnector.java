@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
+import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
+import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.mapper.ComarchCustomerMapper;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
 /**
  * @author ewa-git
  */
@@ -44,46 +49,62 @@ public class ComarchApiCustomerConnector {
     public Optional<ComarchCustomerDTO> read(Long id) throws ComarchConnectorException {
         Optional<ComarchCustomerDTO> optionalCustomerDTO = Optional.empty();
         try {
-            Response response = httpConnectorUtils.httpGetById(url, id);
-            String responseString = response.body().string();
-            ComarchCustomer comarchCustomer = comarchCustomerConverter.from(responseString);
+            ComarchCustomer comarchCustomer = httpConnectorUtilsDecorator.httpGet(url, id, comarchCustomerConverter);
+            Map<String, Object> additionalProperties = comarchCustomer.getAdditionalProperties();
+            boolean codeIsPresent = additionalProperties.containsKey("Code");
+
+            if (codeIsPresent && additionalProperties.get("Code").equals("EntityNotFoundException"))
+                return optionalCustomerDTO;
+
             optionalCustomerDTO = Optional.of(comarchCustomerMapper.from(comarchCustomer));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return optionalCustomerDTO;
+        } catch (Exception e) {
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
         }
-        return optionalCustomerDTO;
     }
 
-    public List<ComarchCustomerDTO> readAll() {
+    public List<ComarchCustomerDTO> readAll() throws ComarchConnectorException {
         List<ComarchCustomerDTO> comarchCustomerDTOList = new ArrayList<>();
         try {
             Response response = httpConnectorUtils.httpGetAll(url);
             String responseString = response.body().string();
             List<ComarchCustomer> comarchCustomerList = comarchCustomerConverter.fromList(responseString);
             comarchCustomerDTOList = comarchCustomerMapper.fromList(comarchCustomerList);
+            return comarchCustomerDTOList;
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
+        } catch (IOException e) {
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
+        } catch (ComarchConverterException e) {
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
+        } catch (ComarchHttpConnectorException e) {
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return comarchCustomerDTOList;
     }
 
-    public Long create(ComarchCustomerDTO comarchCustomerDTO) {
-        Long externalId = 0L;
+    public Long create(ComarchCustomerDTO comarchCustomerDTO) throws ComarchConnectorException {
+
         try {
             Response response = httpConnectorUtils.httpPost(url, comarchCustomerDTO);
             String responseString = response.body().string();
-            externalId = Long.parseLong(responseString);
+            Long externalId = Long.parseLong(responseString);
+            return externalId;
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
+        } catch (ComarchHttpConnectorException e) {
+            log.warn(e.getMessage(), e);
+            throw new ComarchConnectorException(e.getMessage(), e);
         }
-        return externalId;
+
     }
 
 }

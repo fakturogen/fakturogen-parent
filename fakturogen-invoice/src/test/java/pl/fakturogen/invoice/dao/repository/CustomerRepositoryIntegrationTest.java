@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.fakturogen.invoice.config.CustomerTestContextConfig;
+import pl.fakturogen.invoice.config.InvoiceTestContextConfiguration;
 import pl.fakturogen.invoice.dao.entity.Address;
 import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.dao.entity.CustomerType;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 /**
  * @author ewa-git
  */
-@SpringBootTest(classes = CustomerTestContextConfig.class)
+@SpringBootTest(classes = InvoiceTestContextConfiguration.class)
 public class CustomerRepositoryIntegrationTest {
     private static final Long ID_EXTERNAL_API = 1L;
     private static final String NAME = "testowa nazwa";

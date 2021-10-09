@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.fakturogen.invoice.config.InvoiceTestContextConfig;
+import pl.fakturogen.invoice.config.InvoiceTestContextConfiguration;
 import pl.fakturogen.invoice.dao.entity.Product;
 import pl.fakturogen.invoice.dao.entity.Rate;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author rowinskidamian
  */
 
-@SpringBootTest(classes = {InvoiceTestContextConfig.class})
+@SpringBootTest(classes = {InvoiceTestContextConfiguration.class})
 class ProductRepositoryIntegrationTest {
 
     @Autowired

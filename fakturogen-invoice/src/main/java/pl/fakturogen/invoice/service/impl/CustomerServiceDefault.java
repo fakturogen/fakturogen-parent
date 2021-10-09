@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.dao.repository.CustomerRepository;
+import pl.fakturogen.invoice.exception.CustomerCreateException;
 import pl.fakturogen.invoice.exception.CustomerException;
+import pl.fakturogen.invoice.exception.CustomerReadException;
 import pl.fakturogen.invoice.service.CustomerService;
 import pl.fakturogen.invoice.service.mapper.CustomerMapper;
 import pl.fakturogen.invoice.web.dto.CustomerDTO;
@@ -37,7 +39,7 @@ public class CustomerServiceDefault implements CustomerService {
             return customerMapper.from(customerSaved);
         } catch (Exception e) {
             log.warn(e.getMessage(), e);
-            throw new CustomerException("There was an unexpected error during saving customer in database");
+            throw new CustomerCreateException("There was an unexpected error during saving customer in database");
         }
     }
 
@@ -52,7 +54,7 @@ public class CustomerServiceDefault implements CustomerService {
             return Optional.ofNullable(customerDTO);
         } catch (Exception e) {
             log.warn(e.getMessage(), e);
-            throw new CustomerException("There was an unexpected error during finding customer in database");
+            throw new CustomerReadException("There was an unexpected error during finding customer in database");
         }
 
     }
@@ -68,7 +70,18 @@ public class CustomerServiceDefault implements CustomerService {
 
         } catch (Exception e) {
             log.warn(e.getMessage(), e);
-            throw new CustomerException("There was an unexpected error during finding all customers in database");
+            throw new CustomerReadException("There was an unexpected error during finding all customers in database");
         }
+    }
+
+    @Override
+    public Optional<CustomerDTO> findByExternalId(Long id) throws CustomerException {
+        try{
+            customerRepository.findByIdExternalApi(id);
+        }catch (Exception e){
+            log.warn(e.getMessage(), e);
+            throw new CustomerReadException("There was an unexpected error during finding cutomer in database");
+        }
+        return Optional.empty();
     }
 }
