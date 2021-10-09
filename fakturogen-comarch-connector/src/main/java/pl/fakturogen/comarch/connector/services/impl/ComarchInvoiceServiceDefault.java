@@ -3,7 +3,6 @@ package pl.fakturogen.comarch.connector.services.impl;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.connector.ComarchApiInvoiceConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchInvoiceDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchHttpConnectorException;
 import pl.fakturogen.comarch.connector.exeption.InvoiceNotFoundException;
 import pl.fakturogen.comarch.connector.exeption.InvoicesNotFoundException;
 import pl.fakturogen.comarch.connector.mapper.ComarchInvoiceMapper;
@@ -13,6 +12,7 @@ import pl.fakturogen.comarch.connector.services.ComarchInvoiceService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class ComarchInvoiceServiceDefault implements ComarchInvoiceService {
     private ComarchApiInvoiceConnector connector;
@@ -24,29 +24,30 @@ public class ComarchInvoiceServiceDefault implements ComarchInvoiceService {
     }
 
     @Override
-    public ComarchInvoiceDTO read(long id) {
+    public ComarchInvoiceDTO read(Long id) throws ComarchConnectorException {
+        // FIXME: refactor Exception handling!
         Optional<ComarchInvoiceDTO> comarchInvoiceDTO = Optional.empty();
-        try {
+//        try {
             ComarchInvoice invoiceById = connector.getInvoiceById(id);
             comarchInvoiceDTO = Optional.of(comarchInvoiceMapper.from(invoiceById));
-        } catch (IOException | ComarchHttpConnectorException e) {
-            e.printStackTrace();
-        }
-        return comarchInvoiceDTO.orElseThrow(() -> new InvoiceNotFoundException(id));
+            return comarchInvoiceDTO.orElseThrow(() -> new InvoiceNotFoundException(id));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
-    public List<ComarchInvoiceDTO> readAll() {
+    public List<ComarchInvoiceDTO> readAll() throws ComarchConnectorException {
+        // FIXME: refactor Exception handling!
         Optional<List<ComarchInvoiceDTO>> comarchInvoiceDTOList = Optional.empty();
-        try {
+//        try {
             List<ComarchInvoice> invoices = connector.getInvoices();
             comarchInvoiceDTOList = Optional.of(comarchInvoiceMapper.from(invoices));
+            return comarchInvoiceDTOList.orElseThrow(() -> new InvoicesNotFoundException());
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
 
-        } catch (IOException | ComarchHttpConnectorException ex) {
-            ex.printStackTrace();
-        }
-
-        return comarchInvoiceDTOList.orElseThrow(() -> new InvoicesNotFoundException());
     }
 
 }

@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.ComarchHttpConnectorException;
 import pl.fakturogen.comarch.connector.mapper.ComarchCustomerMapper;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
@@ -16,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 /**
  * @author ewa-git
  */
@@ -47,14 +44,14 @@ public class ComarchApiCustomerConnector {
     public Optional<ComarchCustomerDTO> read(Long id) throws ComarchConnectorException {
         Optional<ComarchCustomerDTO> optionalCustomerDTO = Optional.empty();
         try {
-            ComarchCustomer comarchCustomer = (ComarchCustomer) httpConnectorUtilsDecorator.httpGet(url, id, comarchCustomerConverter);
+            Response response = httpConnectorUtils.httpGetById(url, id);
+            String responseString = response.body().string();
+            ComarchCustomer comarchCustomer = comarchCustomerConverter.from(responseString);
             optionalCustomerDTO = Optional.of(comarchCustomerMapper.from(comarchCustomer));
-        } catch (ComarchHttpConnectorException e) {
-            log.warn(e.getMessage());
-            throw new ComarchConnectorException(e.getMessage(), e);
-        } catch (Exception e){
-            log.warn(e.getMessage());
-            throw new ComarchConnectorException(e.getMessage(), e);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return optionalCustomerDTO;
     }
@@ -68,7 +65,8 @@ public class ComarchApiCustomerConnector {
             comarchCustomerDTOList = comarchCustomerMapper.fromList(comarchCustomerList);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
         return comarchCustomerDTOList;

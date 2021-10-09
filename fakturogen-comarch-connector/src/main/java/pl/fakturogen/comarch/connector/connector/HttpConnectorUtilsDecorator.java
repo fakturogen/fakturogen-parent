@@ -6,7 +6,7 @@ import okhttp3.ResponseBody;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchConverter;
 import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.ComarchHttpConnectorException;
+import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
 
 import java.io.IOException;
 
@@ -41,6 +41,5 @@ public class HttpConnectorUtilsDecorator {
             log.warn(e.getMessage(), e);
             throw new ComarchHttpConnectorException(e.getMessage(), e);
         }
-
     }
 }
