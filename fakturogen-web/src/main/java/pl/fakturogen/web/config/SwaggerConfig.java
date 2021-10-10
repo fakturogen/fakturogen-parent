@@ -1,15 +1,17 @@
 package pl.fakturogen.web.config;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
+import org.springframework.http.HttpStatus;
+import springfox.documentation.builders.*;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.List;
 
 @Configuration
 @EnableSwagger2
@@ -21,6 +23,11 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .useDefaultResponseMessages(false)
+                .globalResponses(HttpMethod.GET, List.of(
+                        new ResponseBuilder().code(String.valueOf(HttpStatus.BAD_REQUEST.value()))
+                                .description(HttpStatus.BAD_REQUEST.getReasonPhrase())
+                                .build()))
                 .select()
                 .paths(PathSelectors.ant("/api/**"))
                 .apis(RequestHandlerSelectors.basePackage("pl.fakturogen.web.controller"))

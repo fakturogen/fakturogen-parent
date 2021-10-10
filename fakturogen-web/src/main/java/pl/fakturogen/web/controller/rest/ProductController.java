@@ -1,5 +1,10 @@
 package pl.fakturogen.web.controller.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
@@ -18,6 +23,7 @@ import java.util.Optional;
  * @author damian
  */
 
+@Api(value = "${fakturogen.product.description}")
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
@@ -32,12 +38,15 @@ public class ProductController {
         this.fakturogenProductMapper = fakturogenProductMapper;
     }
 
+    @ApiOperation(value = "${fakturogen.product.list}")
     @GetMapping("/list")
     @ResponseStatus(HttpStatus.OK)
     public List<ComarchProductDTO> getProductList() throws ComarchConnectorException {
         return comarchProductService.readAll();
     }
 
+    @ApiOperation(value = "${fakturogen.product.get}")
+    @ApiResponse(code = 404, message = "Product not found")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ComarchProductDTO getProductById(@PathVariable Long id) throws ProductNotFoundException, ProductException, ComarchConnectorException {
@@ -49,4 +58,5 @@ public class ProductController {
         productService.create(productDTO);
         return comarchProductDTO;
     }
+
 }
