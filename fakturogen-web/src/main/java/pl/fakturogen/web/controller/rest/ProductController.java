@@ -1,9 +1,7 @@
 package pl.fakturogen.web.controller.rest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
 import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.mapper.FakturogenProductMapper;
@@ -34,15 +32,15 @@ public class ProductController {
         this.fakturogenProductMapper = fakturogenProductMapper;
     }
 
-
-    @GetMapping("/getProductList")
+    @GetMapping("/list")
+    @ResponseStatus(HttpStatus.OK)
     public List<ComarchProductDTO> getProductList() throws ComarchConnectorException {
         return comarchProductService.readAll();
     }
 
-    @GetMapping("/getProductById/{id}")
-    public ComarchProductDTO getProductById(@PathVariable Long id) throws ProductNotFoundException,
-            ComarchConnectorException, ProductException {
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ComarchProductDTO getProductById(@PathVariable Long id) throws ProductNotFoundException, ProductException, ComarchConnectorException {
         Optional<ComarchProductDTO> optionalProduct = comarchProductService.read(id);
         ComarchProductDTO comarchProductDTO = optionalProduct
                 .orElseThrow(() -> new ProductNotFoundException("Product with given id not found."));
