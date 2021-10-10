@@ -26,8 +26,6 @@
         <module>fakturogen-invoice</module>
         <module>fakturogen-comarch-connector</module>
         <module>fakturogen-user</module>
-        <module>fakturogen-api</module>
-        <module>fakturogen-core</module>
     </modules>
 
     <dependencies>
