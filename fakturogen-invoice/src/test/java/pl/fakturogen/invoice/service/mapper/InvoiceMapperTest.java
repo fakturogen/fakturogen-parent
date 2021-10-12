@@ -8,6 +8,7 @@ import pl.fakturogen.invoice.dao.entity.Customer;
 import pl.fakturogen.invoice.dao.entity.Invoice;
 import pl.fakturogen.invoice.dao.entity.Product;
 import pl.fakturogen.invoice.dao.entity.Rate;
+import pl.fakturogen.invoice.web.dto.CustomerDTO;
 import pl.fakturogen.invoice.web.dto.InvoiceSaveDTO;
 
 import java.time.LocalDate;
@@ -20,12 +21,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class InvoiceMapperTest {
     InvoiceMapper invoiceMapper;
     List<Product> items;
-    Customer customer;
+    CustomerDTO customer;
 
     @BeforeEach
     void init() {
         invoiceMapper = new InvoiceMapper();
-        customer = new Customer();
+        customer = new CustomerDTO();
         items = new ArrayList<>();
     }
 
@@ -61,7 +62,7 @@ class InvoiceMapperTest {
                 .net(200.00)
                 .discount(00.0)
                 .status(1)
-                .customer(customer)
+                .customerDTO(customer)
                 .items(items)
                 .bankAccountId(1234)
                 .invoiceType(0)
@@ -84,7 +85,7 @@ class InvoiceMapperTest {
                 () -> assertThat(result.getDiscount()).isEqualTo(receivedDTO.getDiscount()),
                 () -> assertThat(result.getStatus()).isEqualTo(receivedDTO.getStatus()),
                 () -> assertThat(result.getCustomer()).isNotNull(),
-                () -> assertThat(result.getCustomer().getNip()).isEqualTo(receivedDTO.getCustomer().getNip()),
+                () -> assertThat(result.getCustomer().getNip()).isEqualTo(receivedDTO.getCustomerDTO().getNip()),
                 () -> assertThat(result.getBankAccountId()).isEqualTo(receivedDTO.getBankAccountId()),
                 () -> assertThat(result.getInvoiceType()).isEqualTo(receivedDTO.getInvoiceType()),
                 () -> assertThat(result.getAdditionalInformation()).isEqualTo(receivedDTO.getAdditionalInformation()),
@@ -100,7 +101,7 @@ class InvoiceMapperTest {
 
         Invoice invoice = new Invoice();
         invoice.setItems(invoiceSaveDTO.getItems());
-        invoice.setCustomer(invoiceSaveDTO.getCustomer());
+//        invoice.setCustomer(invoiceSaveDTO.);
 
         Invoice result = invoiceMapper.from(invoiceSaveDTO);
 

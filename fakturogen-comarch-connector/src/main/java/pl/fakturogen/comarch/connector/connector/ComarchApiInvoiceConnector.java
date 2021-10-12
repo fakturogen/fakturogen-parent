@@ -67,14 +67,14 @@ public class ComarchApiInvoiceConnector {
     public Long create(ComarchInvoiceDTO comarchInvoiceDTO) throws ComarchConverterException {
         log.info("create({})", comarchInvoiceDTO);
         try{
-            ComarchInvoice comarchInvoice = comarchInvoiceMapper.from(comarchInvoiceDTO);
-            log.info("");
-            String jsonToSend = comarchInvoiceConverter.from(comarchInvoice);
-            Response response = httpConnectorUtils.httpPost(url, jsonToSend);
+//            ComarchInvoice comarchInvoice = comarchInvoiceMapper.from(comarchInvoiceDTO);
+//            log.info("");
+//            String jsonToSend = comarchInvoiceConverter.from(comarchInvoice);
+            Response response = httpConnectorUtils.httpPost(url, comarchInvoiceDTO);
             String responseAsString = response.body().string();
             return Long.parseLong(responseAsString);
 
-        } catch (ComarchConverterException | IOException | ComarchHttpConnectorException e) {
+        } catch (ComarchHttpConnectorException | IOException e) {
             throw new ComarchConverterException("Error during save invoice to external api", e);
         }
     }
