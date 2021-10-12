@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.connector.ComarchApiInvoiceConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchInvoiceDTO;
 import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exeption.ComarchConverterException;
 import pl.fakturogen.comarch.connector.exeption.InvoiceNotFoundException;
 import pl.fakturogen.comarch.connector.exeption.InvoicesNotFoundException;
 import pl.fakturogen.comarch.connector.mapper.ComarchInvoiceMapper;
@@ -48,6 +49,12 @@ public class ComarchInvoiceServiceDefault implements ComarchInvoiceService {
 //            ex.printStackTrace();
 //        }
 
+    }
+
+    @Override
+    public Long create(ComarchInvoiceDTO comarchInvoiceDTO) throws ComarchConverterException {
+
+        return connector.create(comarchInvoiceDTO);
     }
 
 }
