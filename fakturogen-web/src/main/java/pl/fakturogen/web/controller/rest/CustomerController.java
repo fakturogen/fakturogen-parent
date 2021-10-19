@@ -3,57 +3,56 @@ package pl.fakturogen.web.controller.rest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.fakturogen.comarch.connector.connector.ComarchApiCustomerConnector;
-import pl.fakturogen.comarch.connector.dto.ComarchAddressDTO;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
+import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.mapper.FakturogenCustomerMapper;
+import pl.fakturogen.comarch.connector.services.ComarchCustomerService;
+import pl.fakturogen.invoice.exception.CustomerException;
+import pl.fakturogen.invoice.service.CustomerService;
+import pl.fakturogen.invoice.web.dto.CustomerDTO;
+import pl.fakturogen.web.exception.CustomerNotFoundException;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
-/**
- * @author ewa-git
- */
 
 @RestController
-@RequestMapping("/api/get/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
-    private final ComarchApiCustomerConnector comarchApiCustomerConnector;
 
-    public CustomerController(ComarchApiCustomerConnector comarchApiCustomerConnector) {
-        this.comarchApiCustomerConnector = comarchApiCustomerConnector;
+    private ComarchCustomerService comarchCustomerService;
+    private CustomerService customerService;
+    private FakturogenCustomerMapper fakturogenCustomerMapper;
+
+    public CustomerController(ComarchCustomerService comarchCustomerService,
+                              CustomerService customerService,
+                              FakturogenCustomerMapper fakturogenCustomerMapper) {
+        this.comarchCustomerService = comarchCustomerService;
+        this.customerService = customerService;
+        this.fakturogenCustomerMapper = fakturogenCustomerMapper;
     }
 
     @GetMapping
-    public List<ComarchCustomerDTO> list() throws IOException {
-        return comarchApiCustomerConnector.readAll();
+    public List<ComarchCustomerDTO> getCustomerList() throws ComarchConnectorException {
+        return  comarchCustomerService.readAll();
     }
 
-    @GetMapping("/{id}")
-    public ComarchCustomerDTO read(@PathVariable long id) throws Exception {
-        Optional<ComarchCustomerDTO> optionalCustomer = comarchApiCustomerConnector.read(id);
-        ComarchCustomerDTO comarchCustomerDTO = optionalCustomer.orElseThrow(() -> new Exception("Customer with id " + id + " was not found"));
-//        ComarchCustomerDTO comarchCustomerDTO = optionalCustomer.get();
+    @GetMapping("/get/{id}")
+    public ComarchCustomerDTO getCustomerById(@PathVariable Long id) throws CustomerNotFoundException, CustomerException, ComarchConnectorException {
+        Optional<ComarchCustomerDTO> optionalCustomer = comarchCustomerService.read(id);
+        ComarchCustomerDTO comarchCustomerDTO = optionalCustomer.orElseThrow(() -> new CustomerNotFoundException("Couldn't find customer with id " + id));
+
+        CustomerDTO customerDTO = fakturogenCustomerMapper.from(comarchCustomerDTO);
+        customerService.create(customerDTO);
         return comarchCustomerDTO;
     }
 
     @PostMapping
-    public Long create() throws IOException {
-        ComarchCustomerDTO customerComarchDTO = new ComarchCustomerDTO();
-        ComarchAddressDTO comarchAddressDTO = new ComarchAddressDTO();
-        customerComarchDTO.setName("NAME");
-        Random random = new Random();
-        customerComarchDTO.setCustomerTaxNumber("K/001");
-        customerComarchDTO.setCustomerType(0);
-        customerComarchDTO.setCustomerCode(String.valueOf(random.nextInt(100)));
-        customerComarchDTO.setMail("MAIL");
-        customerComarchDTO.setPhoneNumber("PHONE_NUMBER");
-        customerComarchDTO.setAddress(comarchAddressDTO);
-
-        Long externalId = comarchApiCustomerConnector.create(customerComarchDTO);
-        return externalId;
+    public Long create(@RequestBody ComarchCustomerDTO comarchCustomerDTO) throws CustomerException {
+        CustomerDTO customerDTO = fakturogenCustomerMapper.from(comarchCustomerDTO);
+        CustomerDTO customerSavedInDatabase = customerService.create(customerDTO);
+        return customerSavedInDatabase.getId();
     }
-
 }

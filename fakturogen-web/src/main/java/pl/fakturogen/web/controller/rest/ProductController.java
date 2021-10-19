@@ -22,7 +22,7 @@ import java.util.Optional;
  */
 
 @RestController
-public class ProductController {
+public class   ProductController {
     private ComarchProductService comarchProductService;
     private ProductService productService;
     private FakturogenProductMapper fakturogenProductMapper;
