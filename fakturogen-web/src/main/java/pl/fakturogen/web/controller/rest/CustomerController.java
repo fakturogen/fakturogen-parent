@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/getCustomer")
+@RequestMapping("/api/customer")
 public class CustomerController {
 
     private ComarchCustomerService comarchCustomerService;
@@ -39,7 +39,7 @@ public class CustomerController {
         return  comarchCustomerService.readAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ComarchCustomerDTO getCustomerById(@PathVariable Long id) throws CustomerNotFoundException, CustomerException, ComarchConnectorException {
         Optional<ComarchCustomerDTO> optionalCustomer = comarchCustomerService.read(id);
         ComarchCustomerDTO comarchCustomerDTO = optionalCustomer.orElseThrow(() -> new CustomerNotFoundException("Couldn't find customer with id " + id));

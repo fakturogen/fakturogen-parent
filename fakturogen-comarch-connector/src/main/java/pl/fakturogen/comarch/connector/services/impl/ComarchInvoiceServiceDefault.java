@@ -24,7 +24,7 @@ public class ComarchInvoiceServiceDefault implements ComarchInvoiceService {
     }
 
     @Override
-    public ComarchInvoiceDTO read(Long id) throws ComarchConnectorException, ComarchConnectorException {
+    public ComarchInvoiceDTO read(Long id) throws ComarchConnectorException {
         // FIXME: refactor Exception handling!
         Optional<ComarchInvoiceDTO> comarchInvoiceDTO = Optional.empty();
 //        try {
