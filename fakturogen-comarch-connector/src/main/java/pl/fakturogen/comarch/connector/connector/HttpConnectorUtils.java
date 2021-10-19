@@ -107,7 +107,7 @@ public class HttpConnectorUtils {
 
             MediaType JSON = MediaType.get("application/json; charset=utf-8");
             RequestBody body = RequestBody.create(JSON, json);
-            log.debug("JSON: {}", json);
+            log.info("JSON: {}", json);
 
             Request request = new Request.Builder()
                     .url(url)
