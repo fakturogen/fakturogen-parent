@@ -32,6 +32,10 @@ public class InvoiceTemplate {
     private Double priceNet;
     @Column(name = "discount_amount")
     private Double discountAmount;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "invoiceType")
+    private Integer invoiceType;
 
     @ManyToOne
     private Customer customer;
@@ -44,14 +48,18 @@ public class InvoiceTemplate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceTemplate that = (InvoiceTemplate) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(issueDate, that.issueDate) &&
-                Objects.equals(priceTotal, that.priceTotal);
+        return Objects.equals(id, that.id) && Objects.equals(issueDate, that.issueDate)
+                && Objects.equals(saleDate, that.saleDate) && Objects.equals(paymentMethod, that.paymentMethod)
+                && Objects.equals(priceTotal, that.priceTotal) && Objects.equals(priceTax, that.priceTax)
+                && Objects.equals(priceNet, that.priceNet) && Objects.equals(discountAmount, that.discountAmount)
+                && Objects.equals(description, that.description) && Objects.equals(invoiceType, that.invoiceType)
+                && Objects.equals(customer, that.customer) && Objects.equals(products, that.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, issueDate, priceTotal);
+        return Objects.hash(id, issueDate, saleDate, paymentMethod, priceTotal, priceTax, priceNet, discountAmount,
+                description, invoiceType, customer, products);
     }
 
     @Override
@@ -65,6 +73,8 @@ public class InvoiceTemplate {
                 ", priceTax=" + priceTax +
                 ", priceNet=" + priceNet +
                 ", discountAmount=" + discountAmount +
+                ", description='" + description + '\'' +
+                ", invoiceType=" + invoiceType +
                 ", customer=" + customer +
                 ", products=" + products +
                 '}';
@@ -148,5 +158,21 @@ public class InvoiceTemplate {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getInvoiceType() {
+        return invoiceType;
+    }
+
+    public void setInvoiceType(Integer invoiceType) {
+        this.invoiceType = invoiceType;
     }
 }

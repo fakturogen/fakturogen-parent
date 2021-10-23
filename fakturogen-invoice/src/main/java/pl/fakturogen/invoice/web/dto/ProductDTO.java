@@ -1,6 +1,7 @@
 package pl.fakturogen.invoice.web.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.fakturogen.invoice.dao.entity.Rate;
@@ -12,6 +13,7 @@ import pl.fakturogen.invoice.dao.entity.Rate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ProductDTO {
     private Long id;
     private String name;
