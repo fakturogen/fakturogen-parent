@@ -13,12 +13,12 @@ import pl.fakturogen.invoice.web.dto.CustomerTypeDTO;
 @Component
 @Slf4j
 public class FakturogenCustomerMapper {
-    private final FakturogenAddressMapper comarchAddressToEntityDTOMapper;
-    private final FakturogenCustomerTypeMapper comarchCustomerTypeToEntityDTOMapper;
+    private final FakturogenAddressMapper fakturogenAddressMapper;
+    private final FakturogenCustomerTypeMapper fakturogenCustomerTypeMapper;
 
     public FakturogenCustomerMapper(FakturogenAddressMapper comarchAddressToEntityDTOMapper, FakturogenCustomerTypeMapper comarchCustomerTypeToEntityDTOMapper) {
-        this.comarchAddressToEntityDTOMapper = comarchAddressToEntityDTOMapper;
-        this.comarchCustomerTypeToEntityDTOMapper = comarchCustomerTypeToEntityDTOMapper;
+        this.fakturogenAddressMapper = comarchAddressToEntityDTOMapper;
+        this.fakturogenCustomerTypeMapper = comarchCustomerTypeToEntityDTOMapper;
     }
 
     public static final int CUSTOMER_TYPE_OSOBA_FIZYCZNA = 0;
@@ -33,14 +33,14 @@ public class FakturogenCustomerMapper {
         customerDTO.setMail(comarchCustomerDTO.getMail());
         customerDTO.setPhoneNumber(comarchCustomerDTO.getPhoneNumber());
 
-        AddressDTO addressDTO = comarchAddressToEntityDTOMapper.from(comarchCustomerDTO.getAddress());
+        AddressDTO addressDTO = fakturogenAddressMapper.from(comarchCustomerDTO.getAddress());
 
         customerDTO.setAddress(addressDTO);
 
         Integer customerType = comarchCustomerDTO.getCustomerType();
 
         if (customerType != null) {
-            CustomerTypeDTO customerTypeDTO = comarchCustomerTypeToEntityDTOMapper.from(comarchCustomerDTO);
+            CustomerTypeDTO customerTypeDTO = fakturogenCustomerTypeMapper.from(comarchCustomerDTO);
             customerDTO.setCustomerType(customerTypeDTO);
             if (customerType.equals(CUSTOMER_TYPE_OSOBA_FIZYCZNA)) {
                 customerDTO.setPesel(comarchCustomerDTO.getCustomerTaxNumber());

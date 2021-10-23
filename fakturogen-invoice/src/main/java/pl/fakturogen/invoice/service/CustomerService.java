@@ -17,5 +17,6 @@ public interface CustomerService {
     CustomerDTO create(CustomerDTO customerDTO) throws CustomerException;
     Optional<CustomerDTO> read(Long id) throws CustomerException;
     List<CustomerDTO> readAll() throws CustomerException;
+    Optional <CustomerDTO> findByExternalId(Long id) throws CustomerException;
 
 }

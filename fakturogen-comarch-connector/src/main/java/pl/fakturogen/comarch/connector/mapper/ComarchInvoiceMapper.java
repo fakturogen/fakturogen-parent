@@ -34,7 +34,11 @@ public class ComarchInvoiceMapper {
     }
 
     public ComarchInvoice from(ComarchInvoiceDTO comarchInvoiceDTO){
-        return null;
+        logger.info("comarchInvoiceDTO {}", comarchInvoiceDTO);
+        ModelMapper modelMapper = new ModelMapper();
+        ComarchInvoice comarchInvoice = modelMapper.map(comarchInvoiceDTO, ComarchInvoice.class);
+        logger.info("to comarchInvoice: {}", comarchInvoice);
+        return comarchInvoice;
     }
 
 }

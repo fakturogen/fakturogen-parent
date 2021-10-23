@@ -3,8 +3,6 @@ package pl.fakturogen.web.controller.rest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
@@ -58,5 +56,4 @@ public class ProductController {
         productService.create(productDTO);
         return comarchProductDTO;
     }
-
 }
