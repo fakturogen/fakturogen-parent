@@ -1,23 +1,16 @@
 package pl.fakturogen.web.controller.rest;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.dto.ComarchInvoiceDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.ComarchConverterException;
-import pl.fakturogen.comarch.connector.mapper.ComarchInvoiceMapper;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchItem;
 import pl.fakturogen.comarch.connector.services.ComarchInvoiceService;
-import pl.fakturogen.invoice.dao.entity.Invoice;
-import pl.fakturogen.invoice.service.mapper.InvoiceMapper;
-import pl.fakturogen.invoice.web.dto.InvoiceDTO;
-import pl.fakturogen.invoice.web.dto.InvoiceSaveDTO;
 
 import java.util.ArrayList;
 import java.util.List;

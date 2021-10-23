@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.mapper.FakturogenProductMapper;
 import pl.fakturogen.comarch.connector.services.ComarchProductService;
 import pl.fakturogen.invoice.exception.ProductException;

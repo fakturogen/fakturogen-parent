@@ -3,7 +3,7 @@ package pl.fakturogen.comarch.connector.services.impl;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.connector.ComarchApiProductConnector;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.services.ComarchProductService;
 
 import java.util.List;

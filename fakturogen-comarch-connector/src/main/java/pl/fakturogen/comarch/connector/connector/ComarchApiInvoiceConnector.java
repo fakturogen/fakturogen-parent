@@ -1,15 +1,13 @@
 package pl.fakturogen.comarch.connector.connector;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.converter.ComarchInvoiceConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchInvoiceDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.ComarchConverterException;
-import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConverterException;
+import pl.fakturogen.comarch.connector.exception.connector.ComarchHttpConnectorException;
 import pl.fakturogen.comarch.connector.mapper.ComarchInvoiceMapper;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 

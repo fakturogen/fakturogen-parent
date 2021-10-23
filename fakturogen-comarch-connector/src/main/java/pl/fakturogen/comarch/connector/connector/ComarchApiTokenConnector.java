@@ -12,8 +12,8 @@ import okhttp3.ResponseBody;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.converter.TokenResponseConverter;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchToken;
 
 import java.io.IOException;

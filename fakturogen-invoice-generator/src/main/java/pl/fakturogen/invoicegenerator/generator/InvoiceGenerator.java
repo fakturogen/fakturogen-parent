@@ -1,7 +1,7 @@
 package pl.fakturogen.invoicegenerator.generator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.services.ComarchInvoiceService;
 import pl.fakturogen.invoice.service.InvoiceService;
 import pl.fakturogen.invoice.web.dto.InvoiceDTO;

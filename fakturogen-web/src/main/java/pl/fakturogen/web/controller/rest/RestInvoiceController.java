@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.connector.ComarchApiInvoiceConnector;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 
 import java.io.IOException;
@@ -25,16 +25,16 @@ public class RestInvoiceController {
     @RequestMapping("/getInvoices")
     public List<ComarchInvoice> getInvoices() throws IOException, ComarchConnectorException {
         String[] args = applicationArguments.getSourceArgs();
-        apiInvoiceConnector.setClientId(args[0]);
-        apiInvoiceConnector.setSecret(args[1]);
+//        apiInvoiceConnector.setClientId(args[0]);
+//        apiInvoiceConnector.setSecret(args[1]);
         return apiInvoiceConnector.getInvoices();
     }
 
     @RequestMapping("/getInvoices/{id}")
     public ComarchInvoice getInvoice(@PathVariable long id) throws IOException, ComarchConnectorException {
         String[] args = applicationArguments.getSourceArgs();
-        apiInvoiceConnector.setClientId(args[0]);
-        apiInvoiceConnector.setSecret(args[1]);
+//        apiInvoiceConnector.setClientId(args[0]);
+//        apiInvoiceConnector.setSecret(args[1]);
         return apiInvoiceConnector.getInvoiceById(id);
     }
 }

@@ -2,8 +2,8 @@ package pl.fakturogen.comarch.connector.services;
 
 import org.springframework.stereotype.Service;
 import pl.fakturogen.comarch.connector.dto.ComarchInvoiceDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.ComarchConverterException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConverterException;
 import pl.fakturogen.invoice.web.dto.InvoiceDTO;
 
 import java.util.List;

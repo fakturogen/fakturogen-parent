@@ -10,8 +10,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.springframework.stereotype.Component;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.connector.ComarchHttpConnectorException;
 
 import java.io.IOException;
 import java.util.HashMap;

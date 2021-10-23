@@ -1,6 +1,6 @@
-package pl.fakturogen.comarch.connector.exeption.connector;
+package pl.fakturogen.comarch.connector.exception.connector;
 
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 
 public class ComarchHttpConnectorException extends ComarchConnectorException {
     public ComarchHttpConnectorException(String message) {
