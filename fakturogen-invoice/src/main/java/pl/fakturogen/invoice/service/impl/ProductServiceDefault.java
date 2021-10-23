@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.fakturogen.invoice.dao.entity.Product;
 import pl.fakturogen.invoice.dao.repository.ProductRepository;
-import pl.fakturogen.invoice.exception.CreateProductException;
+import pl.fakturogen.invoice.exception.ProductCreateException;
 import pl.fakturogen.invoice.exception.ProductException;
-import pl.fakturogen.invoice.exception.ReadProductException;
+import pl.fakturogen.invoice.exception.ProductReadException;
 import pl.fakturogen.invoice.service.ProductService;
 import pl.fakturogen.invoice.service.mapper.ProductMapper;
 import pl.fakturogen.invoice.web.dto.ProductDTO;
@@ -39,7 +39,7 @@ public class ProductServiceDefault implements ProductService {
             return productMapper.from(savedProduct);
         } catch (Exception ex) {
             log.warn(ex.getMessage(), ex);
-            throw new CreateProductException("Error during creating product entity in database");
+            throw new ProductCreateException("Error during creating product entity in database");
         }
     }
 
@@ -56,7 +56,7 @@ public class ProductServiceDefault implements ProductService {
             return Optional.ofNullable(returnProductDTO);
         } catch (Exception ex) {
             log.warn(ex.getMessage(), ex);
-            throw new ReadProductException("Error during reading product from database");
+            throw new ProductReadException("Error during reading product from database");
         }
 
     }
@@ -70,7 +70,7 @@ public class ProductServiceDefault implements ProductService {
                     .collect(Collectors.toList());
         } catch (Exception ex) {
             log.warn(ex.getMessage(), ex);
-            throw new ReadProductException("Error during reading all products from database");
+            throw new ProductReadException("Error during reading all products from database");
         }
     }
 
@@ -80,7 +80,7 @@ public class ProductServiceDefault implements ProductService {
             productRepository.findByIdExternalApi(id);
         } catch (Exception ex) {
             log.warn(ex.getMessage(), ex);
-            throw new ReadProductException("Error during reading product from database");
+            throw new ProductReadException("Error during reading product from database");
         }
         return Optional.empty();
     }
