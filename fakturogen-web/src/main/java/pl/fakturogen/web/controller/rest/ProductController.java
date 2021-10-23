@@ -1,10 +1,10 @@
 package pl.fakturogen.web.controller.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
 import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.mapper.FakturogenProductMapper;
@@ -21,8 +21,10 @@ import java.util.Optional;
  * @author damian
  */
 
+@Api(value = "${fakturogen.product.description}")
 @RestController
-public class   ProductController {
+@RequestMapping("/api/product")
+public class ProductController {
     private ComarchProductService comarchProductService;
     private ProductService productService;
     private FakturogenProductMapper fakturogenProductMapper;
@@ -34,13 +36,16 @@ public class   ProductController {
         this.fakturogenProductMapper = fakturogenProductMapper;
     }
 
-    @GetMapping("/getProductList")
+    @ApiOperation(value = "${fakturogen.product.list}")
+    @GetMapping("/list")
     @ResponseStatus(HttpStatus.OK)
     public List<ComarchProductDTO> getProductList() throws ComarchConnectorException {
         return comarchProductService.readAll();
     }
 
-    @GetMapping("/getProductById/{id}")
+    @ApiOperation(value = "${fakturogen.product.get}")
+    @ApiResponse(code = 404, message = "Product not found")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ComarchProductDTO getProductById(@PathVariable Long id) throws ProductNotFoundException, ProductException, ComarchConnectorException {
         Optional<ComarchProductDTO> optionalProduct = comarchProductService.read(id);

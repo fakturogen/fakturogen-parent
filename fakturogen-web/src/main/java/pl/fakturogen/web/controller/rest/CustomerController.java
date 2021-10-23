@@ -55,4 +55,5 @@ public class CustomerController {
         CustomerDTO customerSavedInDatabase = customerService.create(customerDTO);
         return customerSavedInDatabase.getId();
     }
+
 }
