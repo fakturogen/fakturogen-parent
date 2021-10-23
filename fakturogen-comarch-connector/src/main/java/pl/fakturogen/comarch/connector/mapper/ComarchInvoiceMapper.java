@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.dto.ComarchInvoiceDTO;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
+import pl.fakturogen.invoice.web.dto.InvoiceDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,4 +42,7 @@ public class ComarchInvoiceMapper {
         return comarchInvoice;
     }
 
+    public ComarchInvoiceDTO fromInvoiceDTO(InvoiceDTO invoiceDTO) {
+        return null;
+    }
 }

@@ -10,6 +10,7 @@ import pl.fakturogen.comarch.connector.exeption.InvoicesNotFoundException;
 import pl.fakturogen.comarch.connector.mapper.ComarchInvoiceMapper;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
 import pl.fakturogen.comarch.connector.services.ComarchInvoiceService;
+import pl.fakturogen.invoice.web.dto.InvoiceDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +55,12 @@ public class ComarchInvoiceServiceDefault implements ComarchInvoiceService {
     @Override
     public Long create(ComarchInvoiceDTO comarchInvoiceDTO) throws ComarchConverterException {
 
+        return connector.create(comarchInvoiceDTO);
+    }
+
+    @Override
+    public Long create(InvoiceDTO invoiceDTO) throws  ComarchConnectorException {
+        ComarchInvoiceDTO comarchInvoiceDTO = comarchInvoiceMapper.fromInvoiceDTO(invoiceDTO);
         return connector.create(comarchInvoiceDTO);
     }
 
