@@ -36,7 +36,7 @@ public class InvoiceProviderService {
     }
 
     public List<InvoiceDTO> createExternalInvoice(List<InvoiceTemplateDTO> invoiceTemplateDTOList) throws ComarchConnectorException {
-        return  invoiceGenerator.createInvoiceList(invoiceTemplateDTOList);
+        return invoiceGenerator.createInvoiceList(invoiceTemplateDTOList);
     }
 
 }
