@@ -27,7 +27,7 @@ class InvoiceGeneratorTest {
     @Mock
     private InvoiceService invoiceService;
     @Mock
-    private InvoiceTemplateConventer invoiceTemplateConventer;
+    private InvoiceTemplateConverter invoiceTemplateConventer;
 
     @InjectMocks
     private InvoiceGenerator invoiceGenerator;

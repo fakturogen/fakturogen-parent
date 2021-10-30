@@ -7,7 +7,7 @@ import pl.fakturogen.invoice.web.dto.InvoiceTemplateDTO;
  * @author krzysiek
  */
 
-public class InvoiceTemplateConventer {
+class InvoiceTemplateConverter {
 
     public InvoiceDTO from(InvoiceTemplateDTO invoiceTemplateDTO) {
         return null;

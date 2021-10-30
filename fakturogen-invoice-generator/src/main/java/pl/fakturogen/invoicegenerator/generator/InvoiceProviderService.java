@@ -1,6 +1,23 @@
-package pl.fakturogen.invoicegenerator.provider;
+package pl.fakturogen.invoicegenerator.generator;
 
+import org.springframework.stereotype.Service;
+
+/**
+ * @author damian
+ */
+
+@Service
 public class InvoiceProviderService {
+
+    private InvoiceAnalyzer invoiceAnalyzer;
+    private InvoiceGenerator invoiceGenerator;
+
+    public InvoiceProviderService(InvoiceAnalyzer invoiceAnalyzer, InvoiceGenerator invoiceGenerator) {
+        this.invoiceAnalyzer = invoiceAnalyzer;
+        this.invoiceGenerator = invoiceGenerator;
+    }
+
+    //    public
     // zewnętrzne serwisy Controller z komunikują się z tym serwisem, który udostępnia metody InoviceAnalyer
 
     // 1) metoda, która sprawdza aktualną listę faktur w bazie naszej, czy zgadza się z listą faktur w Comarchu

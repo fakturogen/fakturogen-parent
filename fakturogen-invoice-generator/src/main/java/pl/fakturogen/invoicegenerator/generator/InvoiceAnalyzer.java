@@ -1,6 +1,6 @@
-package pl.fakturogen.invoicegenerator.analyzer;
+package pl.fakturogen.invoicegenerator.generator;
 
-public class InvoiceAnalyzer {
+class InvoiceAnalyzer {
 
     // Ewa
 
