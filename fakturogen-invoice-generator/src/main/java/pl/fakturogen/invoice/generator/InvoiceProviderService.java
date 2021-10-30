@@ -10,6 +10,10 @@ import java.util.List;
 
 /**
  * @author damian
+ *
+ * Services from other modules communicate with this service to use methods to analyze historical invoices and generate
+ * InvoiceTemplates which are invoices propositions for next month. It also allows creating new invoices in external
+ * system and update invoices' status in internal system.
  */
 
 @Service
@@ -26,9 +30,6 @@ public class InvoiceProviderService {
         this.invoiceGenerator = invoiceGenerator;
         this.invoiceStatusAnalyzer = invoiceStatusAnalyzer;
     }
-
-    //    public
-    // zewnętrzne serwisy Controller z komunikują się z tym serwisem, który udostępnia metody InoviceAnalyzer
 
     public List<InvoiceTemplateDTO> generateTemplateList(List<InvoiceDTO> invoiceList) {
         invoiceStatusAnalyzer.updateStatus();
