@@ -1,6 +1,16 @@
-package pl.fakturogen.invoicegenerator.generator;
+package pl.fakturogen.invoice.generator;
+
+import pl.fakturogen.invoice.web.dto.InvoiceDTO;
+import pl.fakturogen.invoice.web.dto.InvoiceTemplateDTO;
+
+import java.util.List;
 
 class InvoiceAnalyzer {
+
+
+    List<InvoiceTemplateDTO> generateInvoiceTemplateList(List<InvoiceDTO> invoiceList) {
+        return null;
+    }
 
     // Ewa
 

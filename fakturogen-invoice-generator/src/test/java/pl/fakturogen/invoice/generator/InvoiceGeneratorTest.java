@@ -1,4 +1,4 @@
-package pl.fakturogen.invoicegenerator.generator;
+package pl.fakturogen.invoice.generator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,7 +62,7 @@ class InvoiceGeneratorTest {
         Mockito.when(invoiceTemplateConventer.from(invoiceTemplateDTO_1)).thenReturn(invoiceDTO_1);
         Mockito.when(invoiceTemplateConventer.from(invoiceTemplateDTO_2)).thenReturn(invoiceDTO_2);
 
-        List<InvoiceDTO> invoiceDTOS = invoiceGenerator.generateInvoiceList(invoiceTemplateDTOList);
+        List<InvoiceDTO> invoiceDTOS = invoiceGenerator.createInvoiceList(invoiceTemplateDTOList);
 
         assertThat(invoiceDTOS).isEqualTo(expectedDTOList);
     }
@@ -70,7 +70,7 @@ class InvoiceGeneratorTest {
     @Test
     void givenEmptyInvoiceTemplateDTOListShouldReturnEmptyInvoiceDTOList() throws ComarchConnectorException {
         List<InvoiceTemplateDTO> emptyTemplateList = List.of();
-        List<InvoiceDTO> returnedList = invoiceGenerator.generateInvoiceList(emptyTemplateList);
+        List<InvoiceDTO> returnedList = invoiceGenerator.createInvoiceList(emptyTemplateList);
         assertThat(returnedList).isEmpty();
     }
 

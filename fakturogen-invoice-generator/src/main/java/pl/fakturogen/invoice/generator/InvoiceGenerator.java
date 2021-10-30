@@ -1,4 +1,4 @@
-package pl.fakturogen.invoicegenerator.generator;
+package pl.fakturogen.invoice.generator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ class InvoiceGenerator {
         this.invoiceTemplateConventer = invoiceTemplateConventer;
     }
 
-    List<InvoiceDTO> generateInvoiceList (List<InvoiceTemplateDTO> invoiceTemplateDTOList) throws ComarchConnectorException {
+    List<InvoiceDTO> createInvoiceList(List<InvoiceTemplateDTO> invoiceTemplateDTOList) throws ComarchConnectorException {
 
         List<InvoiceDTO> invoiceDTOlist = new ArrayList<>();
 
