@@ -31,9 +31,9 @@ public class InvoiceProviderService {
         this.invoiceStatusAnalyzer = invoiceStatusAnalyzer;
     }
 
-    public List<InvoiceTemplateDTO> generateTemplateList(List<InvoiceDTO> invoiceList) {
+    public List<InvoiceTemplateDTO> generateTemplateList() {
         invoiceStatusAnalyzer.updateStatus();
-        return invoiceAnalyzer.generateInvoiceTemplateList(invoiceList);
+        return invoiceAnalyzer.generateInvoiceTemplateList();
     }
 
     public List<InvoiceDTO> createExternalInvoice(List<InvoiceTemplateDTO> invoiceTemplateDTOList) throws ComarchConnectorException {

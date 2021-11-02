@@ -8,7 +8,7 @@ import java.util.List;
 class InvoiceAnalyzer {
 
 
-    List<InvoiceTemplateDTO> generateInvoiceTemplateList(List<InvoiceDTO> invoiceList) {
+    List<InvoiceTemplateDTO> generateInvoiceTemplateList() {
         return null;
     }
 

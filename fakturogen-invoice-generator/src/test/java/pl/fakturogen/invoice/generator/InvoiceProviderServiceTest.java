@@ -63,14 +63,14 @@ class InvoiceProviderServiceTest {
     @Test
     void generateTemplateListShouldOnceInvokeUpdateStatus() {
         List<InvoiceDTO> emptyInvoiceDTO_list = new ArrayList<>();
-        invoiceProviderService.generateTemplateList(emptyInvoiceDTO_list);
+        invoiceProviderService.generateTemplateList();
         verify(invoiceStatusAnalyzer, Mockito.times(1)).updateStatus();
     }
 
     @Test
     void givenInvoiceDTOListShouldReturnInvoiceTemplateDTOList() {
-        Mockito.when(invoiceAnalyzer.generateInvoiceTemplateList(invoiceDTOList)).thenReturn(invoiceTemplateDTOList);
-        List<InvoiceTemplateDTO> returnedList = invoiceProviderService.generateTemplateList(invoiceDTOList);
+        Mockito.when(invoiceAnalyzer.generateInvoiceTemplateList()).thenReturn(invoiceTemplateDTOList);
+        List<InvoiceTemplateDTO> returnedList = invoiceProviderService.generateTemplateList();
         assertEquals(invoiceTemplateDTOList, returnedList);
     }
 
