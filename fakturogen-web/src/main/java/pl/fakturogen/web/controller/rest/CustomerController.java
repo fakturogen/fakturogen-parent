@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.mapper.FakturogenCustomerMapper;
 import pl.fakturogen.comarch.connector.services.ComarchCustomerService;
 import pl.fakturogen.invoice.exception.CustomerException;

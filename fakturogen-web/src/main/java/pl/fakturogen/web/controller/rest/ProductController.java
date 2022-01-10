@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.fakturogen.comarch.connector.dto.ComarchProductDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.mapper.FakturogenProductMapper;
 import pl.fakturogen.comarch.connector.services.ComarchProductService;
 import pl.fakturogen.invoice.exception.ProductException;

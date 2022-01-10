@@ -1,7 +1,7 @@
 package pl.fakturogen.comarch.connector.services;
 
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 
 import java.util.List;
 import java.util.Optional;

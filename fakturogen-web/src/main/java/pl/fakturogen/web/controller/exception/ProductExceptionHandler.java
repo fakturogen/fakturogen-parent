@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import pl.fakturogen.invoice.exception.CreateProductException;
-import pl.fakturogen.invoice.exception.ReadProductException;
+import pl.fakturogen.invoice.exception.ProductCreateException;
+import pl.fakturogen.invoice.exception.ProductReadException;
 import pl.fakturogen.web.exception.ProductNotFoundException;
 import pl.fakturogen.web.exception.WebErrorResponse;
 
@@ -22,15 +22,15 @@ public class ProductExceptionHandler {
         return getDedicatedResponse(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
     }
 
-    @ExceptionHandler(ReadProductException.class)
+    @ExceptionHandler(ProductReadException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public WebErrorResponse readProductException(ReadProductException ex) {
+    public WebErrorResponse readProductException(ProductReadException ex) {
         return getDedicatedResponse(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
     }
 
-    @ExceptionHandler(CreateProductException.class)
+    @ExceptionHandler(ProductCreateException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public WebErrorResponse createProductException(CreateProductException ex) {
+    public WebErrorResponse createProductException(ProductCreateException ex) {
         return getDedicatedResponse(HttpStatus.BAD_REQUEST.toString(), ex.getMessage());
     }
 

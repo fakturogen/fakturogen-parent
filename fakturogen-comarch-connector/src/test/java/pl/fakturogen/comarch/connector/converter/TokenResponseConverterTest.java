@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
+import pl.fakturogen.comarch.connector.exception.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchToken;
 
 import static org.assertj.core.api.Assertions.assertThat;

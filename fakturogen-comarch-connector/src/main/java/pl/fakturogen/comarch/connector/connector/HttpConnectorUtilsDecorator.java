@@ -6,9 +6,9 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchConverter;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
-import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.connector.ComarchHttpConnectorException;
+import pl.fakturogen.comarch.connector.exception.converter.ComarchConverterException;
 
 import java.io.IOException;
 

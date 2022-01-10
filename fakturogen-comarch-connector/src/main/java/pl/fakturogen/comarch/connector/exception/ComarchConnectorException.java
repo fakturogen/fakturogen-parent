@@ -1,4 +1,4 @@
-package pl.fakturogen.comarch.connector.exeption;
+package pl.fakturogen.comarch.connector.exception;
 
 public class ComarchConnectorException extends Exception {
     public ComarchConnectorException(String message) {

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.fakturogen.comarch.connector.connector.ComarchApiTokenConnector;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
 import pl.fakturogen.comarch.connector.model.ComarchToken;
 
 @RestController

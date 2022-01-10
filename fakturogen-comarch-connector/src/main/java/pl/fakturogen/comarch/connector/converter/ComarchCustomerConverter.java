@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
+import pl.fakturogen.comarch.connector.exception.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
 import java.util.List;

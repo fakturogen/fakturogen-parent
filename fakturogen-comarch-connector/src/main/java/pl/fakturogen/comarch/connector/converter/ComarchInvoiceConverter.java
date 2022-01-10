@@ -4,11 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pl.fakturogen.comarch.connector.exeption.ComarchConverterException;
+import pl.fakturogen.comarch.connector.exception.ComarchConverterException;
 import pl.fakturogen.comarch.connector.model.ComarchInvoice;
-import pl.fakturogen.invoice.dao.entity.Customer;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.List;
 import java.util.logging.Logger;
 

@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.fakturogen.comarch.connector.converter.ComarchCustomerConverter;
 import pl.fakturogen.comarch.connector.dto.ComarchCustomerDTO;
-import pl.fakturogen.comarch.connector.exeption.ComarchConnectorException;
-import pl.fakturogen.comarch.connector.exeption.connector.ComarchHttpConnectorException;
-import pl.fakturogen.comarch.connector.exeption.converter.ComarchConverterException;
+import pl.fakturogen.comarch.connector.exception.ComarchConnectorException;
+import pl.fakturogen.comarch.connector.exception.connector.ComarchHttpConnectorException;
+import pl.fakturogen.comarch.connector.exception.converter.ComarchConverterException;
 import pl.fakturogen.comarch.connector.mapper.ComarchCustomerMapper;
 import pl.fakturogen.comarch.connector.model.ComarchCustomer;
 
